@@ -71,8 +71,9 @@ _Lets call this "prologue" and keep it without mutation, I'll try to mirror phas
       _this step involves setting up tools and configuration files, it took more time then expected, time consumed was affected by research done for particular combination of tools_
 - [x] **Create project structure** (4 hours) <br>
       _Since I changed my mind about creating project structure with boilerplate code for given files, time required greately decreased, furthermore I feel like there is no point try to figure out final looks of the project structure with assignment of given difficulty, as a result I've setup basic structure and it took approximately 2 hours'_
-- **Review and adjust planning** (Day 2, 1-2 hours)
-
+- [x] **Review and adjust planning** (Day 2, 1-2 hours) <br>
+      _approximate time estimate 10-12 hours was required, considering soft/non-technical researches made, monitoring Q&A in discord channel and getting familiar with assignment it took about 15 huors_
+_**Review**: Despite researches done and time spent, I think that some technical modifications will be required, in general feeling organised feels good and despite the fact that time estimates are approximate and due to my inexperience I could be missing a lot it feels better to have a roadmap anyway, something to follow in order, thinking step at a time._
 ### 2. Implementing (Day 3-7)
 
 #### Page 1: Real Estate Listings (Day 3-4)
