@@ -1,3 +1,5 @@
+import { priceFormatter } from "../../utils/priceFormater";
+
 export const Card = (): JSX.Element => {
   const { address, zip_code, price, area, bedrooms, is_rental, city, image } =
     DUMMY_ESTATE;
@@ -14,7 +16,7 @@ export const Card = (): JSX.Element => {
       <div className="flex flex-col gap-5 px-[25px] py-[22px]">
         <div className="flex flex-col gap-[6px]">
           <span className="font-bold text-[28px]" aria-label={`${price}`}>
-            {price}
+            {priceFormatter(price)}
           </span>
           <span className="card-details-text text-rdbryText-200">
             <span>{"(i)"}</span>
