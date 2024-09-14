@@ -7,7 +7,6 @@ import { ControlledUpload } from "./ui/ControlledUpload";
 import { useCities, useRegions } from "../services";
 
 const defaultValues = {
-  isRental: 0,
   address: "",
   zip_code: "",
   image: null,
@@ -37,7 +36,6 @@ export const NewEstateForm = (): JSX.Element => {
           control={control}
           render={({ field }) => <DealTypeRadioGroup {...field} />}
         />
-        {/* <LocationForm control={control} /> */}
         <div>
           <h5>მდებარეობა</h5>
           <FormInput

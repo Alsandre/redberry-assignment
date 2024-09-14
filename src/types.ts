@@ -1,17 +1,32 @@
 import { Control, FieldValues, UseControllerProps } from "react-hook-form";
 
-export interface IEstateData {
+interface IEstateDataGeneric {
+  id: number;
   address: string;
-  image: File | null;
-  region_id: number;
-  description: string;
-  city_id: number;
   zip_code: string;
   price: number;
   area: number;
   bedrooms: number;
-  isRental: number;
+  is_rental: number;
+  city_id: number;
+}
+export interface IGetEstatesList extends IEstateDataGeneric {
+  image: string;
+  city: ICityData;
+}
+
+export interface IGetEstateById extends IEstateDataGeneric {
   agent_id: number;
+  city: ICityData;
+  agent: IAgentData;
+  created_at: string;
+  description: string;
+}
+
+export interface INewEstateData extends IEstateDataGeneric {
+  description: string;
+  image: File | null;
+  created_at: string;
 }
 
 export interface IAgentData {
@@ -22,18 +37,15 @@ export interface IAgentData {
   avatar: File | null;
 }
 
-export interface IInputFieldProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  value: string | number;
-  onChange: () => void;
-  onBlur: () => void;
+export interface IRegionData {
+  id: number;
   name: string;
-  type: string;
-  label: string;
-  message: string;
-  isValid: boolean;
-  isError: boolean;
-  required: boolean;
+}
+export interface ICityData {
+  id: number;
+  name: string;
+  region_id: number;
+  region: IRegionData;
 }
 
 export interface IFormInputProps extends UseControllerProps {
@@ -41,28 +53,20 @@ export interface IFormInputProps extends UseControllerProps {
   required: boolean;
 }
 
-export interface IUseFormType extends FieldValues {
-  address: string;
-  image: File | null;
-  region_id: number;
-  description: string;
-  city_id: number;
-  zip_code: string;
-  price: number;
-  area: number;
-  bedrooms: number;
-  isRental: number;
-  agent_id: number;
-}
-
 export interface IDealTypeRadioGroupProps extends FieldValues {
-  value: string;
-}
-
-export interface IRegionSelectGroupProps extends UseControllerProps {
   value: string;
 }
 
 export interface IFormSection {
   control: Control;
+}
+
+export interface IControlledComponentProps extends FieldValues {
+  control: Control;
+  name: string;
+  label: string;
+}
+
+export interface IControlledSelectProps extends IControlledComponentProps {
+  options: { value: string; label: string }[];
 }

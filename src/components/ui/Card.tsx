@@ -1,8 +1,16 @@
+import { IGetEstatesList } from "../../types";
 import { priceFormatter } from "../../utils/priceFormater";
 
-export const Card = (): JSX.Element => {
-  const { address, zip_code, price, area, bedrooms, is_rental, city, image } =
-    DUMMY_ESTATE;
+export const Card = ({
+  address,
+  zip_code,
+  price,
+  area,
+  bedrooms,
+  is_rental,
+  city,
+  image,
+}: IGetEstatesList): JSX.Element => {
   return (
     <div className="w-[384px] h-[455px] relative border border-solid border-red-700 rounded-tr-[14px] rounded-tl-[14px] overflow-hidden">
       <span className="absolute top-[23px] left-[23px] tag-chip">
@@ -40,26 +48,4 @@ export const Card = (): JSX.Element => {
       </div>
     </div>
   );
-};
-
-var DUMMY_ESTATE = {
-  id: 1,
-  address: "შარტავას 2ა",
-  zip_code: "0101",
-  price: 100000,
-  area: 100.5,
-  bedrooms: 3,
-  is_rental: 0,
-  image:
-    "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  city_id: 1,
-  city: {
-    id: 1,
-    name: "სოხუმი",
-    region_id: 1,
-    region: {
-      id: 1,
-      name: "აფხაზეთი",
-    },
-  },
 };

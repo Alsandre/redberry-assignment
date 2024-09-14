@@ -1,14 +1,8 @@
 import React, { useRef } from "react";
-import { useController, Control, UseControllerProps } from "react-hook-form";
+import { useController } from "react-hook-form";
+import { IControlledComponentProps } from "../../types";
 
-interface SelectProps extends UseControllerProps {
-  control: Control;
-  name: string;
-  label: string;
-  required: boolean;
-}
-
-export const ControlledUpload: React.FC<SelectProps> = ({
+export const ControlledUpload: React.FC<IControlledComponentProps> = ({
   control,
   name,
   label,

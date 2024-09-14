@@ -1,14 +1,8 @@
 import React from "react";
-import { useController, Control, FieldValues } from "react-hook-form";
+import { useController } from "react-hook-form";
+import { IControlledSelectProps } from "../../types";
 
-interface SelectProps extends FieldValues {
-  control: Control;
-  name: string;
-  options: { value: string; label: string }[];
-  label: string;
-}
-
-export const ControlledSelect: React.FC<SelectProps> = ({
+export const ControlledSelect: React.FC<IControlledSelectProps> = ({
   control,
   name,
   options,

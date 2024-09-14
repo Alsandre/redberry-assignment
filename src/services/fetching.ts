@@ -1,47 +1,56 @@
-import { useQuery } from "react-query";
+import { useQuery, UseQueryResult } from "react-query";
 import api from "./api";
+import {
+  IAgentData,
+  ICityData,
+  IGetEstateById,
+  IGetEstatesList,
+  IRegionData,
+} from "../types";
 
-const fetchEstatesList = async () => {
-  const response = await api.get("/real-estates");
+const fetchEstatesList = async (): Promise<IGetEstatesList[]> => {
+  const response = await api.get<IGetEstatesList[]>("/real-estates");
   return response.data;
 };
 
-export const useEstatesList = () => {
-  return useQuery("estates-list", fetchEstatesList);
+export const useEstatesList = (): UseQueryResult<IGetEstatesList[]> => {
+  return useQuery<IGetEstatesList[]>("estates-list", fetchEstatesList);
 };
 
-const fetchEstateById = async (id: number) => {
-  const response = await api.get(`/real-estates/${id}`);
+const fetchEstateById = async (id: number): Promise<IGetEstateById> => {
+  const response = await api.get<IGetEstateById>(`/real-estates/${id}`);
   return response.data;
 };
 
-export const useEstateById = (id: number) => {
-  return useQuery(["estate-by-id", id], () => fetchEstateById(id));
+export const useEstateById = (id: number): UseQueryResult<IGetEstateById> => {
+  return useQuery<IGetEstateById>(["estate-by-id", id], () =>
+    fetchEstateById(id)
+  );
 };
 
-const fetchRegions = async () => {
-  const response = await api.get("/regions");
+const fetchRegions = async (): Promise<IRegionData[]> => {
+  const response = await api.get<IRegionData[]>("/regions");
   return response.data;
 };
 
-export const useRegions = () => {
-  return useQuery("regions", () => fetchRegions());
+export const useRegions = (): UseQueryResult<IRegionData[]> => {
+  return useQuery<IRegionData[]>("regions", () => fetchRegions());
 };
 
-const fetchCities = async () => {
-  const response = await api.get("/cities");
+const fetchCities = async (): Promise<ICityData[]> => {
+  const response = await api.get<ICityData[]>("/cities");
   return response.data;
 };
 
-export const useCities = () => {
-  return useQuery("cities", () => fetchCities());
+export const useCities = (): UseQueryResult<ICityData[]> => {
+  return useQuery<ICityData[]>("cities", () => fetchCities());
 };
 
-const fetchAgents = async () => {
-  const response = await api.get("/agents");
+const fetchAgents = async (): Promise<IAgentData[]> => {
+  const response = await api.get<IAgentData[]>("/agents");
   return response.data;
 };
 
-export const useAgents = () => {
-  return useQuery("agents", () => fetchAgents());
+export const useAgents = (): UseQueryResult<IAgentData[]> => {
+  return useQuery<IAgentData[]>("agents", () => fetchAgents());
 };
