@@ -4,6 +4,7 @@ import { FormInput } from "./ui/FormInput";
 import { ControlledSelect } from "./ui/ContolledSelect";
 import { ControlledTextarea } from "./ui/ControlledTextArea";
 import { ControlledUpload } from "./ui/ControlledUpload";
+import { useCities, useRegions } from "../services";
 
 const defaultValues = {
   isRental: 0,
@@ -25,7 +26,6 @@ export const NewEstateForm = (): JSX.Element => {
     mode: "onChange",
     defaultValues,
   });
-  console.log(typeof control);
   const regionOptions = [{ value: "კახეთი", label: "კახეთი" }];
   const cityOptions = [{ value: "თელავი", label: "თელავი" }];
   const agentOptions = [{ value: "გიორგი ბრეგი", label: "გიორგი ბრეგი" }];

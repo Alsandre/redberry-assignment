@@ -18,3 +18,30 @@ const fetchEstateById = async (id: number) => {
 export const useEstateById = (id: number) => {
   return useQuery(["estate-by-id", id], () => fetchEstateById(id));
 };
+
+const fetchRegions = async () => {
+  const response = await api.get("/regions");
+  return response.data;
+};
+
+export const useRegions = () => {
+  return useQuery("regions", () => fetchRegions());
+};
+
+const fetchCities = async () => {
+  const response = await api.get("/cities");
+  return response.data;
+};
+
+export const useCities = () => {
+  return useQuery("cities", () => fetchCities());
+};
+
+const fetchAgents = async () => {
+  const response = await api.get("/agents");
+  return response.data;
+};
+
+export const useAgents = () => {
+  return useQuery("agents", () => fetchAgents());
+};

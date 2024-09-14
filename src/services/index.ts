@@ -1,2 +1,8 @@
-export { useEstateById, useEstatesList } from "./fetching";
-export { useCreateEstate, useDeleteEstate } from "./mutation";
+export {
+  useEstateById,
+  useEstatesList,
+  useCities,
+  useRegions,
+  useAgents,
+} from "./fetching";
+export { useCreateEstate, useDeleteEstate, useCreateAgents } from "./mutation";

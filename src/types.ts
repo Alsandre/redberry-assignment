@@ -14,6 +14,14 @@ export interface IEstateData {
   agent_id: number;
 }
 
+export interface IAgentData {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  avatar: File | null;
+}
+
 export interface IInputFieldProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string | number;
