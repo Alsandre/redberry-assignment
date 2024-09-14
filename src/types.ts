@@ -1,4 +1,4 @@
-import { FieldValues, UseControllerProps } from "react-hook-form";
+import { Control, FieldValues, UseControllerProps } from "react-hook-form";
 
 export interface IEstateData {
   address: string;
@@ -45,4 +45,16 @@ export interface IUseFormType extends FieldValues {
   bedrooms: number;
   isRental: number;
   agent_id: number;
+}
+
+export interface IDealTypeRadioGroupProps extends FieldValues {
+  value: string;
+}
+
+export interface IRegionSelectGroupProps extends UseControllerProps {
+  value: string;
+}
+
+export interface IFormSection {
+  control: Control;
 }
