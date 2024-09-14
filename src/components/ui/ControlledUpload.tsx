@@ -1,10 +1,5 @@
 import React, { useRef } from "react";
-import {
-  useController,
-  Control,
-  FieldValues,
-  UseControllerProps,
-} from "react-hook-form";
+import { useController, Control, UseControllerProps } from "react-hook-form";
 
 interface SelectProps extends UseControllerProps {
   control: Control;

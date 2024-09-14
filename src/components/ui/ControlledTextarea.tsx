@@ -1,19 +1,14 @@
 import React from "react";
-import {
-  useController,
-  Control,
-  FieldValues,
-  UseControllerProps,
-} from "react-hook-form";
+import { useController, Control, UseControllerProps } from "react-hook-form";
 
-interface SelectProps extends UseControllerProps {
+interface ITextAreaProps extends UseControllerProps {
   control: Control;
   name: string;
   label: string;
   required: boolean;
 }
 
-export const ControlledTextarea: React.FC<SelectProps> = ({
+export const ControlledTextarea: React.FC<ITextAreaProps> = ({
   control,
   name,
   label,
