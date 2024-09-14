@@ -1,11 +1,19 @@
+import { useEstatesList } from "../services";
 import { Card } from "./ui";
-const FAKE_data = Array(5).fill(1);
+
 export const EstateList = (): JSX.Element => {
+  const { data, isLoading, isError, refetch } = useEstatesList();
+
   return (
     <>
-      {FAKE_data.map((_, index) => (
-        <Card key={index} />
-      ))}
+      {/* TODO - create components for error and loading states */}
+      {isError && <button onClick={() => refetch()}>Try again</button>}
+      {isLoading && <p>Please Wait. Loading ...</p>}
+      {data &&
+        data.map((estate, index) => (
+          //TODO - unique id generator
+          <Card key={`${index}_${estate.id}_${estate.zip_code}`} {...estate} />
+        ))}
     </>
   );
 };
