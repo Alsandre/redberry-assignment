@@ -1,5 +1,6 @@
 import { Control, FieldValues, UseControllerProps } from "react-hook-form";
 
+// Estate
 interface IEstateDataGeneric {
   id: number;
   address: string;
@@ -18,7 +19,7 @@ export interface IGetEstatesList extends IEstateDataGeneric {
 export interface IGetEstateById extends IEstateDataGeneric {
   agent_id: number;
   city: ICityData;
-  agent: IAgentData;
+  agent: IAgentDetails;
   created_at: string;
   description: string;
 }
@@ -29,18 +30,33 @@ export interface INewEstateData extends IEstateDataGeneric {
   created_at: string;
 }
 
-export interface IAgentData {
+// Agent
+
+interface IAgentGeneric {
   name: string;
   surname: string;
+}
+export interface IGetAgentData extends IAgentGeneric {
+  id: number;
+  avatar: string;
+}
+export interface INewAgentData extends IAgentGeneric {
   email: string;
   phone: string;
   avatar: File | null;
 }
+export interface IAgentDetails extends IGetAgentData {
+  email: string;
+  phone: string;
+}
 
+// Region
 export interface IRegionData {
   id: number;
   name: string;
 }
+
+// City
 export interface ICityData {
   id: number;
   name: string;
@@ -48,6 +64,7 @@ export interface ICityData {
   region: IRegionData;
 }
 
+// Props
 export interface IFormInputProps extends UseControllerProps {
   label: string;
   required: boolean;

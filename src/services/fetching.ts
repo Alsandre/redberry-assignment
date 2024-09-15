@@ -1,8 +1,8 @@
 import { useQuery, UseQueryResult } from "react-query";
 import api from "./api";
 import {
-  IAgentData,
   ICityData,
+  IGetAgentData,
   IGetEstateById,
   IGetEstatesList,
   IRegionData,
@@ -46,11 +46,11 @@ export const useCities = (): UseQueryResult<ICityData[]> => {
   return useQuery<ICityData[]>("cities", () => fetchCities());
 };
 
-const fetchAgents = async (): Promise<IAgentData[]> => {
-  const response = await api.get<IAgentData[]>("/agents");
+const fetchAgents = async (): Promise<IGetAgentData[]> => {
+  const response = await api.get<IGetAgentData[]>("/agents");
   return response.data;
 };
 
-export const useAgents = (): UseQueryResult<IAgentData[]> => {
-  return useQuery<IAgentData[]>("agents", () => fetchAgents());
+export const useAgents = (): UseQueryResult<IGetAgentData[]> => {
+  return useQuery<IGetAgentData[]>("agents", () => fetchAgents());
 };

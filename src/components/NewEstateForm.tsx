@@ -2,7 +2,7 @@ import { Controller, FieldValues, useForm } from "react-hook-form";
 import { DealTypeRadioGroup } from "./DealTypeRadioGroup";
 import { FormInput } from "./ui/FormInput";
 import { ControlledSelect } from "./ui/ContolledSelect";
-import { ControlledTextarea } from "./ui/ControlledTextArea";
+import { ControlledTextarea } from "./ui/ControlledTextarea";
 import { ControlledUpload } from "./ui/ControlledUpload";
 import { useCities, useRegions } from "../services";
 

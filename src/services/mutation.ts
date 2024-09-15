@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import api from "./api";
-import { IAgentData, INewEstateData } from "../types";
+import { INewAgentData, INewEstateData } from "../types";
 
 const createEstate = async (estateData: INewEstateData) => {
   const response = await api.post("/real-estates", estateData);
@@ -32,7 +32,7 @@ export const useDeleteEstate = () => {
   });
 };
 
-const createAgent = async (agentData: IAgentData) => {
+const createAgent = async (agentData: INewAgentData) => {
   const response = await api.post("/agents", agentData);
   return response.data;
 };
