@@ -73,34 +73,35 @@ _Lets call this "prologue" and keep it without mutation, I'll try to mirror phas
       _Since I changed my mind about creating project structure with boilerplate code for given files, time required greately decreased, furthermore I feel like there is no point try to figure out final looks of the project structure with assignment of given difficulty, as a result I've setup basic structure and it took approximately 2 hours'_
 - [x] **Review and adjust planning** (Day 2, 1-2 hours) <br>
       _approximate time estimate 10-12 hours was required, considering soft/non-technical researches made, monitoring Q&A in discord channel and getting familiar with assignment it took about 15 huors_
-_**Review**: Despite researches done and time spent, I think that some technical modifications will be required, in general feeling organised feels good and despite the fact that time estimates are approximate and due to my inexperience I could be missing a lot it feels better to have a roadmap anyway, something to follow in order, thinking step at a time._
+      _**Review**: Despite researches done and time spent, I think that some technical modifications will be required, in general feeling organised feels good and despite the fact that time estimates are approximate and due to my inexperience I could be missing a lot it feels better to have a roadmap anyway, something to follow in order, thinking step at a time._
+
 ### 2. Implementing (Day 3-7)
 
 #### Page 1: Real Estate Listings (Day 3-4)
 
-- **Implement components logic** for listing cards (4 hours)
+- [x] **Implement components logic** for listing cards (4 hours)
   - Picture, address, city, zip code, price, area, bedrooms, rent/sale tag
-- **Wire up data** using the provided backend (3-4 hours)
-- **Implement filters** for price, area, region, and bedrooms (5 hours)
+- [x] **Wire up data** using the provided backend (3-4 hours)
+- [ ] **Implement filters** for price, area, region, and bedrooms (5 hours)
   - Single or multiple criteria support
   - Handle min > max validation for price/area ranges
 - **Review progress & make adjustments** (Day 4, 1-2 hours)
 
 #### Page 2: Estate Details Page (Day 5)
 
-- **Render detailed estate information** (5-6 hours)
+- [x] **Render detailed estate information** (5-6 hours)
   - Picture, address, city, zip code, price, area, bedrooms, rent/sale tag, description, publish date, agent info (picture, name, email, mobile)
-- **Implement infinite slider** for estates in the same region (4-5 hours)
-- **Wire up data logic** for the estate details (3-4 hours)
-- **Add delete functionality** with modal confirmation and redirect (3-4 hours)
+- [ ] **Implement infinite slider** for estates in the same region (4-5 hours)
+- [x] **Wire up data logic** for the estate details (3-4 hours)
+- [ ] **Add delete functionality** with modal confirmation and redirect (3-4 hours)
 - **Review & adjust work done** (Day 5, 1 hour)
 
 #### Page 3: Add Estate & Modal for New Agent (Day 6-7)
 
-- **Implement "Add New Estate" form** with address, picture, region, city, zip, price, area, bedrooms, description, sale/rent, agent dropdown (5-6 hours)
-- **Implement "Add New Agent" modal** with name, surname, email, picture, mobile fields (4 hours)
-- **Wire up both forms to backend** (4 hours)
-- **Ensure data persistence** after refresh across all pages (3 hours)
+- [x] **Implement "Add New Estate" form** with address, picture, region, city, zip, price, area, bedrooms, description, sale/rent, agent dropdown (5-6 hours)
+- [ ] **Implement "Add New Agent" modal** with name, surname, email, picture, mobile fields (4 hours)
+- [ ] **Wire up both forms to backend** (4 hours)
+- [ ] **Ensure data persistence** after refresh across all pages (3 hours)
 - **Review entire implementation** (Day 7, 2-3 hours)
 
 ### 3. Honing (Day 8-10)
@@ -109,6 +110,38 @@ _**Review**: Despite researches done and time spent, I think that some technical
 - **Ensure responsiveness and compatibility** (Day 9, 3-4 hours, optional as responsiveness is not required)
 - **Final review, bug fixes, and polish** (Day 10, 5-6 hours)
 - **Conclusion and reflections** (Day 10, 2 hours)
+
+_as of today I could say that I am lagging. Its due to my messed up schedule I had to make double trip outside city regarding my master's degree, today I am updating existing plan to mark whats done and I'll proceed with creating new plan for upcoming days, there are 4 days left_
+
+**17/09**
+
+- [ ] **Implement "Add New Agent" modal** (3-4 hours)
+- [ ] **Wire up both forms to backend** (2 hours)
+- [ ] **Seed back with some data** (1 hours)
+
+**18/09**
+
+- [ ] **Implement filters** (5 hours)
+  - Single or multiple criteria support
+  - Handle min > max validation for price/area ranges
+- [ ] **Add delete functionality** with modal confirmation and redirect (3-4 hours)
+
+**19/09**
+
+- [ ] **Ensure data persistence** after refresh across all pages (3 hours)
+- [ ] **Review entire implementation** (4-5 hours)
+
+**20/09**
+
+- [ ] **Apply styling based on UI design** (7 hours)
+
+**21/09**
+
+- [ ] **Fine-tune Final review, bug fixes, and polish** (7 hours)
+
+**22/09**
+
+- [ ] **Conclusion and reflections** (Day 10, 2 hours)
 
 # "Epilogue"
 
