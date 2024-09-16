@@ -1,12 +1,11 @@
-import { useLocation, useParams } from "react-router-dom";
-import { EstateImagePreview } from "../components/EstateImagePreview";
-import { useEstateById } from "../services";
+import { EstateDetailsSection } from "../components/EstateDetailsSection";
+import { EstateSliderSection } from "../components/EstatesSliderSection";
 
 export const EstateDetailsPage = (): JSX.Element => {
-  const { id } = useParams();
-  const idToNum = Number(id);
-  const { isLoading, isError, data } = useEstateById(idToNum);
-  const location = useLocation();
-  const image = location.state?.image;
-  return <>{/* details section */}</>;
+  return (
+    <>
+      <EstateDetailsSection />
+      <EstateSliderSection />
+    </>
+  );
 };
