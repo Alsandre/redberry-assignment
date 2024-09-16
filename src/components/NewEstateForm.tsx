@@ -4,7 +4,7 @@ import { FormInput } from "./ui/FormInput";
 import { ControlledSelect } from "./ui/ContolledSelect";
 import { ControlledTextarea } from "./ui/ControlledTextarea";
 import { ControlledUpload } from "./ui/ControlledUpload";
-import { useCities, useRegions } from "../services";
+import { useAgents, useCities, useRegions } from "../services";
 
 const defaultValues = {
   address: "",
@@ -21,13 +21,35 @@ const defaultValues = {
 };
 
 export const NewEstateForm = (): JSX.Element => {
-  const { control } = useForm<FieldValues>({
+  const { control, watch } = useForm<FieldValues>({
     mode: "onChange",
     defaultValues,
   });
-  const regionOptions = [{ value: "კახეთი", label: "კახეთი" }];
-  const cityOptions = [{ value: "თელავი", label: "თელავი" }];
-  const agentOptions = [{ value: "გიორგი ბრეგი", label: "გიორგი ბრეგი" }];
+
+  const { data: regions } = useRegions();
+  const { data: cities } = useCities();
+  const { data: agents } = useAgents();
+
+  const regionOptions = regions?.map((region) => {
+    return { value: region.id, label: region.name };
+  });
+
+  const citiesInCurrentRegion = cities?.filter((city) => {
+    const currentRegionId = watch("region");
+    // using loose equality check is intentional
+    return city?.region_id == currentRegionId;
+  });
+  const cityOptions = citiesInCurrentRegion?.map((cityInCurrentRegion) => {
+    return {
+      value: cityInCurrentRegion.id,
+      label: cityInCurrentRegion.name,
+    };
+  });
+
+  const agentOptions = agents?.map((agent) => {
+    return { value: agent.id, label: `${agent.name} ${agent.surname}` };
+  });
+
   return (
     <>
       <form action="">
@@ -68,13 +90,13 @@ export const NewEstateForm = (): JSX.Element => {
             control={control}
             name="region"
             label="აირჩიეთ რეგიონი"
-            options={regionOptions}
+            options={regionOptions ?? []}
           />
           <ControlledSelect
             control={control}
             name="city"
             label="აირჩიეთ ქალაქი"
-            options={cityOptions}
+            options={cityOptions ?? []}
           />
         </div>
         <div>
@@ -131,7 +153,7 @@ export const NewEstateForm = (): JSX.Element => {
             control={control}
             name="agent_id"
             label="აირჩიე"
-            options={agentOptions}
+            options={agentOptions ?? []}
           />
         </div>
       </form>

@@ -85,5 +85,5 @@ export interface IControlledComponentProps extends FieldValues {
 }
 
 export interface IControlledSelectProps extends IControlledComponentProps {
-  options: { value: string; label: string }[];
+  options: { value: number; label: string }[];
 }
