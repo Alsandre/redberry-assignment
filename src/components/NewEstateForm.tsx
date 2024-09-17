@@ -25,7 +25,7 @@ const defaultValues = {
   area: 0,
   bedrooms: 0,
   agent_id: 0,
-  is_rental: 0,
+  is_rental: 1,
   description: "",
 };
 const newAgentOptionLabel = "addNew";
@@ -77,15 +77,24 @@ export const NewEstateForm = (): JSX.Element => {
   const handleNewEstate: SubmitHandler<FieldValues> = (data) => {
     mutate(data as INewEstateData);
   };
-
+  console.log(watch("is_rental"));
   return (
     <>
       <form onSubmit={handleSubmit(handleNewEstate)}>
-        <Controller
-          name="is_rental"
-          control={control}
-          render={({ field }) => <DealTypeRadioGroup {...field} />}
-        />
+        <div>
+          <h5>გარიგების ტიპი</h5>
+          <Controller
+            name="is_rental"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <DealTypeRadioGroup
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+        </div>
         <div>
           <h5>მდებარეობა</h5>
           <FormInput

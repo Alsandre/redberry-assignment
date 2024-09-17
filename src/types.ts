@@ -73,7 +73,8 @@ export interface IFormInputProps extends UseControllerProps {
 }
 
 export interface IDealTypeRadioGroupProps extends FieldValues {
-  value: string;
+  value: number;
+  onChange: (id: number) => void;
 }
 
 export interface IControlledComponentProps extends FieldValues {
