@@ -13,8 +13,8 @@ export const DealTypeRadioGroup = React.forwardRef<
       <label>
         <input
           type="radio"
-          value="rent"
-          checked={value === "rent"}
+          value={0}
+          checked={value === 0}
           onChange={(e) => onChange(e.target.value)}
         />
         ქირავდება
@@ -22,8 +22,8 @@ export const DealTypeRadioGroup = React.forwardRef<
       <label>
         <input
           type="radio"
-          value="sale"
-          checked={value === "sale"}
+          value={1}
+          checked={value === 1}
           onChange={(e) => onChange(e.target.value)}
         />
         იყიდება

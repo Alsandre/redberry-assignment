@@ -18,7 +18,7 @@ export const ControlledUpload: React.FC<IControlledComponentProps> = ({
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    const files = event.dataTransfer.files;
+    const files = event.dataTransfer.files[0];
     field.onChange(files);
   };
 
@@ -27,7 +27,7 @@ export const ControlledUpload: React.FC<IControlledComponentProps> = ({
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    field.onChange(event.target.files);
+    field.onChange(event.target.files?.[0]);
   };
 
   return (

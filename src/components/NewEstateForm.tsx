@@ -1,13 +1,20 @@
-import { Controller, FieldValues, useForm } from "react-hook-form";
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import { DealTypeRadioGroup } from "./DealTypeRadioGroup";
 import { FormInput } from "./ui/FormInput";
 import { ControlledSelect } from "./ui/ContolledSelect";
 import { ControlledTextarea } from "./ui/ControlledTextarea";
 import { ControlledUpload } from "./ui/ControlledUpload";
-import { useAgents, useCities, useRegions } from "../services";
+import { useAgents, useCities, useCreateEstate, useRegions } from "../services";
 import { NewAgentForm } from "./NewAgentForm";
 import { Modal } from "./ui/Modal";
 import Select from "react-select";
+import { INewEstateData } from "../types";
+import { validateFileSize } from "../utils/validateFileSize";
 
 const defaultValues = {
   address: "",
@@ -19,16 +26,17 @@ const defaultValues = {
   area: 0,
   bedrooms: 0,
   agent_id: 0,
-  dealType: "rent",
+  is_rental: 0,
   description: "",
 };
 const newAgentOptionLabel = "addNew";
 
 export const NewEstateForm = (): JSX.Element => {
-  const { control, watch, setValue } = useForm<FieldValues>({
+  const { control, watch, setValue, handleSubmit } = useForm<FieldValues>({
     mode: "onChange",
     defaultValues,
   });
+  const { mutate } = useCreateEstate();
 
   const { data: regions } = useRegions();
   const { data: cities } = useCities();
@@ -39,7 +47,8 @@ export const NewEstateForm = (): JSX.Element => {
   });
 
   const citiesInCurrentRegion = cities?.filter((city) => {
-    const currentRegionId = watch("region");
+    const currentRegionId = watch("region_id");
+    console.log(currentRegionId);
     // using loose equality check is intentional
     return city?.region_id == currentRegionId;
   });
@@ -64,14 +73,19 @@ export const NewEstateForm = (): JSX.Element => {
   const agentSelectedOption = watch("agent") ?? {};
 
   const handleCloseAgentModal = () => {
-    setValue("agent", null);
+    setValue("agent_id", null);
   };
 
+  const handleNewEstate: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+    mutate(data as INewEstateData);
+  };
+  console.log(typeof watch("is_rental"));
   return (
     <>
-      <form action="">
+      <form onSubmit={handleSubmit(handleNewEstate)}>
         <Controller
-          name="dealType"
+          name="is_rental"
           control={control}
           render={({ field }) => <DealTypeRadioGroup {...field} />}
         />
@@ -83,10 +97,10 @@ export const NewEstateForm = (): JSX.Element => {
             label="მისამართი"
             required={true}
             rules={{
-              required: "ჩაწერეთ ვალიდური მონაცემები",
+              required: "მინიმუმ 2 სიმბოლო",
               minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters long",
+                value: 2,
+                message: "მინიმუმ 2 სიმბოლო",
               },
             }}
           />
@@ -96,24 +110,53 @@ export const NewEstateForm = (): JSX.Element => {
             label="საფოსტო ინდექსი"
             required={true}
             rules={{
-              required: true,
-              minLength: {
-                value: 4,
+              required: "მხოლოდ რიცხვები",
+              pattern: {
+                value: /\d{3,}$/,
                 message: "მხოლოდ რიცხვები",
               },
             }}
           />
-          <ControlledSelect
+          <Controller
+            name="region_id"
             control={control}
-            name="region"
-            label="აირჩიეთ რეგიონი"
-            options={regionOptions ?? []}
+            defaultValue={null}
+            rules={{ required: "გთხოვთ აირჩიეთ რეგიონი" }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={regionOptions ?? []}
+                placeholder="აირჩიეთ რეგიონი"
+                onChange={(option) =>
+                  field.onChange(option ? option.value : null)
+                }
+                value={
+                  regionOptions?.find(
+                    (option) => option.value == field.value
+                  ) || null
+                }
+              />
+            )}
           />
-          <ControlledSelect
+          <Controller
+            name="city_id"
             control={control}
-            name="city"
-            label="აირჩიეთ ქალაქი"
-            options={cityOptions ?? []}
+            defaultValue={null}
+            rules={{ required: "გთხოვთ აირჩიეთ ქალაქი" }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={cityOptions ?? []}
+                placeholder="აირჩიეთ ქალაქი"
+                onChange={(option) =>
+                  field.onChange(option ? option.value : null)
+                }
+                value={
+                  cityOptions?.find((option) => option.value == field.value) ||
+                  null
+                }
+              />
+            )}
           />
         </div>
         <div>
@@ -154,13 +197,22 @@ export const NewEstateForm = (): JSX.Element => {
             required={true}
             rules={{
               required: "მინიმუმ 5 სიტყვა",
+              pattern: {
+                value: /^(?:\S+\s+){4,}\S+$/,
+              },
             }}
           />
           <ControlledUpload
             label="ატვირთეთ ფოტო"
             control={control}
             name="image"
-            required
+            required={true}
+            rules={{
+              required: "არ უნდა აღებმატებოდეს 1mb-ის ზომაში",
+              validate: {
+                fileSize: (file: File) => validateFileSize(file),
+              },
+            }}
           />
         </div>
 
@@ -168,19 +220,25 @@ export const NewEstateForm = (): JSX.Element => {
           <h5>აგენტი</h5>
           <span>აირჩიე</span>
           <Controller
-            name="agent"
+            name="agent_id"
             control={control}
             defaultValue={null}
             render={({ field }) => (
               <Select
                 {...field}
                 options={agentOptions}
-                onChange={(option) => field.onChange(option)}
-                value={field.value}
+                onChange={(option) =>
+                  field.onChange(option ? option.value : null)
+                }
+                value={
+                  agentOptions.find((option) => option.value === field.value) ||
+                  null
+                }
               />
             )}
           />
         </div>
+        <button type="submit">submit</button>
       </form>
       <div style={{ width: "50px", height: "500px" }}></div>
       {agentSelectedOption.value === "addNew" && (
