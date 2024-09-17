@@ -8,6 +8,7 @@ import { useAgents, useCities, useRegions } from "../services";
 import { NewAgentForm } from "./NewAgentForm";
 import { Modal } from "./ui/Modal";
 import { useState } from "react";
+import Select from "react-select";
 
 const defaultValues = {
   address: "",
@@ -158,11 +159,19 @@ export const NewEstateForm = (): JSX.Element => {
 
         <div>
           <h5>აგენტი</h5>
-          <ControlledSelect
+          <span>აირჩიე</span>
+          <Controller
+            name="flavor"
             control={control}
-            name="agent"
-            label="აირჩიე"
-            options={agentOptions ?? []}
+            defaultValue={null}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={agentOptions}
+                onChange={(option) => field.onChange(option)}
+                value={field.value}
+              />
+            )}
           />
         </div>
       </form>
