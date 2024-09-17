@@ -6,7 +6,6 @@ import {
 } from "react-hook-form";
 import { DealTypeRadioGroup } from "./DealTypeRadioGroup";
 import { FormInput } from "./ui/FormInput";
-import { ControlledSelect } from "./ui/ContolledSelect";
 import { ControlledTextarea } from "./ui/ControlledTextarea";
 import { ControlledUpload } from "./ui/ControlledUpload";
 import { useAgents, useCities, useCreateEstate, useRegions } from "../services";
@@ -48,7 +47,6 @@ export const NewEstateForm = (): JSX.Element => {
 
   const citiesInCurrentRegion = cities?.filter((city) => {
     const currentRegionId = watch("region_id");
-    console.log(currentRegionId);
     // using loose equality check is intentional
     return city?.region_id == currentRegionId;
   });
@@ -77,10 +75,9 @@ export const NewEstateForm = (): JSX.Element => {
   };
 
   const handleNewEstate: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
     mutate(data as INewEstateData);
   };
-  console.log(typeof watch("is_rental"));
+
   return (
     <>
       <form onSubmit={handleSubmit(handleNewEstate)}>

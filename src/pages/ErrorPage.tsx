@@ -1,3 +1,3 @@
 export const ErrorPage = (): JSX.Element => {
-  return <></>;
+  return <>{/* TODO - create error component */}</>;
 };

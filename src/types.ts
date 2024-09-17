@@ -76,18 +76,10 @@ export interface IDealTypeRadioGroupProps extends FieldValues {
   value: string;
 }
 
-export interface IFormSection {
-  control: Control;
-}
-
 export interface IControlledComponentProps extends FieldValues {
   control: Control;
   name: string;
   label: string;
-}
-
-export interface IControlledSelectProps extends IControlledComponentProps {
-  options: { value: number | string; label: ReactNode }[];
 }
 
 export interface IModalProps {
@@ -97,4 +89,11 @@ export interface IModalProps {
 
 export interface INewAgentFormProps {
   onClose: () => void;
+}
+
+export interface IEstateImagePreviewProps {
+  is_rental: number;
+  image: string;
+  alt_description: string;
+  created_at: string;
 }

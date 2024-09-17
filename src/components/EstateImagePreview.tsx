@@ -1,9 +1,5 @@
-interface IEstateImagePreviewProps {
-  is_rental: number;
-  image: string;
-  alt_description: string;
-  created_at: string;
-}
+import { IEstateImagePreviewProps } from "../types";
+
 export const EstateImagePreview = ({
   is_rental,
   image,

@@ -24,7 +24,6 @@ export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
   };
 
   const handleNewAgent: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
     mutate(data as INewAgentData);
     onClose();
   };
