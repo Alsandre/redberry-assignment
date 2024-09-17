@@ -7,7 +7,6 @@ import { ControlledUpload } from "./ui/ControlledUpload";
 import { useAgents, useCities, useRegions } from "../services";
 import { NewAgentForm } from "./NewAgentForm";
 import { Modal } from "./ui/Modal";
-import { useEffect, useState } from "react";
 import Select from "react-select";
 
 const defaultValues = {
@@ -30,8 +29,6 @@ export const NewEstateForm = (): JSX.Element => {
     mode: "onChange",
     defaultValues,
   });
-
-  const [isAgentModalOpen, setIsAgentModalOpen] = useState(false);
 
   const { data: regions } = useRegions();
   const { data: cities } = useCities();
