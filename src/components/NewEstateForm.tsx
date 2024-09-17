@@ -5,6 +5,9 @@ import { ControlledSelect } from "./ui/ContolledSelect";
 import { ControlledTextarea } from "./ui/ControlledTextarea";
 import { ControlledUpload } from "./ui/ControlledUpload";
 import { useAgents, useCities, useRegions } from "../services";
+import { NewAgentForm } from "./NewAgentForm";
+import { Modal } from "./ui/Modal";
+import { useState } from "react";
 
 const defaultValues = {
   address: "",
@@ -25,6 +28,8 @@ export const NewEstateForm = (): JSX.Element => {
     mode: "onChange",
     defaultValues,
   });
+
+  const [isAgentModalOpen, setIsAgentModalOpen] = useState(false);
 
   const { data: regions } = useRegions();
   const { data: cities } = useCities();
@@ -49,6 +54,10 @@ export const NewEstateForm = (): JSX.Element => {
   const agentOptions = agents?.map((agent) => {
     return { value: agent.id, label: `${agent.name} ${agent.surname}` };
   });
+
+  const handleCloseAgentModal = () => {
+    setIsAgentModalOpen(false);
+  };
 
   return (
     <>
@@ -151,12 +160,21 @@ export const NewEstateForm = (): JSX.Element => {
           <h5>აგენტი</h5>
           <ControlledSelect
             control={control}
-            name="agent_id"
+            name="agent"
             label="აირჩიე"
             options={agentOptions ?? []}
           />
         </div>
       </form>
+      {isAgentModalOpen && (
+        <Modal onClose={handleCloseAgentModal}>
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <NewAgentForm onReset={handleCloseAgentModal} />
+            </div>
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

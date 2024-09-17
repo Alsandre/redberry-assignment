@@ -1,5 +1,6 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { FormInput, ControlledUpload } from "./ui";
+import { INewAgentFormProps } from "../types";
 
 const defaultValues = {
   name: "",
@@ -9,7 +10,7 @@ const defaultValues = {
   avatar: "",
 };
 
-export const NewAgentForm = (): JSX.Element => {
+export const NewAgentForm = ({}: INewAgentFormProps): JSX.Element => {
   const { control } = useForm<FieldValues>({
     mode: "onChange",
     defaultValues,

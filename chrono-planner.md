@@ -115,7 +115,7 @@ _as of today I could say that I am lagging. Its due to my messed up schedule I h
 
 **17/09**
 
-- [ ] **Implement "Add New Agent" modal** (3-4 hours)
+- [x] **Implement "Add New Agent" modal** (3-4 hours)
 - [ ] **Wire up both forms to backend** (2 hours)
 - [ ] **Seed back with some data** (1 hours)
 

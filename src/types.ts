@@ -86,9 +86,14 @@ export interface IControlledComponentProps extends FieldValues {
 }
 
 export interface IControlledSelectProps extends IControlledComponentProps {
-  options: { value: number; label: string }[];
+  options: { value: number | string; label: ReactNode }[];
 }
 
 export interface IModalProps {
   children: ReactNode;
+  onClose: () => void;
+}
+
+export interface INewAgentFormProps {
+  onReset: () => void;
 }
