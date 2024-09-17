@@ -10,11 +10,16 @@ const defaultValues = {
   avatar: "",
 };
 
-export const NewAgentForm = ({}: INewAgentFormProps): JSX.Element => {
-  const { control } = useForm<FieldValues>({
+export const NewAgentForm = ({ onReset }: INewAgentFormProps): JSX.Element => {
+  const { control, reset } = useForm<FieldValues>({
     mode: "onChange",
     defaultValues,
   });
+
+  const handleReset = () => {
+    reset();
+    onReset();
+  };
 
   return (
     <>
@@ -82,6 +87,10 @@ export const NewAgentForm = ({}: INewAgentFormProps): JSX.Element => {
             name="image"
             required
           />
+        </div>
+        <div>
+          <button onClick={handleReset}>გაუქმება</button>
+          <input type="submit" />
         </div>
       </form>
     </>

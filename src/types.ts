@@ -26,6 +26,7 @@ export interface IGetEstateById extends IEstateDataGeneric {
 }
 
 export interface INewEstateData extends IEstateDataGeneric {
+  agent_id: number;
   description: string;
   image: File | null;
   created_at: string;

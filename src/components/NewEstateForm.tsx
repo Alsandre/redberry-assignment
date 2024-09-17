@@ -7,7 +7,7 @@ import { ControlledUpload } from "./ui/ControlledUpload";
 import { useAgents, useCities, useRegions } from "../services";
 import { NewAgentForm } from "./NewAgentForm";
 import { Modal } from "./ui/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 
 const defaultValues = {
@@ -23,9 +23,10 @@ const defaultValues = {
   dealType: "rent",
   description: "",
 };
+const newAgentOptionLabel = "addNew";
 
 export const NewEstateForm = (): JSX.Element => {
-  const { control, watch } = useForm<FieldValues>({
+  const { control, watch, setValue } = useForm<FieldValues>({
     mode: "onChange",
     defaultValues,
   });
@@ -52,12 +53,21 @@ export const NewEstateForm = (): JSX.Element => {
     };
   });
 
-  const agentOptions = agents?.map((agent) => {
-    return { value: agent.id, label: `${agent.name} ${agent.surname}` };
-  });
+  const existingAgentsList =
+    agents?.map((agent) => {
+      return { value: agent.id, label: `${agent.name} ${agent.surname}` };
+    }) ?? [];
+
+  const addAgentLabel = <span>{`(icon) დაამატე აგენტი`}</span>;
+
+  const addAgentOption = [{ value: newAgentOptionLabel, label: addAgentLabel }];
+
+  const agentOptions = [...addAgentOption, ...existingAgentsList];
+
+  const agentSelectedOption = watch("agent") ?? {};
 
   const handleCloseAgentModal = () => {
-    setIsAgentModalOpen(false);
+    setValue("agent", null);
   };
 
   return (
@@ -161,7 +171,7 @@ export const NewEstateForm = (): JSX.Element => {
           <h5>აგენტი</h5>
           <span>აირჩიე</span>
           <Controller
-            name="flavor"
+            name="agent"
             control={control}
             defaultValue={null}
             render={({ field }) => (
@@ -175,13 +185,10 @@ export const NewEstateForm = (): JSX.Element => {
           />
         </div>
       </form>
-      {isAgentModalOpen && (
+      <div style={{ width: "50px", height: "500px" }}></div>
+      {agentSelectedOption.value === "addNew" && (
         <Modal onClose={handleCloseAgentModal}>
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-              <NewAgentForm onReset={handleCloseAgentModal} />
-            </div>
-          </div>
+          <NewAgentForm onReset={handleCloseAgentModal} />
         </Modal>
       )}
     </>
