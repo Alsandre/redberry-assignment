@@ -1,6 +1,6 @@
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormInput, ControlledUpload } from "./ui";
-import { INewAgentFormProps } from "../types";
+import { INewAgentData, INewAgentFormProps } from "../types";
 
 const defaultValues = {
   name: "",
@@ -10,20 +10,24 @@ const defaultValues = {
   avatar: "",
 };
 
-export const NewAgentForm = ({ onReset }: INewAgentFormProps): JSX.Element => {
-  const { control, reset } = useForm<FieldValues>({
+export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
+  const { control, reset, handleSubmit } = useForm<FieldValues>({
     mode: "onChange",
     defaultValues,
   });
 
   const handleReset = () => {
     reset();
-    onReset();
+    onClose();
+  };
+
+  const handleNewAgent: SubmitHandler<FieldValues> = (data) => {
+    onClose();
   };
 
   return (
     <>
-      <form action="">
+      <form onSubmit={handleSubmit(handleNewAgent)}>
         <div>
           <FormInput
             control={control}
@@ -84,13 +88,13 @@ export const NewAgentForm = ({ onReset }: INewAgentFormProps): JSX.Element => {
           <ControlledUpload
             label="ატვირთეთ ფოტო"
             control={control}
-            name="image"
+            name="avatar"
             required
           />
         </div>
         <div>
           <button onClick={handleReset}>გაუქმება</button>
-          <input type="submit" />
+          <button type="submit">დაამატე აგენტი</button>
         </div>
       </form>
     </>

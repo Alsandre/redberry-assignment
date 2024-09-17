@@ -184,8 +184,8 @@ export const NewEstateForm = (): JSX.Element => {
       </form>
       <div style={{ width: "50px", height: "500px" }}></div>
       {agentSelectedOption.value === "addNew" && (
-        <Modal onClose={handleCloseAgentModal}>
-          <NewAgentForm onReset={handleCloseAgentModal} />
+        <Modal title="აგენტის დამატება">
+          <NewAgentForm onClose={handleCloseAgentModal} />
         </Modal>
       )}
     </>

@@ -45,7 +45,7 @@ export interface IGetAgentData extends IAgentGeneric {
 export interface INewAgentData extends IAgentGeneric {
   email: string;
   phone: string;
-  avatar: File | null;
+  avatar: string;
 }
 export interface IAgentDetails extends IGetAgentData {
   email: string;
@@ -92,9 +92,9 @@ export interface IControlledSelectProps extends IControlledComponentProps {
 
 export interface IModalProps {
   children: ReactNode;
-  onClose: () => void;
+  title: string;
 }
 
 export interface INewAgentFormProps {
-  onReset: () => void;
+  onClose: () => void;
 }
