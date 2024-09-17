@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Control, FieldValues, UseControllerProps } from "react-hook-form";
 
 // Estate
@@ -86,4 +87,8 @@ export interface IControlledComponentProps extends FieldValues {
 
 export interface IControlledSelectProps extends IControlledComponentProps {
   options: { value: number; label: string }[];
+}
+
+export interface IModalProps {
+  children: ReactNode;
 }
