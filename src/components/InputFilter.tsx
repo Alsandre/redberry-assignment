@@ -1,6 +1,6 @@
-import { props } from "../types";
+import { IFilterProps } from "../types";
 
-export const InputFilter = ({ register, fieldName }: props) => {
+export const InputFilter = ({ register, fieldName }: IFilterProps) => {
   return (
     <div>
       <label>

@@ -1,19 +1,6 @@
-import { useRegions } from "../services";
-import { props } from "../types";
+import { ICheckBoxFilterProps } from "../types";
 
-export const CheckboxFilter = ({ register }: props) => {
-  const { data } = useRegions();
-  //   const [options, setOptions] = useState<{ label: string; value: number }[]>(
-  //     []
-  //   );
-  //   if (data) {
-  const options =
-    data?.map((region) => ({
-      label: region.name,
-      value: region.id,
-    })) || [];
-  //     setOptions(checkboxOptions);
-  //   }
+export const CheckboxFilter = ({ register, options }: ICheckBoxFilterProps) => {
   return (
     <>
       {options.map((option) => (

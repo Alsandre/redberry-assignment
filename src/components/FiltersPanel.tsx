@@ -9,11 +9,18 @@ import {
   PRICE_RANGES,
   FILTERS_FORM_DEFAULT_VALUES,
 } from "../constants";
+import { useRegions } from "../services";
 
 export const FiltersPanel: React.FC<IFiltersPanelProps> = () => {
   const { register, watch, setValue } = useForm<Filters>({
     defaultValues: FILTERS_FORM_DEFAULT_VALUES,
   });
+  const { data } = useRegions();
+  const regionsList =
+    data?.map((region) => ({
+      label: region.name,
+      value: region.id,
+    })) || [];
   const [isRegionsFilterOpen, setIsRegionsFilterOpen] = useState(false);
   const [isPriceFilterOpen, setIsPriceFilterOpen] = useState(false);
   const [isAreaFilterOpen, setIsAreaFilterOpen] = useState(false);
@@ -29,7 +36,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = () => {
             რეგიონი
           </span>
           {isRegionsFilterOpen && (
-            <CheckboxFilter register={register} fieldName={EFilters.REGIONS} />
+            <CheckboxFilter
+              register={register}
+              fieldName={EFilters.REGIONS}
+              options={regionsList}
+            />
           )}
         </div>
         <div>

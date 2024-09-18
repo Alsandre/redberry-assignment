@@ -138,12 +138,16 @@ export enum EFilters {
   BEDROOMS = "bedrooms",
 }
 
-export interface props {
+export interface IFilterProps {
   register: UseFormRegister<Filters>;
   fieldName: EFilters;
 }
 
-export interface IRangeFilterProps extends Omit<props, "fieldName"> {
+export interface ICheckBoxFilterProps extends IFilterProps {
+  options: { label: string; value: number }[];
+}
+
+export interface IRangeFilterProps extends Omit<IFilterProps, "fieldName"> {
   setValue: UseFormSetValue<Filters>;
   range: number[];
   fieldName: "area" | "price";
