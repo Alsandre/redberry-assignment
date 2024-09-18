@@ -105,3 +105,8 @@ export interface IEstateListProps {
   isLoading: boolean;
   refetch: () => void;
 }
+
+export interface IFiltersPanelProps {
+  data: IGetEstatesList[] | undefined;
+  onFilterChange: (filteredData: IGetEstatesList[]) => void;
+}
