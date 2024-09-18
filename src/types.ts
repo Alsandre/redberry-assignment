@@ -154,6 +154,4 @@ export interface IRangeFilterProps extends Omit<IFilterProps, "fieldName"> {
   range: number[];
   fieldName: "area" | "price";
   watch: UseFormWatch<IFilters>;
-  errors: FieldErrors<IFilters>;
-  trigger: UseFormTrigger<IFilters>;
 }

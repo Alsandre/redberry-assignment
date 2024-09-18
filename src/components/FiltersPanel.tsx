@@ -14,14 +14,7 @@ import { useRegions } from "../services";
 export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   onFilterChange,
 }) => {
-  const {
-    trigger,
-    register,
-    watch,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFilters>({
+  const { register, watch, setValue, handleSubmit } = useForm<IFilters>({
     defaultValues: FILTERS_FORM_DEFAULT_VALUES,
     mode: "onChange",
   });
@@ -64,8 +57,6 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
             {isPriceFilterOpen && (
               <div>
                 <RangeFilter
-                  trigger={trigger}
-                  errors={errors}
                   watch={watch}
                   register={register}
                   setValue={setValue}
@@ -83,8 +74,6 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
             {isAreaFilterOpen && (
               <div>
                 <RangeFilter
-                  trigger={trigger}
-                  errors={errors}
                   watch={watch}
                   register={register}
                   setValue={setValue}
