@@ -2,16 +2,26 @@ import { useRegions } from "../services";
 import { UseFormRegister } from "react-hook-form";
 
 export interface Filters {
-  checkboxes: string[];
-  range: {
+  regions: string[];
+  area: {
     min: number;
     max: number;
   };
-  input1: string;
-  input2: string;
+  price: {
+    min: number;
+    max: number;
+  };
+  bedrooms: string;
+}
+export enum EFilters {
+  REGIONS = "regions",
+  AREA = "area",
+  PRICE = "price",
+  BEDROOMS = "bedrooms",
 }
 export interface props {
   register: UseFormRegister<Filters>;
+  fieldName: EFilters;
 }
 export const CheckboxFilter = ({ register }: props) => {
   const { data } = useRegions();
@@ -33,7 +43,7 @@ export const CheckboxFilter = ({ register }: props) => {
           <input
             type="checkbox"
             value={option.value}
-            {...register("checkboxes")} // Register this checkbox group with React Hook Form
+            {...register("regions")} // Register this checkbox group with React Hook Form
           />
           {option.label}
         </label>
