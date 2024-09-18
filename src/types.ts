@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
-import { Control, FieldValues, UseControllerProps } from "react-hook-form";
+import {
+  Control,
+  FieldValues,
+  UseControllerProps,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 
 // Estate
 interface IEstateDataGeneric {
@@ -109,4 +115,36 @@ export interface IEstateListProps {
 export interface IFiltersPanelProps {
   data: IGetEstatesList[] | undefined;
   onFilterChange: (filteredData: IGetEstatesList[]) => void;
+}
+
+// Filters data types
+export interface Filters {
+  regions: string[];
+  area: {
+    min: number;
+    max: number;
+  };
+  price: {
+    min: number;
+    max: number;
+  };
+  bedrooms: string;
+}
+
+export enum EFilters {
+  REGIONS = "regions",
+  AREA = "area",
+  PRICE = "price",
+  BEDROOMS = "bedrooms",
+}
+
+export interface props {
+  register: UseFormRegister<Filters>;
+  fieldName: EFilters;
+}
+
+export interface IRangeFilterProps extends Omit<props, "fieldName"> {
+  setValue: UseFormSetValue<Filters>;
+  range: number[];
+  fieldName: "area" | "price";
 }

@@ -1,28 +1,6 @@
 import { useRegions } from "../services";
-import { UseFormRegister } from "react-hook-form";
+import { props } from "../types";
 
-export interface Filters {
-  regions: string[];
-  area: {
-    min: number;
-    max: number;
-  };
-  price: {
-    min: number;
-    max: number;
-  };
-  bedrooms: string;
-}
-export enum EFilters {
-  REGIONS = "regions",
-  AREA = "area",
-  PRICE = "price",
-  BEDROOMS = "bedrooms",
-}
-export interface props {
-  register: UseFormRegister<Filters>;
-  fieldName: EFilters;
-}
 export const CheckboxFilter = ({ register }: props) => {
   const { data } = useRegions();
   //   const [options, setOptions] = useState<{ label: string; value: number }[]>(

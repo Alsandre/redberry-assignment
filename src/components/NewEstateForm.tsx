@@ -14,26 +14,14 @@ import { Modal } from "./ui/Modal";
 import Select from "react-select";
 import { INewEstateData } from "../types";
 import { validateFileSize } from "../utils/validateFileSize";
+import { ESTATE_FORM_DEFAULT_VALUES } from "../constants";
 
-const defaultValues = {
-  address: "",
-  zip_code: "",
-  image: null,
-  region_id: 0,
-  city_id: 0,
-  price: 0,
-  area: 0,
-  bedrooms: 0,
-  agent_id: 0,
-  is_rental: 1,
-  description: "",
-};
 const newAgentOptionLabel = "addNew";
 
 export const NewEstateForm = (): JSX.Element => {
   const { control, watch, setValue, handleSubmit } = useForm<FieldValues>({
     mode: "onChange",
-    defaultValues,
+    defaultValues: ESTATE_FORM_DEFAULT_VALUES,
   });
   const { mutate } = useCreateEstate();
 

@@ -1,11 +1,5 @@
-import { UseFormSetValue } from "react-hook-form";
-import { Filters, props } from "./CheckBoxFilter";
+import { IRangeFilterProps } from "../types";
 
-interface IRangeFilterProps extends Omit<props, "fieldName"> {
-  setValue: UseFormSetValue<Filters>;
-  range: number[];
-  fieldName: "area" | "price";
-}
 export const RangeFilter = ({
   register,
   setValue,

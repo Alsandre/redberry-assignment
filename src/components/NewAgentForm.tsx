@@ -2,19 +2,12 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormInput, ControlledUpload } from "./ui";
 import { INewAgentData, INewAgentFormProps } from "../types";
 import { useCreateAgents } from "../services";
-
-const defaultValues = {
-  name: "",
-  surname: "",
-  email: "",
-  phone: "",
-  avatar: "",
-};
+import { AGENT_FORM_DEFAULT_VALUES } from "../constants";
 
 export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
   const { control, reset, handleSubmit } = useForm<FieldValues>({
     mode: "onChange",
-    defaultValues,
+    defaultValues: AGENT_FORM_DEFAULT_VALUES,
   });
   const { mutate } = useCreateAgents();
 

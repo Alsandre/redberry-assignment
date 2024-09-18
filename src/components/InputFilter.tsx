@@ -1,4 +1,4 @@
-import { props } from "./CheckBoxFilter";
+import { props } from "../types";
 
 export const InputFilter = ({ register, fieldName }: props) => {
   return (

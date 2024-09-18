@@ -1,23 +1,22 @@
 import React from "react";
-import { IFiltersPanelProps } from "../types";
+import { EFilters, Filters, IFiltersPanelProps } from "../types";
 import { useForm } from "react-hook-form";
-import { CheckboxFilter, EFilters, Filters } from "./CheckBoxFilter";
+import { CheckboxFilter } from "./CheckBoxFilter";
 import { RangeFilter } from "./RangeFilter";
 import { InputFilter } from "./InputFilter";
-
-const defaultValues = {
-  regions: [],
-  area: { min: 0, max: 0 },
-  price: { min: 0, max: 0 },
-  bedrooms: "0",
-};
-
-const priceRange = [50000, 100000, 200000, 300000];
+import {
+  AREA_RANGES,
+  PRICE_RANGES,
+  FILTERS_FORM_DEFAULT_VALUES,
+} from "../constants";
 
 export const FiltersPanel: React.FC<IFiltersPanelProps> = () => {
-  const { register, watch, setValue } = useForm<Filters>({ defaultValues });
+  const { register, watch, setValue } = useForm<Filters>({
+    defaultValues: FILTERS_FORM_DEFAULT_VALUES,
+  });
   const fields = watch();
   console.log(fields);
+
   return (
     <>
       <div>
@@ -25,14 +24,14 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = () => {
         <RangeFilter
           register={register}
           setValue={setValue}
-          fieldName="area"
-          range={priceRange}
+          fieldName="price"
+          range={PRICE_RANGES}
         />
         <RangeFilter
           register={register}
           setValue={setValue}
-          fieldName="price"
-          range={priceRange}
+          fieldName="area"
+          range={AREA_RANGES}
         />
         <InputFilter register={register} fieldName={EFilters.BEDROOMS} />
       </div>
