@@ -98,3 +98,10 @@ export interface IEstateImagePreviewProps {
   alt_description: string;
   created_at: string;
 }
+
+export interface IEstateListProps {
+  data: IGetEstatesList[] | undefined;
+  isError: boolean;
+  isLoading: boolean;
+  refetch: () => void;
+}

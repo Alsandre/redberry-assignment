@@ -1,6 +1,9 @@
 import { EstateList } from "../components/EstateList";
+import { useEstatesList } from "../services";
 
 export const HomePage = (): JSX.Element => {
+  const { data, isLoading, isError, refetch } = useEstatesList();
+
   return (
     <>
       <div className="flex justify-between">
@@ -8,7 +11,7 @@ export const HomePage = (): JSX.Element => {
         <div>actions</div>
       </div>
       <span>selected filters</span>
-      <EstateList />
+      <EstateList {...{ data, isError, isLoading, refetch }} />
     </>
   );
 };

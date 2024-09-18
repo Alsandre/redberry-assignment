@@ -1,9 +1,12 @@
-import { useEstatesList } from "../services";
+import { IEstateListProps } from "../types";
 import { Card } from "./ui";
 
-export const EstateList = (): JSX.Element => {
-  const { data, isLoading, isError, refetch } = useEstatesList();
-
+export const EstateList = ({
+  data,
+  isError,
+  isLoading,
+  refetch,
+}: IEstateListProps): JSX.Element => {
   return (
     <>
       {/* TODO - create components for error and loading states */}
