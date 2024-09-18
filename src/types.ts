@@ -1,12 +1,10 @@
 import { ReactNode } from "react";
 import {
   Control,
-  FieldErrors,
   FieldValues,
   UseControllerProps,
   UseFormRegister,
   UseFormSetValue,
-  UseFormTrigger,
   UseFormWatch,
 } from "react-hook-form";
 

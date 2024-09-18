@@ -18,6 +18,7 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
     defaultValues: FILTERS_FORM_DEFAULT_VALUES,
     mode: "onChange",
   });
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const { data } = useRegions();
   const regionsList =
@@ -31,9 +32,38 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   const [isAreaFilterOpen, setIsAreaFilterOpen] = useState(false);
   const [isBedroomsFilterOpen, setIsBedroomsFilterOpen] = useState(false);
 
+  const handleFilterSelection = (filters: IFilters) => {
+    // TODO - once chips are mapped to elements this type needs to be updated
+    const newFilters: string[] = [];
+    const { area, bedrooms, price, regions } = filters;
+
+    const priceChip =
+      price.min === "" && price.max === ""
+        ? ""
+        : price.min === ""
+          ? `<${price.max}`
+          : price.max === ""
+            ? `${price.min}<`
+            : `${price.min}<${price.max}`;
+    const areaChip =
+      area.min === "" && area.max === ""
+        ? ""
+        : area.min === ""
+          ? `<${area.max}`
+          : area.max === ""
+            ? `${area.min}<`
+            : `${area.min}<${area.max}`;
+
+    newFilters.push(...regions, priceChip, areaChip, bedrooms);
+    // TODO - map chips to elements with x icon
+    newFilters.filter((filter) => filter);
+    setSelectedFilters(newFilters);
+    onFilterChange(filters);
+  };
+
   return (
     <>
-      <form onSubmit={handleSubmit(onFilterChange)}>
+      <form onSubmit={handleSubmit(handleFilterSelection)}>
         <div className="flex">
           <div>
             <span onClick={() => setIsRegionsFilterOpen((prev) => !prev)}>
@@ -98,6 +128,12 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
               </div>
             )}
           </div>
+        </div>
+        <div>
+          {selectedFilters &&
+            selectedFilters.map((filter, ind) => (
+              <span key={ind}>{filter}</span>
+            ))}
         </div>
       </form>
     </>
