@@ -77,7 +77,7 @@ export const NewEstateForm = (): JSX.Element => {
   const handleNewEstate: SubmitHandler<FieldValues> = (data) => {
     mutate(data as INewEstateData);
   };
-  console.log(watch("is_rental"));
+
   return (
     <>
       <form onSubmit={handleSubmit(handleNewEstate)}>
