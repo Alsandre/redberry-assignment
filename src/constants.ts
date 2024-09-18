@@ -2,8 +2,8 @@ export const AREA_RANGES = [50, 100, 150, 200, 250, 300];
 export const PRICE_RANGES = [50000, 100000, 150000, 200000, 250000, 300000];
 export const FILTERS_FORM_DEFAULT_VALUES = {
   regions: [],
-  area: { min: 0, max: 0 },
-  price: { min: 0, max: 0 },
+  area: { min: "", max: "" },
+  price: { min: "", max: "" },
   bedrooms: "0",
 };
 export const ESTATE_FORM_DEFAULT_VALUES = {

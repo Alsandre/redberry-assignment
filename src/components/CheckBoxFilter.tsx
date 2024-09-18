@@ -8,7 +8,7 @@ export const CheckboxFilter = ({ register, options }: ICheckBoxFilterProps) => {
           <input
             type="checkbox"
             value={option.value}
-            {...register("regions")} // Register this checkbox group with React Hook Form
+            {...register(fieldName)}
           />
           {option.label}
         </label>
