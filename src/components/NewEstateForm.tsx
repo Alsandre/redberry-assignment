@@ -16,8 +16,6 @@ import { INewEstateData } from "../types";
 import { validateFileSize } from "../utils/validateFileSize";
 import { ESTATE_FORM_DEFAULT_VALUES } from "../constants";
 
-const newAgentOptionLabel = "addNew";
-
 export const NewEstateForm = (): JSX.Element => {
   const { control, watch, setValue, handleSubmit } = useForm<FieldValues>({
     mode: "onChange",
@@ -57,7 +55,6 @@ export const NewEstateForm = (): JSX.Element => {
   const agentOptions = [...addAgentOption, ...existingAgentsList];
 
   const agentSelectedOption = watch("agent_id") ?? {};
-  console.log(agentSelectedOption.value === "addNew", agentSelectedOption);
   const handleCloseAgentModal = () => {
     setValue("agent_id", null);
   };

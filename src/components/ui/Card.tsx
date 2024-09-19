@@ -31,21 +31,21 @@ export const Card = ({
           <span className="font-bold text-[28px]" aria-label={`${price}`}>
             {priceFormatter(price)}
           </span>
-          <span className="card-details-text text-rdbryText-200">
+          <span className="card-details-text text-rdbryText-250">
             <span>{"(i)"}</span>
             {`${city.name}, ${address}`}
           </span>
         </div>
         <div className="flex gap-8 items-start">
-          <span className="card-details-text text-rdbryText-200 flex gap-[5px]">
+          <span className="card-details-text text-rdbryText-250 flex gap-[5px]">
             <span>{"(i)"}</span>
             {bedrooms}
           </span>
-          <span className="card-details-text text-rdbryText-200 flex gap-[5px]">
+          <span className="card-details-text text-rdbryText-250 flex gap-[5px]">
             <span>{"(i)"}</span>
             {area}
           </span>
-          <span className="card-details-text text-rdbryText-200 flex gap-[5px]">
+          <span className="card-details-text text-rdbryText-250 flex gap-[5px]">
             <span>{"(i)"}</span>
             {zip_code}
           </span>
