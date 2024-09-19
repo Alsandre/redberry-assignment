@@ -127,11 +127,16 @@ export interface IIconProps {
   className?: string;
 }
 
+export enum EButtonTypes {
+  DEFAULT = "button",
+  SUBMIT = "submit",
+  RESET = "reset",
+}
 export interface IButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
   className?: string;
-  type?: "button" | "submit" | "reset";
+  type?: EButtonTypes;
   disabled?: boolean;
 }
 

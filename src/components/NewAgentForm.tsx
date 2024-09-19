@@ -1,8 +1,9 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormInput, ControlledUpload } from "./ui";
-import { INewAgentData, INewAgentFormProps } from "../types";
+import { EButtonTypes, INewAgentData, INewAgentFormProps } from "../types";
 import { useCreateAgents } from "../services";
 import { AGENT_FORM_DEFAULT_VALUES } from "../constants";
+import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
 
 export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
   const { control, reset, handleSubmit } = useForm<FieldValues>({
@@ -91,8 +92,16 @@ export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
             />
           </div>
           <div>
-            <button onClick={handleReset}>გაუქმება</button>
-            <button type="submit">დაამატე აგენტი</button>
+            <PrimaryBtn
+              label="გაუქმება"
+              onClick={() => handleReset()}
+              variant={EPrimaryButtonVariants.GHOST}
+            />
+            <PrimaryBtn
+              label="დაამატე აგენტი"
+              variant={EPrimaryButtonVariants.GHOST}
+              type={EButtonTypes.SUBMIT}
+            />
           </div>
         </form>
       </div>
