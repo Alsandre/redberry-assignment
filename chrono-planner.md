@@ -124,7 +124,7 @@ _as of today I could say that I am lagging. Its due to my messed up schedule I h
 - [x] **Implement filters** (5 hours)
   - Single or multiple criteria support
   - Handle min > max validation for price/area ranges
-- [ ] **Add delete functionality** with modal confirmation and redirect (3-4 hours)
+- [x] **Add delete functionality** with modal confirmation and redirect (3-4 hours)
 
 **19/09**
 
