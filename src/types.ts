@@ -96,7 +96,9 @@ export interface IControlledComponentProps extends FieldValues {
 
 export interface IModalProps {
   children: ReactNode;
-  title: string;
+  isOpen: boolean;
+  onClose: () => void;
+  className?: string;
 }
 
 export interface INewAgentFormProps {
@@ -131,6 +133,12 @@ export interface IButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+}
+
+export interface IConfirmationModalProps {
+  onClose: () => void;
+  onConfirm: () => void;
+  isModalOpen: boolean;
 }
 
 // Filters data types

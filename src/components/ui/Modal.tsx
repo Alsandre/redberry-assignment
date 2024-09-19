@@ -1,17 +1,14 @@
-import { useState } from "react";
 import { IModalProps } from "../../types";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 
-export const Modal: React.FC<IModalProps> = ({ children, title }) => {
-  const [open, setOpen] = useState(true);
-
+export const Modal: React.FC<IModalProps> = ({
+  children,
+  isOpen,
+  onClose,
+  className,
+}) => {
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-10">
+    <Dialog open={isOpen} onClose={onClose} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-rdbryBackdrop backdrop-blur-sm"
@@ -21,10 +18,9 @@ export const Modal: React.FC<IModalProps> = ({ children, title }) => {
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
-            className="relative transform overflow-hidden rounded-lg bg-white text-left"
+            className={`relative transform overflow-hidden rounded-lg bg-white text-left ${className}`}
           >
-            <DialogTitle as="h3">{title}</DialogTitle>
-            <div className="mt-2">{children}</div>
+            {children}
           </DialogPanel>
         </div>
       </div>

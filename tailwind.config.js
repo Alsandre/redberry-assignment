@@ -15,7 +15,10 @@ export default {
         },
         rdbrySuccess: "rgba(69, 168, 73, 1)",
         rdbryError: "rgba(249, 59, 29, 1)",
-        rdbryBorder: "rgba(219, 219, 219, 1)",
+        rdbryBorder: {
+          50: "rgba(219, 219, 219, 1)",
+          100: "rgba(103, 110, 118, 1)",
+        },
         rdbryBackdrop: "rgba(2, 21, 38, 0.34)",
         rdbryText: {
           100: "rgba(255, 255, 255, 1)",

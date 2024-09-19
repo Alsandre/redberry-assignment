@@ -9,7 +9,6 @@ export const EstateData = ({
   bedrooms,
   zip_code,
   description,
-  agent,
 }: IGetEstateById): JSX.Element => {
   return (
     <div>
@@ -36,7 +35,6 @@ export const EstateData = ({
         </div>
       </div>
       <span>{description}</span>
-      <AgentCard {...agent} />
     </div>
   );
 };

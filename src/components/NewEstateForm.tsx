@@ -52,12 +52,12 @@ export const NewEstateForm = (): JSX.Element => {
 
   const addAgentLabel = <span>{`(icon) დაამატე აგენტი`}</span>;
 
-  const addAgentOption = [{ value: newAgentOptionLabel, label: addAgentLabel }];
+  const addAgentOption = [{ value: "addNew", label: addAgentLabel }];
 
   const agentOptions = [...addAgentOption, ...existingAgentsList];
 
-  const agentSelectedOption = watch("agent") ?? {};
-
+  const agentSelectedOption = watch("agent_id") ?? {};
+  console.log(agentSelectedOption.value === "addNew", agentSelectedOption);
   const handleCloseAgentModal = () => {
     setValue("agent_id", null);
   };
@@ -235,11 +235,12 @@ export const NewEstateForm = (): JSX.Element => {
         <button type="submit">submit</button>
       </form>
       <div style={{ width: "50px", height: "500px" }}></div>
-      {agentSelectedOption.value === "addNew" && (
-        <Modal title="აგენტის დამატება">
-          <NewAgentForm onClose={handleCloseAgentModal} />
-        </Modal>
-      )}
+      <Modal
+        isOpen={agentSelectedOption === "addNew"}
+        onClose={handleCloseAgentModal}
+      >
+        <NewAgentForm onClose={handleCloseAgentModal} />
+      </Modal>
     </>
   );
 };
