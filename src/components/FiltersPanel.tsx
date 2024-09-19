@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EFilters, IFilters, IFiltersPanelProps } from "../types";
+import { EButtonTypes, EFilters, IFilters, IFiltersPanelProps } from "../types";
 import { FormProvider, useForm } from "react-hook-form";
 import { CheckboxFilter } from "./CheckBoxFilter";
 import { RangeFilter } from "./RangeFilter";
@@ -11,6 +11,7 @@ import {
 } from "../constants";
 import { useRegions } from "../services";
 import { FilterChip } from "./ui/FilterChip";
+import { PrimaryBtn } from "./PrimaryBtn";
 
 export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   onFilterChange,
@@ -85,7 +86,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                     fieldName={EFilters.REGIONS}
                     options={regionsList}
                   />
-                  <button type="submit">არჩევა</button>
+                  <PrimaryBtn
+                    label="არჩევა"
+                    type={EButtonTypes.SUBMIT}
+                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
+                  />
                 </div>
               )}
             </div>
@@ -102,7 +107,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                     fieldName="price"
                     range={PRICE_RANGES}
                   />
-                  <button type="submit">არჩევა</button>
+                  <PrimaryBtn
+                    label="არჩევა"
+                    type={EButtonTypes.SUBMIT}
+                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
+                  />
                 </div>
               )}
             </div>
@@ -119,7 +128,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                     fieldName="area"
                     range={AREA_RANGES}
                   />
-                  <button type="submit">არჩევა</button>
+                  <PrimaryBtn
+                    label="არჩევა"
+                    type={EButtonTypes.SUBMIT}
+                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
+                  />
                 </div>
               )}
             </div>
@@ -133,7 +146,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                     register={register}
                     fieldName={EFilters.BEDROOMS}
                   />
-                  <button type="submit">არჩევა</button>
+                  <PrimaryBtn
+                    label="არჩევა"
+                    type={EButtonTypes.SUBMIT}
+                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
+                  />
                 </div>
               )}
             </div>

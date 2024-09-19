@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Button } from "./ui/Button";
+import { EButtonTypes } from "../types";
 
 const variantStyles = {
   GHOST:
@@ -13,21 +14,29 @@ export enum EPrimaryButtonVariants {
 }
 
 interface IPrimaryBtnProps {
-  icon: ReactNode;
-  variant: EPrimaryButtonVariants;
+  icon?: ReactNode;
+  variant?: EPrimaryButtonVariants;
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
+  className?: string;
+  type?: EButtonTypes;
 }
 
 export const PrimaryBtn: React.FC<IPrimaryBtnProps> = ({
   icon,
-  variant,
+  variant = EPrimaryButtonVariants.DEFAULT,
   label,
   onClick,
+  className,
+  type = EButtonTypes.DEFAULT,
 }) => {
   return (
     <>
-      <Button className={variantStyles[variant]} onClick={onClick}>
+      <Button
+        className={`${variantStyles[variant]} ${className}`}
+        onClick={onClick}
+        type={type}
+      >
         {icon ?? ""}
         {label}
       </Button>

@@ -12,9 +12,10 @@ import { useAgents, useCities, useCreateEstate, useRegions } from "../services";
 import { NewAgentForm } from "./NewAgentForm";
 import { Modal } from "./ui/Modal";
 import Select from "react-select";
-import { INewEstateData } from "../types";
+import { EButtonTypes, INewEstateData } from "../types";
 import { validateFileSize } from "../utils/validateFileSize";
 import { ESTATE_FORM_DEFAULT_VALUES } from "../constants";
+import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
 
 const newAgentOptionLabel = "addNew";
 
@@ -232,7 +233,18 @@ export const NewEstateForm = (): JSX.Element => {
             )}
           />
         </div>
-        <button type="submit">submit</button>
+        <div>
+          <PrimaryBtn
+            label="გაუქმება"
+            onClick={() => ""}
+            variant={EPrimaryButtonVariants.GHOST}
+          />
+          <PrimaryBtn
+            label="დაამატე ლისტინგი"
+            variant={EPrimaryButtonVariants.GHOST}
+            type={EButtonTypes.SUBMIT}
+          />
+        </div>
       </form>
       <div style={{ width: "50px", height: "500px" }}></div>
       {agentSelectedOption.value === "addNew" && (
