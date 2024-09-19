@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "react-query";
 import api from "./api";
 import { INewAgentData, INewEstateData } from "../types";
 
-const createEstate = async (estateData: INewEstateData) => {
+export const createEstate = async (estateData: INewEstateData) => {
   const response = await api.post("/real-estates", estateData);
   return response.data;
 };
