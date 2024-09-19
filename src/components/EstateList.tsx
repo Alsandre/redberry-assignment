@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { IEstateListProps } from "../types";
 import { Card } from "./ui";
 
@@ -7,6 +8,7 @@ export const EstateList = ({
   isLoading,
   refetch,
 }: IEstateListProps): JSX.Element => {
+  const navigate = useNavigate();
   return (
     <>
       {/* TODO - create components for error and loading states */}
@@ -15,7 +17,11 @@ export const EstateList = ({
       {data &&
         data.map((estate, index) => (
           //TODO - unique id generator
-          <Card key={`${index}_${estate.id}_${estate.zip_code}`} {...estate} />
+          <Card
+            key={`${index}_${estate.id}_${estate.zip_code}`}
+            {...estate}
+            onClick={() => navigate(`/estate/${estate.id}`)}
+          />
         ))}
     </>
   );

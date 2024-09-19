@@ -74,6 +74,10 @@ export interface ICityData {
 }
 
 // Props
+export interface IEstateCardProps extends IGetEstatesList {
+  onClick: () => void;
+}
+
 export interface IFormInputProps extends UseControllerProps {
   label: string;
   required: boolean;

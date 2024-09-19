@@ -1,13 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEstateById, useEstatesList } from "../services";
 import { Card } from "./ui";
 
 export const EstateSliderSection = (): JSX.Element => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const idToNum = Number(id);
   const { isLoading, isError, data: estatesList } = useEstatesList();
   const { data } = useEstateById(idToNum);
   const currentCity = data?.city_id;
+
+  // TODO - filter out current estate
   const estatesByCity = estatesList?.filter(
     (estate) => estate.city_id == currentCity
   );
@@ -17,7 +20,9 @@ export const EstateSliderSection = (): JSX.Element => {
         {/* TODO - error and loading components */}
         {isLoading && <p>Loading ... Slider</p>}
         {isError && <p>Something went wrong! Slider</p>}
-        {estatesByCity?.map((city) => <Card {...city} />)}
+        {estatesByCity?.map((estate) => (
+          <Card {...estate} onClick={() => navigate(`/estate/${estate.id}`)} />
+        ))}
       </div>
     </>
   );
