@@ -1,15 +1,15 @@
 import { ICheckBoxFilterProps } from "../types";
+import { ControlledCheckbox } from "./ui/ControlledCheckBox";
 
-export const CheckboxFilter = ({ register, options }: ICheckBoxFilterProps) => {
+export const CheckboxFilter = ({
+  options,
+  fieldName,
+}: ICheckBoxFilterProps) => {
   return (
     <>
       {options.map((option) => (
         <label key={option.value}>
-          <input
-            type="checkbox"
-            value={option.value}
-            {...register(fieldName)}
-          />
+          <ControlledCheckbox fieldName={fieldName} value={option.value} />
           {option.label}
         </label>
       ))}

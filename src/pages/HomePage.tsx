@@ -13,8 +13,6 @@ export const HomePage = (): JSX.Element => {
     if (data) {
       const filteredData = handleFiltering(filterData, data);
       setFilteredData(filteredData);
-      console.log(data, "data");
-      console.log(filteredData, "filteredData");
     }
   };
 

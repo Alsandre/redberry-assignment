@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { EFilters, IFilters, IFiltersPanelProps } from "../types";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { CheckboxFilter } from "./CheckBoxFilter";
 import { RangeFilter } from "./RangeFilter";
 import { InputFilter } from "./InputFilter";
@@ -14,17 +14,18 @@ import { useRegions } from "../services";
 export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   onFilterChange,
 }) => {
-  const { register, watch, setValue, handleSubmit } = useForm<IFilters>({
+  const formMethods = useForm<IFilters>({
     defaultValues: FILTERS_FORM_DEFAULT_VALUES,
     mode: "onChange",
   });
+  const { register, watch, setValue, handleSubmit } = formMethods;
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const { data } = useRegions();
   const regionsList =
     data?.map((region) => ({
       label: region.name,
-      value: region.id,
+      value: "" + region.id,
     })) || [];
 
   const [isRegionsFilterOpen, setIsRegionsFilterOpen] = useState(false);
@@ -63,79 +64,80 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleFilterSelection)}>
-        <div className="flex">
-          <div>
-            <span onClick={() => setIsRegionsFilterOpen((prev) => !prev)}>
-              რეგიონი
-            </span>
-            {isRegionsFilterOpen && (
-              <div>
-                <CheckboxFilter
-                  register={register}
-                  fieldName={EFilters.REGIONS}
-                  options={regionsList}
-                />
-                <button type="submit">არჩევა</button>
-              </div>
-            )}
+      <FormProvider {...formMethods}>
+        <form onSubmit={handleSubmit(handleFilterSelection)}>
+          <div className="flex">
+            <div>
+              <span onClick={() => setIsRegionsFilterOpen((prev) => !prev)}>
+                რეგიონი
+              </span>
+              {isRegionsFilterOpen && (
+                <div>
+                  <CheckboxFilter
+                    fieldName={EFilters.REGIONS}
+                    options={regionsList}
+                  />
+                  <button type="submit">არჩევა</button>
+                </div>
+              )}
+            </div>
+            <div>
+              <span onClick={() => setIsPriceFilterOpen((prev) => !prev)}>
+                საფასო კატეგორია
+              </span>
+              {isPriceFilterOpen && (
+                <div>
+                  <RangeFilter
+                    watch={watch}
+                    register={register}
+                    setValue={setValue}
+                    fieldName="price"
+                    range={PRICE_RANGES}
+                  />
+                  <button type="submit">არჩევა</button>
+                </div>
+              )}
+            </div>
+            <div>
+              <span onClick={() => setIsAreaFilterOpen((prev) => !prev)}>
+                ფართობი
+              </span>
+              {isAreaFilterOpen && (
+                <div>
+                  <RangeFilter
+                    watch={watch}
+                    register={register}
+                    setValue={setValue}
+                    fieldName="area"
+                    range={AREA_RANGES}
+                  />
+                  <button type="submit">არჩევა</button>
+                </div>
+              )}
+            </div>
+            <div>
+              <span onClick={() => setIsBedroomsFilterOpen((prev) => !prev)}>
+                საძინებლების რაოდენობა
+              </span>
+              {isBedroomsFilterOpen && (
+                <div>
+                  <InputFilter
+                    register={register}
+                    fieldName={EFilters.BEDROOMS}
+                  />
+                  <button type="submit">არჩევა</button>
+                </div>
+              )}
+            </div>
           </div>
           <div>
-            <span onClick={() => setIsPriceFilterOpen((prev) => !prev)}>
-              საფასო კატეგორია
-            </span>
-            {isPriceFilterOpen && (
-              <div>
-                <RangeFilter
-                  watch={watch}
-                  register={register}
-                  setValue={setValue}
-                  fieldName="price"
-                  range={PRICE_RANGES}
-                />
-                <button type="submit">არჩევა</button>
-              </div>
-            )}
+            {selectedFilters &&
+              selectedFilters.map((filter, ind) => (
+                <span key={ind}>{filter}</span>
+              ))}
           </div>
-          <div>
-            <span onClick={() => setIsAreaFilterOpen((prev) => !prev)}>
-              ფართობი
-            </span>
-            {isAreaFilterOpen && (
-              <div>
-                <RangeFilter
-                  watch={watch}
-                  register={register}
-                  setValue={setValue}
-                  fieldName="area"
-                  range={AREA_RANGES}
-                />
-                <button type="submit">არჩევა</button>
-              </div>
-            )}
-          </div>
-          <div>
-            <span onClick={() => setIsBedroomsFilterOpen((prev) => !prev)}>
-              საძინებლების რაოდენობა
-            </span>
-            {isBedroomsFilterOpen && (
-              <div>
-                <InputFilter
-                  register={register}
-                  fieldName={EFilters.BEDROOMS}
-                />
-                <button type="submit">არჩევა</button>
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          {selectedFilters &&
-            selectedFilters.map((filter, ind) => (
-              <span key={ind}>{filter}</span>
-            ))}
-        </div>
-      </form>
+        </form>
+      </FormProvider>
     </>
   );
 };

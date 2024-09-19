@@ -155,8 +155,9 @@ export interface IFilterProps {
   fieldName: EFilters;
 }
 
-export interface ICheckBoxFilterProps extends IFilterProps {
-  options: { label: string; value: number }[];
+export interface ICheckBoxFilterProps {
+  fieldName: EFilters;
+  options: { label: string; value: string }[];
 }
 
 export interface IRangeFilterProps extends Omit<IFilterProps, "fieldName"> {
@@ -164,4 +165,13 @@ export interface IRangeFilterProps extends Omit<IFilterProps, "fieldName"> {
   range: number[];
   fieldName: "area" | "price";
   watch: UseFormWatch<IFilters>;
+}
+
+export enum ECheckBoxVariants {
+  DEFAULT = "default",
+  CHECKED = "checked",
+}
+
+export interface ICheckBoxProps extends IIconProps {
+  varaint: ECheckBoxVariants;
 }
