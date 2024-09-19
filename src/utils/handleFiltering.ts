@@ -47,6 +47,18 @@ export const handleFiltering = (
       isMatch = estate.bedrooms === Number(bedrooms);
     }
 
+    // Check if filters are cleared
+    if (
+      regions.length === 0 &&
+      !areaMax &&
+      !areaMin &&
+      !priceMax &&
+      !priceMin &&
+      !bedrooms
+    ) {
+      isMatch = true;
+    }
+
     return isMatch;
   });
 

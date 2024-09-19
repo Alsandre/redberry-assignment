@@ -56,7 +56,7 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
 
     newFilters.push(...regions, priceChip, areaChip, bedrooms);
     // TODO - map chips to elements with x icon
-    newFilters.filter((filter) => filter);
+    newFilters.filter((newFilter) => newFilter);
     setSelectedFilters(newFilters);
     onFilterChange(filters);
   };
