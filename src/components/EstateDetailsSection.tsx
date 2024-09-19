@@ -50,7 +50,7 @@ export const EstateDetailsSection = (): JSX.Element => {
             </div>
             <Button
               onClick={() => handleDeleteEstate()}
-              className="px-[10px] py-[10px] border border-solid border-1 border-rdbryBorder-100 rounded-lg text-[12px] text-rdbryBorder-100 font-medium leading-[14.4px]"
+              className="px-[10px] py-[10px] border border-solid border-1 border-rdbryBorder-100 rounded-lg text-[12px] text-rdbryBorder-100 font-medium leading-[14.4px] hover:bg-rdbryBorder-100 hover:text-rdbryText-100"
             >
               ლისტინგის წაშლა
             </Button>
