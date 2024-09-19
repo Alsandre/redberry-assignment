@@ -121,6 +121,14 @@ export interface IIconProps {
   className?: string;
 }
 
+export interface IButtonProps {
+  onClick?: () => void;
+  children: React.ReactNode;
+  className?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+}
+
 // Filters data types
 export interface IFilters {
   regions: string[];
