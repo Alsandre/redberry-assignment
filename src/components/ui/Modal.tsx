@@ -18,7 +18,7 @@ export const Modal: React.FC<IModalProps> = ({
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
-            className={`relative transform overflow-hidden rounded-lg bg-white text-left ${className}`}
+            className={`relative transform overflow-hidden bg-white text-left ${className}`}
           >
             {children}
           </DialogPanel>

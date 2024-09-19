@@ -20,19 +20,19 @@ export const ConfirmationModal: React.FC<IConfirmationModalProps> = ({
       >
         <CrossIcon className="w-5 h-5" />
       </span>
-      <span className="font-regular text-[20px] leading-[24px] text-rdbryText-250">
+      <span className="font-regular text-[20px] leading-[24px] text-rdbryText-200">
         გსურთ წაშალოთ ლისტინგი?
       </span>
       <div className="flex gap-[15px]">
         <Button
           onClick={onClose}
-          className="text-rdbryPrimary-100 border border-solid border-1 border-rdbryPrimary-100 bg-rdbryText-100 px-4 py-[10px] rounded-[10px] font-medium w-fit"
+          className="text-rdbryPrimary-100 border border-solid border-1 border-rdbryPrimary-100 bg-rdbryText-100 px-4 py-[14px] rounded-[10px] font-medium text-[16px] leading-[19px] w-fit"
         >
           გაუქმება
         </Button>
         <Button
           onClick={onConfirm}
-          className="text-rdbryText-100 bg-rdbryPrimary-100 px-4 py-[10px] rounded-[10px] font-medium w-fit"
+          className="text-rdbryText-100 bg-rdbryPrimary-100 px-4 py-[14px] rounded-[10px] font-regular text-[16px] leading-[19px] w-fit"
         >
           დადასტურება
         </Button>
