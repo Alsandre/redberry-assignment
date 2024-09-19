@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { EstateImagePreview } from "./EstateImagePreview";
 import { useDeleteEstate, useEstateById } from "../services";
 import { EstateData } from "./EstateData";
@@ -10,6 +10,7 @@ import { ConfirmationModal } from "./ConfirmationModal";
 export const EstateDetailsSection = (): JSX.Element => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
   const { mutate } = useDeleteEstate();
   const idToNum = Number(id);
   const { isLoading, isError, data } = useEstateById(idToNum);
@@ -23,6 +24,8 @@ export const EstateDetailsSection = (): JSX.Element => {
     if (data) {
       mutate(data?.id);
     }
+    setIsConfirmModalOpen(false);
+    navigate("/");
   };
   const handleClose = () => {
     setIsConfirmModalOpen(false);
