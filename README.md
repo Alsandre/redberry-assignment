@@ -24,7 +24,7 @@ This project is a **three-page frontend application** built using a provided bac
 ## Tech Stack
 
 - **Frontend**: Vite, React, TypeScript, TailwindCSS
-- **Tools**: React Hook Form, @alsandre/responsive-image-carousel, React Query, Eslint, Prettier, Husky, Axios, Raect select, Headlessui 
+- **Tools**: React Hook Form, @alsandre/responsive-image-carousel, React Query, Eslint, Prettier, Husky, Axios, Raect select, Headlessui, JEST testing
 - **Backend**: Provided API
 
 ## Project Structure
@@ -37,5 +37,7 @@ This project is a **three-page frontend application** built using a provided bac
 │   ├── services
 │   ├── utils
 │   └── App.tsx
+│   └── types.ts
+│   └── constants.ts
 ├── package.json
 └── README.md

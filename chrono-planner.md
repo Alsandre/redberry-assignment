@@ -99,17 +99,17 @@ _Lets call this "prologue" and keep it without mutation, I'll try to mirror phas
 #### Page 3: Add Estate & Modal for New Agent (Day 6-7)
 
 - [x] **Implement "Add New Estate" form** with address, picture, region, city, zip, price, area, bedrooms, description, sale/rent, agent dropdown (5-6 hours)
-- [ ] **Implement "Add New Agent" modal** with name, surname, email, picture, mobile fields (4 hours)
-- [ ] **Wire up both forms to backend** (4 hours)
-- [ ] **Ensure data persistence** after refresh across all pages (3 hours)
-- **Review entire implementation** (Day 7, 2-3 hours)
+~~- [ ] **Implement "Add New Agent" modal** with name, surname, email, picture, mobile fields (4 hours)~~
+~~- [ ] **Wire up both forms to backend** (4 hours)~~
+~~- [ ] **Ensure data persistence** after refresh across all pages (3 hours)~~
+~~- **Review entire implementation** (Day 7, 2-3 hours)~~
 
 ### 3. Honing (Day 8-10)
 
-- **Fine-tune UI/UX and performance** (Day 8-9, 6-8 hours)
-- **Ensure responsiveness and compatibility** (Day 9, 3-4 hours, optional as responsiveness is not required)
-- **Final review, bug fixes, and polish** (Day 10, 5-6 hours)
-- **Conclusion and reflections** (Day 10, 2 hours)
+~~- **Fine-tune UI/UX and performance** (Day 8-9, 6-8 hours)~~
+~~- **Ensure responsiveness and compatibility** (Day 9, 3-4 hours, optional as responsiveness is not required)~~
+~~- **Final review, bug fixes, and polish** (Day 10, 5-6 hours)~~
+~~- **Conclusion and reflections** (Day 10, 2 hours)~~
 
 _as of today I could say that I am lagging. Its due to my messed up schedule I had to make double trip outside city regarding my master's degree, today I am updating existing plan to mark whats done and I'll proceed with creating new plan for upcoming days, there are 4 days left_
 
@@ -121,7 +121,7 @@ _as of today I could say that I am lagging. Its due to my messed up schedule I h
 
 **18/09**
 
-- [ ] **Implement filters** (5 hours)
+- [x] **Implement filters** (5 hours)
   - Single or multiple criteria support
   - Handle min > max validation for price/area ranges
 - [ ] **Add delete functionality** with modal confirmation and redirect (3-4 hours)
@@ -145,4 +145,14 @@ _as of today I could say that I am lagging. Its due to my messed up schedule I h
 
 # "Epilogue"
 
+_**SELF-NOTE**_=========================
+  _I need to filter out whats left and what needs to be done_
+  - [x] icons imported in project
+  - [ ] error/success states for components
+  - [ ] component states on interactions
+  - [ ] double check data flow in all directions (update/clear/apply filters, CRUD operations) 
+  - [ ] format texts to match design requirements 
+  - [ ] implement data persistence 
+  - [ ] overall layout meets design requirements
+^=========================
 ...
