@@ -3,7 +3,7 @@ import { IIconProps } from "../../types";
 export const PhoneIcon = ({ className }: IIconProps): JSX.Element => {
   return (
     <svg
-      className={className}
+      className={`fill-current ${className}`}
       width="15"
       height="15"
       viewBox="0 0 15 15"

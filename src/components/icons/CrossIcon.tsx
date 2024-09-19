@@ -3,7 +3,7 @@ import { IIconProps } from "../../types";
 export const CrossIcon = ({ className }: IIconProps): JSX.Element => {
   return (
     <svg
-      className={className}
+      className={`fill-current ${className}`}
       width="14"
       height="14"
       viewBox="0 0 14 14"

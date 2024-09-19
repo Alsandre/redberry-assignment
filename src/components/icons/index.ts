@@ -7,6 +7,7 @@ export { DeleteIcon } from "./DeleteIcon";
 export { EnvelopeIcon } from "./EnvelopeIcon";
 export { LocationIcon } from "./LocationIcon";
 export { PhoneIcon } from "./PhoneIcon";
-export { PlusIcon } from "./PlusIcon";
+export { PlusInCircleIcon } from "./PlusInCirleIcon";
 export { PostalIcon } from "./PostalIcon";
 export { TickIcon } from "./TickIcon";
+export { PlusIcon } from "./PlusIcon";
