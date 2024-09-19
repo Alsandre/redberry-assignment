@@ -117,6 +117,10 @@ export interface IFiltersPanelProps {
   onFilterChange: (filterData: IFilters) => void;
 }
 
+export interface IIconProps {
+  className?: string;
+}
+
 // Filters data types
 export interface IFilters {
   regions: string[];

@@ -1,5 +1,6 @@
 import { IGetEstatesList } from "../../types";
 import { priceFormatter } from "../../utils/priceFormater";
+import { PostalIcon } from "../icons/PostalIcon";
 
 export const Card = ({
   address,
