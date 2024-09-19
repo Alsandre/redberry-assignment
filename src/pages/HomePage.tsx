@@ -4,7 +4,6 @@ import { FiltersPanel } from "../components/FiltersPanel";
 import { useEstatesList } from "../services";
 import { IFilters, IGetEstatesList } from "../types";
 import { handleFiltering } from "../utils/handleFiltering";
-import { Button } from "../components/ui/Button";
 import { PlusIcon } from "../components/icons";
 import { EPrimaryButtonVariants, PrimaryBtn } from "../components/PrimaryBtn";
 
