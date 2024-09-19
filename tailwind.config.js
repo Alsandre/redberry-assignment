@@ -19,6 +19,7 @@ export default {
         rdbryBackdrop: "rgba(2, 21, 38, 0.34)",
         rdbryText: {
           100: "rgba(255, 255, 255, 1)",
+          150: "rgba(53, 68, 81, 1)",
           200: "rgba(2, 21, 38, 0.7)",
           300: "rgba(2, 21, 38, 1)",
         },
@@ -38,7 +39,11 @@ export default {
     ({ addUtilities, theme }) => {
       addUtilities({
         ".filter-chip": {
+          border: `1px solid ${theme("colors.rdbryBorder")}`,
           "border-radius": "15px",
+          width: "fit-content",
+          height: "29px",
+          padding: "6px 10px",
         },
         ".tag-chip": {
           width: "90px",

@@ -10,6 +10,7 @@ import {
   FILTERS_FORM_DEFAULT_VALUES,
 } from "../constants";
 import { useRegions } from "../services";
+import { FilterChip } from "./ui/FilterChip";
 
 export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   onFilterChange,
@@ -45,7 +46,7 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
           ? `<${price.max}`
           : price.max === ""
             ? `${price.min}<`
-            : `${price.min}<${price.max}`;
+            : `${price.min} - ${price.max}`;
     const areaChip =
       area.min === "" && area.max === ""
         ? ""
@@ -57,9 +58,16 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
 
     newFilters.push(...regions, priceChip, areaChip, bedrooms);
     // TODO - map chips to elements with x icon
-    newFilters.filter((newFilter) => newFilter);
-    setSelectedFilters(newFilters);
+    const updatedFilterList = newFilters.filter((newFilter) => !!newFilter);
+    setSelectedFilters(updatedFilterList);
     onFilterChange(filters);
+  };
+
+  const handleRemoveFilter = (filter: string) => {
+    const updatedFilterList = selectedFilters.filter(
+      (filterToRemove) => filter !== filterToRemove
+    );
+    setSelectedFilters(updatedFilterList);
   };
 
   return (
@@ -132,8 +140,13 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
           </div>
           <div>
             {selectedFilters &&
+              // TODO - unique id generator
               selectedFilters.map((filter, ind) => (
-                <span key={ind}>{filter}</span>
+                <FilterChip
+                  key={filter + ind}
+                  content={filter}
+                  onClick={() => handleRemoveFilter(filter)}
+                />
               ))}
           </div>
         </form>

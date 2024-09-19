@@ -4,7 +4,7 @@ export const FILTERS_FORM_DEFAULT_VALUES = {
   regions: [],
   area: { min: "", max: "" },
   price: { min: "", max: "" },
-  bedrooms: "0",
+  bedrooms: "",
 };
 export const ESTATE_FORM_DEFAULT_VALUES = {
   address: "",
