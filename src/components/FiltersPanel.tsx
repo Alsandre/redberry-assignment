@@ -32,10 +32,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
       value: "" + region.id,
     })) || [];
 
-  const [isRegionsFilterOpen, setIsRegionsFilterOpen] = useState(false);
-  const [isPriceFilterOpen, setIsPriceFilterOpen] = useState(false);
-  const [isAreaFilterOpen, setIsAreaFilterOpen] = useState(false);
-  const [isBedroomsFilterOpen, setIsBedroomsFilterOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<EFilters | null>(null);
+  const isRegionsFilterOpen = activeFilter === EFilters.REGIONS;
+  const isPriceFilterOpen = activeFilter === EFilters.PRICE;
+  const isAreaFilterOpen = activeFilter === EFilters.AREA;
+  const isBedroomsFilterOpen = activeFilter === EFilters.BEDROOMS;
 
   const handleFilterSelection = (filters: IFilters) => {
     // TODO - once chips are mapped to elements this type needs to be updated
@@ -80,7 +81,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
           <div className="flex gap-6 border border-solid border-rdbryBorder-50 rounded-[10px] p-[6px]">
             <FilterItem
               label="რეგიონი"
-              onClick={() => setIsRegionsFilterOpen((prev) => !prev)}
+              onClick={() =>
+                setActiveFilter(
+                  activeFilter === EFilters.REGIONS ? null : EFilters.REGIONS
+                )
+              }
               className={isRegionsFilterOpen ? "bg-rdbryShade-50" : ""}
               icon={
                 <ChevronIcon
@@ -99,7 +104,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
             </FilterItem>
             <FilterItem
               label="საფასო კატეგორია"
-              onClick={() => setIsPriceFilterOpen((prev) => !prev)}
+              onClick={() =>
+                setActiveFilter(
+                  activeFilter === EFilters.PRICE ? null : EFilters.PRICE
+                )
+              }
               className={isPriceFilterOpen ? "bg-rdbryShade-50" : ""}
               icon={
                 <ChevronIcon
@@ -121,7 +130,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
             </FilterItem>
             <FilterItem
               label="ფართობი"
-              onClick={() => setIsAreaFilterOpen((prev) => !prev)}
+              onClick={() =>
+                setActiveFilter(
+                  activeFilter === EFilters.AREA ? null : EFilters.AREA
+                )
+              }
               className={isAreaFilterOpen ? "bg-rdbryShade-50" : ""}
               icon={
                 <ChevronIcon className={isAreaFilterOpen ? "rotate-180" : ""} />
@@ -141,7 +154,11 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
             </FilterItem>
             <FilterItem
               label="საძინებლების რაოდენობა"
-              onClick={() => setIsBedroomsFilterOpen((prev) => !prev)}
+              onClick={() =>
+                setActiveFilter(
+                  activeFilter === EFilters.BEDROOMS ? null : EFilters.BEDROOMS
+                )
+              }
               className={isBedroomsFilterOpen ? "bg-rdbryShade-50" : ""}
               icon={
                 <ChevronIcon

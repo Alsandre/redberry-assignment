@@ -1,12 +1,6 @@
-import { ReactNode } from "react";
 import { PrimaryBtn } from "../PrimaryBtn";
-import { EButtonTypes } from "../../types";
+import { EButtonTypes, TPopoverProps } from "../../types";
 
-type TPopoverProps = {
-  title: string;
-  children: ReactNode;
-  className?: string;
-};
 export const Popover: React.FC<TPopoverProps> = ({
   title,
   children,

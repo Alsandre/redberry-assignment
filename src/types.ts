@@ -202,3 +202,22 @@ export type TFormSectionTtle = {
 export enum EStorageKeys {
   ESTATE_DATA = "unprocessed-estate-data",
 }
+
+export type TPopoverProps = {
+  title: string;
+  children: ReactNode;
+  className?: string;
+};
+
+export type TFilterItemProps = {
+  icon: ReactNode;
+  children: ReactNode;
+  label: string;
+  onClick: () => void;
+  className?: string;
+};
+
+export interface ICheckboxProps {
+  value: string;
+  fieldName: EFilters;
+}

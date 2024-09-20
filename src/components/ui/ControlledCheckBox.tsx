@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { ECheckBoxVariants, EFilters } from "../../types";
+import { ECheckBoxVariants, ICheckboxProps } from "../../types";
 import { CheckBoxIcon } from "../icons/CheckBoxIcon";
-
-interface ICheckboxProps {
-  value: string;
-  fieldName: EFilters;
-}
 
 export const ControlledCheckbox: React.FC<ICheckboxProps> = ({
   fieldName,

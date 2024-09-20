@@ -1,12 +1,4 @@
-import { ReactNode } from "react";
-
-type TFilterItemProps = {
-  icon: ReactNode;
-  children: ReactNode;
-  label: string;
-  onClick: () => void;
-  className?: string;
-};
+import { TFilterItemProps } from "../types";
 
 export const FilterItem: React.FC<TFilterItemProps> = ({
   label,
