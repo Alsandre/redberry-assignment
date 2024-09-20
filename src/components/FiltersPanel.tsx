@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EButtonTypes, EFilters, IFilters, IFiltersPanelProps } from "../types";
+import { EFilters, IFilters, IFiltersPanelProps } from "../types";
 import { FormProvider, useForm } from "react-hook-form";
 import { CheckboxFilter } from "./CheckBoxFilter";
 import { RangeFilter } from "./RangeFilter";
@@ -11,7 +11,9 @@ import {
 } from "../constants";
 import { useRegions } from "../services";
 import { FilterChip } from "./ui/FilterChip";
-import { PrimaryBtn } from "./PrimaryBtn";
+import { Popover } from "./ui/Popover";
+import { ChevronIcon } from "./icons";
+import { FilterItem } from "./FilterItem";
 
 export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   onFilterChange,
@@ -75,31 +77,38 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
     <>
       <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(handleFilterSelection)}>
-          <div className="flex">
-            <div>
-              <span onClick={() => setIsRegionsFilterOpen((prev) => !prev)}>
-                რეგიონი
-              </span>
+          <div className="flex gap-6 border border-solid border-rdbryBorder-50 rounded-[10px] p-[6px]">
+            <FilterItem
+              label="რეგიონი"
+              onClick={() => setIsRegionsFilterOpen((prev) => !prev)}
+              className={isRegionsFilterOpen ? "bg-rdbryShade-50" : ""}
+              icon={
+                <ChevronIcon
+                  className={isRegionsFilterOpen ? "rotate-180" : ""}
+                />
+              }
+            >
               {isRegionsFilterOpen && (
-                <div>
+                <Popover title="რეგიონის მიხედვით">
                   <CheckboxFilter
                     fieldName={EFilters.REGIONS}
                     options={regionsList}
                   />
-                  <PrimaryBtn
-                    label="არჩევა"
-                    type={EButtonTypes.SUBMIT}
-                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
-                  />
-                </div>
+                </Popover>
               )}
-            </div>
-            <div>
-              <span onClick={() => setIsPriceFilterOpen((prev) => !prev)}>
-                საფასო კატეგორია
-              </span>
+            </FilterItem>
+            <FilterItem
+              label="საფასო კატეგორია"
+              onClick={() => setIsPriceFilterOpen((prev) => !prev)}
+              className={isPriceFilterOpen ? "bg-rdbryShade-50" : ""}
+              icon={
+                <ChevronIcon
+                  className={isPriceFilterOpen ? "rotate-180" : ""}
+                />
+              }
+            >
               {isPriceFilterOpen && (
-                <div>
+                <Popover title="ფასის მიხედვით">
                   <RangeFilter
                     watch={watch}
                     register={register}
@@ -107,20 +116,19 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                     fieldName="price"
                     range={PRICE_RANGES}
                   />
-                  <PrimaryBtn
-                    label="არჩევა"
-                    type={EButtonTypes.SUBMIT}
-                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
-                  />
-                </div>
+                </Popover>
               )}
-            </div>
-            <div>
-              <span onClick={() => setIsAreaFilterOpen((prev) => !prev)}>
-                ფართობი
-              </span>
+            </FilterItem>
+            <FilterItem
+              label="ფართობი"
+              onClick={() => setIsAreaFilterOpen((prev) => !prev)}
+              className={isAreaFilterOpen ? "bg-rdbryShade-50" : ""}
+              icon={
+                <ChevronIcon className={isAreaFilterOpen ? "rotate-180" : ""} />
+              }
+            >
               {isAreaFilterOpen && (
-                <div>
+                <Popover title="ფართობის მიხედვით">
                   <RangeFilter
                     watch={watch}
                     register={register}
@@ -128,32 +136,28 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                     fieldName="area"
                     range={AREA_RANGES}
                   />
-                  <PrimaryBtn
-                    label="არჩევა"
-                    type={EButtonTypes.SUBMIT}
-                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
-                  />
-                </div>
+                </Popover>
               )}
-            </div>
-            <div>
-              <span onClick={() => setIsBedroomsFilterOpen((prev) => !prev)}>
-                საძინებლების რაოდენობა
-              </span>
+            </FilterItem>
+            <FilterItem
+              label="საძინებლების რაოდენობა"
+              onClick={() => setIsBedroomsFilterOpen((prev) => !prev)}
+              className={isBedroomsFilterOpen ? "bg-rdbryShade-50" : ""}
+              icon={
+                <ChevronIcon
+                  className={isBedroomsFilterOpen ? "rotate-180" : ""}
+                />
+              }
+            >
               {isBedroomsFilterOpen && (
-                <div>
+                <Popover title="საძინებლების რაოდენობა">
                   <InputFilter
                     register={register}
                     fieldName={EFilters.BEDROOMS}
                   />
-                  <PrimaryBtn
-                    label="არჩევა"
-                    type={EButtonTypes.SUBMIT}
-                    className="py-2 px-[14px] text-[14px] leading-[16.8px]"
-                  />
-                </div>
+                </Popover>
               )}
-            </div>
+            </FilterItem>
           </div>
           <div>
             {selectedFilters &&
