@@ -27,6 +27,7 @@ export const NewEstateForm = (): JSX.Element => {
   });
   const [regionMenuIsOpen, setRegionMenuIsOpen] = useState(false);
   const [cityMenuIsOpen, setCityMenuIsOpen] = useState(false);
+  const [agentMenuIsOpen, setAgentMenuIsOpen] = useState(false);
   const { mutate } = useCreateEstate();
 
   const { data: regions } = useRegions();
@@ -171,7 +172,26 @@ export const NewEstateForm = (): JSX.Element => {
                     rules={{ required: "გთხოვთ აირჩიეთ ქალაქი" }}
                     render={({ field }) => (
                       <Select
-                        className="w-[384px] rounded-[6px] text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]"
+                        unstyled
+                        onMenuClose={() => setCityMenuIsOpen(false)}
+                        onMenuOpen={() => setCityMenuIsOpen(true)}
+                        classNames={{
+                          container: () => {
+                            return `w-[386px] h-[42px] border border-solid border-rdbryShade-200 rounded-[6px] ${cityMenuIsOpen ? "rounded-b-none" : ""}`;
+                          },
+                          control: () =>
+                            "text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]",
+                          menuList: () => {
+                            return "w-[385px] scrollbar-hide rounded-b-[6px] border-b border-solid border-rdbryShade-200";
+                          },
+                          option: (state) => {
+                            const indexOfLastChild = state.options.length - 1;
+                            const isLastChild =
+                              state.children ===
+                              state.options[indexOfLastChild].label;
+                            return `${isLastChild ? "rounded-b-[6px]" : ""} border-b border-l border-r border-solid border-rdbryShade-200 bg-white text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]`;
+                          },
+                        }}
                         {...field}
                         options={cityOptions ?? []}
                         placeholder="აირჩიეთ ქალაქი"
@@ -255,6 +275,26 @@ export const NewEstateForm = (): JSX.Element => {
                 defaultValue={null}
                 render={({ field }) => (
                   <Select
+                    unstyled
+                    onMenuClose={() => setAgentMenuIsOpen(false)}
+                    onMenuOpen={() => setAgentMenuIsOpen(true)}
+                    classNames={{
+                      container: () => {
+                        return `w-[386px] h-[42px] border border-solid border-rdbryShade-200 rounded-[6px] ${agentMenuIsOpen ? "rounded-b-none" : ""}`;
+                      },
+                      control: () =>
+                        "text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]",
+                      menuList: () => {
+                        return "w-[385px] scrollbar-hide rounded-b-[6px] border-b border-solid border-rdbryShade-200";
+                      },
+                      option: (state) => {
+                        const indexOfLastChild = state.options.length - 1;
+                        const isLastChild =
+                          state.children ===
+                          state.options[indexOfLastChild].label;
+                        return `${isLastChild ? "rounded-b-[6px]" : ""} border-b border-l border-r border-solid border-rdbryShade-200 bg-white text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]`;
+                      },
+                    }}
                     {...field}
                     options={agentOptions}
                     onChange={(option) =>
