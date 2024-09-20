@@ -4,9 +4,9 @@ import { EButtonTypes } from "../types";
 
 const variantStyles = {
   GHOST:
-    "text-rdbryPrimary-100 border border-solid border-1 border-rdbryPrimary-100 bg-rdbryText-100 px-4 py-[10px] rounded-[10px] font-medium hover:text-rdbryText-100 hover:bg-rdbryPrimary-100",
+    "text-rdbryPrimary-100 border border-solid border-1 border-rdbryPrimary-100 bg-rdbryText-50 px-4 py-[10px] rounded-[10px] font-medium hover:text-rdbryText-50 hover:bg-rdbryPrimary-100",
   DEFAULT:
-    "text-rdbryText-100 bg-rdbryPrimary-100 px-4 py-[10px] rounded-[10px] font-medium hover:bg-rdbryPrimary-200",
+    "text-rdbryText-50 bg-rdbryPrimary-100 px-4 py-[10px] rounded-[10px] font-medium hover:bg-rdbryPrimary-200",
 };
 export enum EPrimaryButtonVariants {
   GHOST = "GHOST",
