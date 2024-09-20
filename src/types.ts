@@ -125,6 +125,7 @@ export interface IFiltersPanelProps {
 
 export interface IIconProps {
   className?: string;
+  onClick?: () => void;
 }
 
 export enum EButtonTypes {

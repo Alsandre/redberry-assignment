@@ -24,84 +24,90 @@ export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
 
   return (
     <>
-      <div>
-        <h3>აგენტის დამატება</h3>
+      <div className="py-[87px] px-[105px] flex flex-col gap-[61px]">
+        <h3 className="text-[32px] text-rdbryText-300 leading-[38.4px] font-medium text-center">
+          აგენტის დამატება
+        </h3>
         <form onSubmit={handleSubmit(handleNewAgent)}>
-          <div>
-            <FormInput
-              control={control}
-              name="name"
-              label="სახელი"
-              required={true}
-              rules={{
-                required: "მინიმუმ ორი სიმბოლო",
-                minLength: {
-                  value: 2,
-                  message: "შეიყვანეთ მინიმუმ ორი სიმბოლო",
-                },
-              }}
-            />
-            <FormInput
-              control={control}
-              name="surname"
-              label="გვარი"
-              required={true}
-              rules={{
-                required: "მინიმუმ ორი სიმბოლო",
-                minLength: {
-                  value: 2,
-                  message: "შეიყვანეთ მინიმუმ ორი სიმბოლო",
-                },
-              }}
-            />
-          </div>
-          <div>
-            <FormInput
-              control={control}
-              name="email"
-              label="ემაილ"
-              required={true}
-              rules={{
-                required: "უნდა მთავრდებოდეს @redberry.ge-თ",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@redberry\.ge$/,
-                  message: "უნდა მთავრდებოდეს @redberry.ge-თ",
-                },
-              }}
-            />
-            <FormInput
-              control={control}
-              name="phone"
-              label="ტელეფონის ნომერი"
-              required={true}
-              rules={{
-                required: "უნდა იყოს ფორმატის 5XXXXXXXX",
-                pattern: {
-                  value: /^5\d{8}$/,
-                  message: "უნდა იყოს ფორმატის 5XXXXXXXX",
-                },
-              }}
-            />
-          </div>
-          <div>
-            <ControlledUpload
-              label="ატვირთეთ ფოტო"
-              control={control}
-              name="avatar"
-              required
-            />
-          </div>
-          <div>
-            <PrimaryBtn
-              label="გაუქმება"
-              onClick={() => handleReset()}
-              variant={EPrimaryButtonVariants.GHOST}
-            />
-            <PrimaryBtn
-              label="დაამატე აგენტი"
-              variant={EPrimaryButtonVariants.GHOST}
-              type={EButtonTypes.SUBMIT}
-            />
+          <div className="flex flex-col gap-[94px]">
+            <div className="flex flex-col gap-[28px]">
+              <div className="flex gap-[31px]">
+                <FormInput
+                  control={control}
+                  name="name"
+                  label="სახელი"
+                  required={true}
+                  rules={{
+                    required: "მინიმუმ ორი სიმბოლო",
+                    minLength: {
+                      value: 2,
+                      message: "შეიყვანეთ მინიმუმ ორი სიმბოლო",
+                    },
+                  }}
+                />
+                <FormInput
+                  control={control}
+                  name="surname"
+                  label="გვარი"
+                  required={true}
+                  rules={{
+                    required: "მინიმუმ ორი სიმბოლო",
+                    minLength: {
+                      value: 2,
+                      message: "შეიყვანეთ მინიმუმ ორი სიმბოლო",
+                    },
+                  }}
+                />
+              </div>
+              <div className="flex gap-[31px]">
+                <FormInput
+                  control={control}
+                  name="email"
+                  label="ელ-ფოსტა"
+                  required={true}
+                  rules={{
+                    required: "უნდა მთავრდებოდეს @redberry.ge-თ",
+                    pattern: {
+                      value: /^[a-zA-Z0-9._%+-]+@redberry\.ge$/,
+                      message: "გამოიყენეთ @redberry.ge ელფოსტა",
+                    },
+                  }}
+                />
+                <FormInput
+                  control={control}
+                  name="phone"
+                  label="ტელეფონის ნომერი"
+                  required={true}
+                  rules={{
+                    required: "მხოლოდ რიცხვები",
+                    pattern: {
+                      value: /^5\d{8}$/,
+                      message: "მხოლოდ რიცხვები",
+                    },
+                  }}
+                />
+              </div>
+              <div>
+                <ControlledUpload
+                  label="ატვირთეთ ფოტო"
+                  control={control}
+                  name="avatar"
+                  required
+                />
+              </div>
+            </div>
+            <div className="flex gap-[15px] justify-end">
+              <PrimaryBtn
+                label="გაუქმება"
+                onClick={() => handleReset()}
+                variant={EPrimaryButtonVariants.GHOST}
+              />
+              <PrimaryBtn
+                label="დაამატე აგენტი"
+                variant={EPrimaryButtonVariants.DEFAULT}
+                type={EButtonTypes.SUBMIT}
+              />
+            </div>
           </div>
         </form>
       </div>

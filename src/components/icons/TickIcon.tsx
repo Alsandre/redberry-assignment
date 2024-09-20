@@ -3,7 +3,7 @@ import { IIconProps } from "../../types";
 export const TickIcon = ({ className }: IIconProps): JSX.Element => {
   return (
     <svg
-      className={`fill-current ${className}`}
+      className={className}
       width="12"
       height="11"
       viewBox="0 0 12 11"

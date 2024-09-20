@@ -3,7 +3,7 @@ import { IIconProps } from "../../types";
 export const DeleteIcon = ({ className }: IIconProps): JSX.Element => {
   return (
     <svg
-      className={`fill-current ${className}`}
+      className={className}
       width="24"
       height="24"
       viewBox="0 0 24 24"
