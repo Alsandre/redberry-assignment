@@ -379,7 +379,6 @@ export const NewEstateForm = (): JSX.Element => {
           </div>
         </div>
       </form>
-      <div style={{ width: "50px", height: "500px" }}></div>
       <Modal
         isOpen={agentSelectedOption === "addNew"}
         onClose={handleCloseAgentModal}

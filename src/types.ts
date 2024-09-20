@@ -201,6 +201,7 @@ export type TFormSectionTtle = {
 
 export enum EStorageKeys {
   ESTATE_DATA = "unprocessed-estate-data",
+  FILTERS_DATA = "unprocessed-filter-data",
 }
 
 export type TPopoverProps = {

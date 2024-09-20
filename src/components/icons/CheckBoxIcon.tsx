@@ -19,9 +19,9 @@ export const CheckBoxIcon = ({
           <path
             d="M15.4546 5.4541L8.57959 13.6359L5.45459 9.91691"
             stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </>
       ) : (

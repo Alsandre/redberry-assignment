@@ -1,6 +1,6 @@
 export const Footer = (): JSX.Element => {
   return (
-    <footer className="text-center p-4 bg-gray-200 flex items-center justify-center">
+    <footer className="text-center p-4 bg-gray-200 flex items-center justify-center mt-16">
       <p className="flex gap-1 items-center">
         <span>
           Produced with care, commitment &{" "}

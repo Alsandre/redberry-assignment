@@ -50,7 +50,8 @@ export default {
     ({ addUtilities, theme }) => {
       addUtilities({
         ".filter-chip": {
-          border: `1px solid ${theme("colors.rdbryBorder")}`,
+          border: `1px solid ${theme("colors.rdbryBorder.50")}`,
+          color: theme('colors.rdbryText.250'),
           "border-radius": "15px",
           width: "fit-content",
           height: "29px",

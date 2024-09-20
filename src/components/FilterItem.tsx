@@ -8,7 +8,7 @@ export const FilterItem: React.FC<TFilterItemProps> = ({
   className,
 }) => {
   return (
-    <div className={`${className ?? ""} relative rounded-[6px]`}>
+    <div className={`${className ?? ""} relative rounded-[6px] cursor-pointer`}>
       <span
         className="flex gap-1 items-center py-2 pl-[14px] pr-[10.5px] text-[16px] font-medium leading-[19.2px]"
         onClick={onClick}
