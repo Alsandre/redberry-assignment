@@ -11,11 +11,12 @@ import { ControlledUpload } from "./ui/ControlledUpload";
 import { useAgents, useCities, useCreateEstate, useRegions } from "../services";
 import { NewAgentForm } from "./NewAgentForm";
 import { Modal } from "./ui/Modal";
-import Select from "react-select";
+import Select, { components } from "react-select";
 import { EButtonTypes, INewEstateData } from "../types";
 import { validateFileSize } from "../utils/validateFileSize";
 import { ESTATE_FORM_DEFAULT_VALUES } from "../constants";
 import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
+import { PlusInCircleIcon } from "./icons";
 
 export const NewEstateForm = (): JSX.Element => {
   const { control, watch, setValue, handleSubmit } = useForm<FieldValues>({
@@ -46,12 +47,10 @@ export const NewEstateForm = (): JSX.Element => {
 
   const existingAgentsList =
     agents?.map((agent) => {
-      return { value: agent.id, label: `${agent.name} ${agent.surname}` };
+      return { value: "" + agent.id, label: `${agent.name} ${agent.surname}` };
     }) ?? [];
 
-  const addAgentLabel = <span>{`(icon) დაამატე აგენტი`}</span>;
-
-  const addAgentOption = [{ value: "addNew", label: addAgentLabel }];
+  const addAgentOption = [{ value: "addNew", label: "დაამატე აგენტი" }];
 
   const agentOptions = [...addAgentOption, ...existingAgentsList];
 
@@ -226,6 +225,23 @@ export const NewEstateForm = (): JSX.Element => {
                   agentOptions.find((option) => option.value === field.value) ||
                   null
                 }
+                components={{
+                  Option: (props) => (
+                    <>
+                      <components.Option {...props}>
+                        <div>
+                          {props.data === agentOptions[0] && (
+                            <span className="flex gap-2">
+                              <PlusInCircleIcon /> {props.data.label}
+                            </span>
+                          )}
+                          {!(props.data.value === agentOptions[0].value) &&
+                            props.data.label}
+                        </div>
+                      </components.Option>
+                    </>
+                  ),
+                }}
               />
             )}
           />
