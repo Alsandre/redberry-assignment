@@ -1,10 +1,10 @@
-import { IButtonProps } from "../../types";
+import { EButtonTypes, IButtonProps } from "../../types";
 
 export const Button: React.FC<IButtonProps> = ({
   onClick,
   children,
   className = "",
-  type = "button",
+  type = EButtonTypes.DEFAULT,
   disabled = false,
 }) => {
   return (

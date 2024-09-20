@@ -1,5 +1,4 @@
 import { IGetEstateById } from "../types";
-import { AgentCard } from "./AgentCard";
 
 export const EstateData = ({
   price,

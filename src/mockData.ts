@@ -1,6 +1,4 @@
-import { useCreateEstate } from "./services";
 import { createEstate } from "./services/mutation";
-import { INewEstateData } from "./types";
 
 const STREETS = [
   "ა. წერეთელი გამზირი",
