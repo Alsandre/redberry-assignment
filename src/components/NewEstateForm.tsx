@@ -17,12 +17,16 @@ import { validateFileSize } from "../utils/validateFileSize";
 import { ESTATE_FORM_DEFAULT_VALUES } from "../constants";
 import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
 import { PlusInCircleIcon } from "./icons";
+import { FormSectionTitle } from "./FormSectionTitle";
+import { useState } from "react";
 
 export const NewEstateForm = (): JSX.Element => {
   const { control, watch, setValue, handleSubmit } = useForm<FieldValues>({
     mode: "onChange",
     defaultValues: ESTATE_FORM_DEFAULT_VALUES,
   });
+  const [regionMenuIsOpen, setRegionMenuIsOpen] = useState(false);
+  const [cityMenuIsOpen, setCityMenuIsOpen] = useState(false);
   const { mutate } = useCreateEstate();
 
   const { data: regions } = useRegions();
@@ -67,196 +71,235 @@ export const NewEstateForm = (): JSX.Element => {
     <>
       <form onSubmit={handleSubmit(handleNewEstate)}>
         <div>
-          <h5>გარიგების ტიპი</h5>
-          <Controller
-            name="is_rental"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <DealTypeRadioGroup
-                value={field.value}
-                onChange={field.onChange}
+          <div className="flex flex-col gap-[80px]">
+            <div className="flex flex-col gap-2 justify-start">
+              <FormSectionTitle label="გარიგების ტიპი" />
+              <Controller
+                name="is_rental"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <DealTypeRadioGroup
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
-            )}
-          />
-        </div>
-        <div>
-          <h5>მდებარეობა</h5>
-          <FormInput
-            control={control}
-            name="address"
-            label="მისამართი"
-            required={true}
-            rules={{
-              required: "მინიმუმ 2 სიმბოლო",
-              minLength: {
-                value: 2,
-                message: "მინიმუმ 2 სიმბოლო",
-              },
-            }}
-          />
-          <FormInput
-            control={control}
-            name="zip_code"
-            label="საფოსტო ინდექსი"
-            required={true}
-            rules={{
-              required: "მხოლოდ რიცხვები",
-              pattern: {
-                value: /\d{3,}$/,
-                message: "მხოლოდ რიცხვები",
-              },
-            }}
-          />
-          <Controller
-            name="region_id"
-            control={control}
-            defaultValue={null}
-            rules={{ required: "გთხოვთ აირჩიეთ რეგიონი" }}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={regionOptions ?? []}
-                placeholder="აირჩიეთ რეგიონი"
-                onChange={(option) =>
-                  field.onChange(option ? option.value : null)
-                }
-                value={
-                  regionOptions?.find(
-                    (option) => option.value == field.value
-                  ) || null
-                }
-              />
-            )}
-          />
-          <Controller
-            name="city_id"
-            control={control}
-            defaultValue={null}
-            rules={{ required: "გთხოვთ აირჩიეთ ქალაქი" }}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={cityOptions ?? []}
-                placeholder="აირჩიეთ ქალაქი"
-                onChange={(option) =>
-                  field.onChange(option ? option.value : null)
-                }
-                value={
-                  cityOptions?.find((option) => option.value == field.value) ||
-                  null
-                }
-              />
-            )}
-          />
-        </div>
-        <div>
-          <h5>ბინის დეტალები</h5>
-          <div>
-            <FormInput
-              control={control}
-              name="price"
-              label="ფასი"
-              required={true}
-              rules={{
-                required: "მხოლოდ რიცხვები",
-              }}
-            />
-            <FormInput
-              control={control}
-              name="area"
-              label="ფართობი"
-              required={true}
-              rules={{
-                required: "მხოლოდ რიცხვები",
-              }}
-            />
-          </div>
-          <FormInput
-            control={control}
-            name="bedrooms"
-            label="საძინებლების რაოდენობა"
-            required={true}
-            rules={{
-              required: "მთელი რიცხვი",
-            }}
-          />
-          <ControlledTextarea
-            control={control}
-            label="არწერა"
-            name="description"
-            required={true}
-            rules={{
-              required: "მინიმუმ 5 სიტყვა",
-              pattern: {
-                value: /^(?:\S+\s+){4,}\S+$/,
-              },
-            }}
-          />
-          <ControlledUpload
-            label="ატვირთეთ ფოტო"
-            control={control}
-            name="image"
-            required={true}
-            rules={{
-              required: "არ უნდა აღებმატებოდეს 1mb-ის ზომაში",
-              validate: {
-                fileSize: (file: File) => validateFileSize(file),
-              },
-            }}
-          />
-        </div>
+            </div>
 
-        <div>
-          <h5>აგენტი</h5>
-          <span>აირჩიე</span>
-          <Controller
-            name="agent_id"
-            control={control}
-            defaultValue={null}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={agentOptions}
-                onChange={(option) =>
-                  field.onChange(option ? option.value : null)
-                }
-                value={
-                  agentOptions.find((option) => option.value === field.value) ||
-                  null
-                }
-                components={{
-                  Option: (props) => (
-                    <>
-                      <components.Option {...props}>
-                        <div>
-                          {props.data === agentOptions[0] && (
-                            <span className="flex gap-2">
-                              <PlusInCircleIcon /> {props.data.label}
-                            </span>
-                          )}
-                          {!(props.data.value === agentOptions[0].value) &&
-                            props.data.label}
-                        </div>
-                      </components.Option>
-                    </>
-                  ),
+            <div className="flex flex-col gap-[22px] justify-start">
+              <FormSectionTitle label="მდებარეობა" />
+              <div className="flex gap-5">
+                <FormInput
+                  control={control}
+                  name="address"
+                  label="მისამართი"
+                  required={true}
+                  rules={{
+                    required: "მინიმუმ 2 სიმბოლო",
+                    minLength: {
+                      value: 2,
+                      message: "მინიმუმ 2 სიმბოლო",
+                    },
+                  }}
+                />
+                <FormInput
+                  control={control}
+                  name="zip_code"
+                  label="საფოსტო ინდექსი"
+                  required={true}
+                  rules={{
+                    required: "მხოლოდ რიცხვები",
+                    pattern: {
+                      value: /\d{3,}$/,
+                      message: "მხოლოდ რიცხვები",
+                    },
+                  }}
+                />
+              </div>
+              <div className="flex gap-5">
+                <div>
+                  <span>რეგიონი</span>
+                  <Controller
+                    name="region_id"
+                    control={control}
+                    defaultValue={null}
+                    rules={{ required: "გთხოვთ აირჩიეთ რეგიონი" }}
+                    render={({ field }) => (
+                      <Select
+                        unstyled
+                        onMenuClose={() => setRegionMenuIsOpen(false)}
+                        onMenuOpen={() => setRegionMenuIsOpen(true)}
+                        classNames={{
+                          container: () => {
+                            return `w-[386px] h-[42px] border border-solid border-rdbryShade-200 rounded-[6px] ${regionMenuIsOpen ? "rounded-b-none" : ""}`;
+                          },
+                          control: () =>
+                            "text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]",
+                          menuList: () => {
+                            return "w-[385px] scrollbar-hide rounded-b-[6px] border-b border-solid border-rdbryShade-200";
+                          },
+                          option: (state) => {
+                            const indexOfLastChild = state.options.length - 1;
+                            const isLastChild =
+                              state.children ===
+                              state.options[indexOfLastChild].label;
+                            return `${isLastChild ? "rounded-b-[6px]" : ""} border-b border-l border-r border-solid border-rdbryShade-200 bg-white text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]`;
+                          },
+                        }}
+                        {...field}
+                        options={regionOptions ?? []}
+                        placeholder="აირჩიეთ რეგიონი"
+                        onChange={(option) =>
+                          field.onChange(option ? option.value : null)
+                        }
+                        value={
+                          regionOptions?.find(
+                            (option) => option.value == field.value
+                          ) || null
+                        }
+                      />
+                    )}
+                  />
+                </div>
+                <div>
+                  <span>ქალაქი</span>
+                  <Controller
+                    name="city_id"
+                    control={control}
+                    defaultValue={null}
+                    rules={{ required: "გთხოვთ აირჩიეთ ქალაქი" }}
+                    render={({ field }) => (
+                      <Select
+                        className="w-[384px] rounded-[6px] text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]"
+                        {...field}
+                        options={cityOptions ?? []}
+                        placeholder="აირჩიეთ ქალაქი"
+                        onChange={(option) =>
+                          field.onChange(option ? option.value : null)
+                        }
+                        value={
+                          cityOptions?.find(
+                            (option) => option.value == field.value
+                          ) || null
+                        }
+                      />
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <FormSectionTitle label="ბინის დეტალები" />
+              <div>
+                <FormInput
+                  control={control}
+                  name="price"
+                  label="ფასი"
+                  required={true}
+                  rules={{
+                    required: "მხოლოდ რიცხვები",
+                  }}
+                />
+                <FormInput
+                  control={control}
+                  name="area"
+                  label="ფართობი"
+                  required={true}
+                  rules={{
+                    required: "მხოლოდ რიცხვები",
+                  }}
+                />
+              </div>
+              <FormInput
+                control={control}
+                name="bedrooms"
+                label="საძინებლების რაოდენობა"
+                required={true}
+                rules={{
+                  required: "მთელი რიცხვი",
                 }}
               />
-            )}
-          />
-        </div>
-        <div>
-          <PrimaryBtn
-            label="გაუქმება"
-            onClick={() => ""}
-            variant={EPrimaryButtonVariants.GHOST}
-          />
-          <PrimaryBtn
-            label="დაამატე ლისტინგი"
-            variant={EPrimaryButtonVariants.GHOST}
-            type={EButtonTypes.SUBMIT}
-          />
+              <ControlledTextarea
+                control={control}
+                label="არწერა"
+                name="description"
+                required={true}
+                rules={{
+                  required: "მინიმუმ 5 სიტყვა",
+                  pattern: {
+                    value: /^(?:\S+\s+){4,}\S+$/,
+                  },
+                }}
+              />
+              <ControlledUpload
+                label="ატვირთეთ ფოტო"
+                control={control}
+                name="image"
+                required={true}
+                rules={{
+                  required: "არ უნდა აღებმატებოდეს 1mb-ის ზომაში",
+                  validate: {
+                    fileSize: (file: File) => validateFileSize(file),
+                  },
+                }}
+              />
+            </div>
+
+            <div>
+              <FormSectionTitle label="აგენტი" />
+              <span>აირჩიე</span>
+              <Controller
+                name="agent_id"
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={agentOptions}
+                    onChange={(option) =>
+                      field.onChange(option ? option.value : null)
+                    }
+                    value={
+                      agentOptions.find(
+                        (option) => option.value === field.value
+                      ) || null
+                    }
+                    components={{
+                      Option: (props) => (
+                        <>
+                          <components.Option {...props}>
+                            <div>
+                              {props.data === agentOptions[0] && (
+                                <span className="flex gap-2">
+                                  <PlusInCircleIcon /> {props.data.label}
+                                </span>
+                              )}
+                              {!(props.data.value === agentOptions[0].value) &&
+                                props.data.label}
+                            </div>
+                          </components.Option>
+                        </>
+                      ),
+                    }}
+                  />
+                )}
+              />
+            </div>
+          </div>
+
+          <div>
+            <PrimaryBtn
+              label="გაუქმება"
+              onClick={() => ""}
+              variant={EPrimaryButtonVariants.GHOST}
+            />
+            <PrimaryBtn
+              label="დაამატე ლისტინგი"
+              variant={EPrimaryButtonVariants.GHOST}
+              type={EButtonTypes.SUBMIT}
+            />
+          </div>
         </div>
       </form>
       <div style={{ width: "50px", height: "500px" }}></div>

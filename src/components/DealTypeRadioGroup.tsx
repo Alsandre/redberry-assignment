@@ -5,9 +5,10 @@ export const DealTypeRadioGroup = ({
   onChange,
 }: IDealTypeRadioGroupProps): JSX.Element => {
   return (
-    <div>
-      <label>
+    <div className="flex gap-[84px]">
+      <label className="flex gap-[7px] items-center">
         <input
+          className="custom-radio-button"
           type="radio"
           value={1}
           checked={value === 1}
@@ -15,8 +16,9 @@ export const DealTypeRadioGroup = ({
         />
         ქირავდება
       </label>
-      <label>
+      <label className="flex gap-[7px] items-center">
         <input
+          className="custom-radio-button"
           type="radio"
           value={0}
           checked={value === 0}

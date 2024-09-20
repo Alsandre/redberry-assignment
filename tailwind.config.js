@@ -25,6 +25,7 @@ export default {
           100: "rgba(103, 110, 118, 1)",
           150: "rgba(53, 68, 81, 1)",
           200: "rgba(45, 54, 72, 1)",
+          225: "rgba(26, 26, 31, 1)",
           250: "rgba(2, 21, 38, 0.7)",
           300: "rgba(2, 21, 38, 1)",
         },
@@ -68,6 +69,15 @@ export default {
           "letter-spacing": "0.04em",
           "font-style": "normal",
           "font-weight": theme("fontWeight.regular"),
+        },
+        ".custom-radio-button": {
+          appearance: "none",
+          width: "16px",
+          height: "16px",
+          border: "1px solid black",
+          "border-radius": "50%",
+          outline: "none",
+          position: "relative",
         },
       });
     },

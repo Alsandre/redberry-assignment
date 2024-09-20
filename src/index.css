@@ -10,4 +10,35 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+.custom-radio-button:checked::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: black;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scrollbar-hide {
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.bottom-blur::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
 }

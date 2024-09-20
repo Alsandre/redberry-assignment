@@ -193,3 +193,8 @@ export enum ECheckBoxVariants {
 export interface ICheckBoxProps extends IIconProps {
   varaint: ECheckBoxVariants;
 }
+
+export type TFormSectionTtle = {
+  className?: string;
+  label: string;
+};
