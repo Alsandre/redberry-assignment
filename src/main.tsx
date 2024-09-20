@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "@fontsource/firago/400.css";
 import "@fontsource/firago/500.css";
 import "@fontsource/firago/700.css";
+import "./assets/fonts.css";
 
 import App from "./App.tsx";
 

@@ -71,7 +71,7 @@ export const NewEstateForm = (): JSX.Element => {
   return (
     <>
       <form onSubmit={handleSubmit(handleNewEstate)}>
-        <div>
+        <div className="w-[788px] m-auto flex flex-col gap-[90px]">
           <div className="flex flex-col gap-[80px]">
             <div className="flex flex-col gap-2 justify-start">
               <FormSectionTitle label="გარიგების ტიპი" />
@@ -119,8 +119,10 @@ export const NewEstateForm = (): JSX.Element => {
                 />
               </div>
               <div className="flex gap-5">
-                <div>
-                  <span>რეგიონი</span>
+                <div className="flex flex-col gap-[5px]">
+                  <span className="text-[14px] leading-[16.8px] font-medium">
+                    რეგიონი
+                  </span>
                   <Controller
                     name="region_id"
                     control={control}
@@ -163,8 +165,10 @@ export const NewEstateForm = (): JSX.Element => {
                     )}
                   />
                 </div>
-                <div>
-                  <span>ქალაქი</span>
+                <div className="flex flex-col gap-[5px]">
+                  <span className="text-[14px] leading-[16.8px] font-medium">
+                    ქალაქი
+                  </span>
                   <Controller
                     name="city_id"
                     control={control}
@@ -209,9 +213,9 @@ export const NewEstateForm = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="flex flex-col gap-5">
               <FormSectionTitle label="ბინის დეტალები" />
-              <div>
+              <div className="flex gap-5">
                 <FormInput
                   control={control}
                   name="price"
@@ -266,69 +270,74 @@ export const NewEstateForm = (): JSX.Element => {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-[15px]">
               <FormSectionTitle label="აგენტი" />
-              <span>აირჩიე</span>
-              <Controller
-                name="agent_id"
-                control={control}
-                defaultValue={null}
-                render={({ field }) => (
-                  <Select
-                    unstyled
-                    onMenuClose={() => setAgentMenuIsOpen(false)}
-                    onMenuOpen={() => setAgentMenuIsOpen(true)}
-                    classNames={{
-                      container: () => {
-                        return `w-[386px] h-[42px] border border-solid border-rdbryShade-200 rounded-[6px] ${agentMenuIsOpen ? "rounded-b-none" : ""}`;
-                      },
-                      control: () =>
-                        "text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]",
-                      menuList: () => {
-                        return "w-[385px] scrollbar-hide rounded-b-[6px] border-b border-solid border-rdbryShade-200";
-                      },
-                      option: (state) => {
-                        const indexOfLastChild = state.options.length - 1;
-                        const isLastChild =
-                          state.children ===
-                          state.options[indexOfLastChild].label;
-                        return `${isLastChild ? "rounded-b-[6px]" : ""} border-b border-l border-r border-solid border-rdbryShade-200 bg-white text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]`;
-                      },
-                    }}
-                    {...field}
-                    options={agentOptions}
-                    onChange={(option) =>
-                      field.onChange(option ? option.value : null)
-                    }
-                    value={
-                      agentOptions.find(
-                        (option) => option.value === field.value
-                      ) || null
-                    }
-                    components={{
-                      Option: (props) => (
-                        <>
-                          <components.Option {...props}>
-                            <div>
-                              {props.data === agentOptions[0] && (
-                                <span className="flex gap-2">
-                                  <PlusInCircleIcon /> {props.data.label}
-                                </span>
-                              )}
-                              {!(props.data.value === agentOptions[0].value) &&
-                                props.data.label}
-                            </div>
-                          </components.Option>
-                        </>
-                      ),
-                    }}
-                  />
-                )}
-              />
+              <div className="flex flex-col gap-[5px]">
+                <span className="text-[14px] leading-[16.8px] font-medium">
+                  აირჩიე
+                </span>
+                <Controller
+                  name="agent_id"
+                  control={control}
+                  defaultValue={null}
+                  render={({ field }) => (
+                    <Select
+                      unstyled
+                      onMenuClose={() => setAgentMenuIsOpen(false)}
+                      onMenuOpen={() => setAgentMenuIsOpen(true)}
+                      classNames={{
+                        container: () => {
+                          return `w-[386px] h-[42px] border border-solid border-rdbryShade-200 rounded-[6px] ${agentMenuIsOpen ? "rounded-b-none" : ""}`;
+                        },
+                        control: () =>
+                          "text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]",
+                        menuList: () => {
+                          return "w-[385px] scrollbar-hide rounded-b-[6px] border-b border-solid border-rdbryShade-200";
+                        },
+                        option: (state) => {
+                          const indexOfLastChild = state.options.length - 1;
+                          const isLastChild =
+                            state.children ===
+                            state.options[indexOfLastChild].label;
+                          return `${isLastChild ? "rounded-b-[6px]" : ""} border-b border-l border-r border-solid border-rdbryShade-200 bg-white text-[16px] leading-[19.2px] font-regular text-rdbryText-300 py-[11px] px-[10px]`;
+                        },
+                      }}
+                      {...field}
+                      options={agentOptions}
+                      onChange={(option) =>
+                        field.onChange(option ? option.value : null)
+                      }
+                      value={
+                        agentOptions.find(
+                          (option) => option.value === field.value
+                        ) || null
+                      }
+                      components={{
+                        Option: (props) => (
+                          <>
+                            <components.Option {...props}>
+                              <div>
+                                {props.data === agentOptions[0] && (
+                                  <span className="flex gap-2">
+                                    <PlusInCircleIcon /> {props.data.label}
+                                  </span>
+                                )}
+                                {!(
+                                  props.data.value === agentOptions[0].value
+                                ) && props.data.label}
+                              </div>
+                            </components.Option>
+                          </>
+                        ),
+                      }}
+                    />
+                  )}
+                />
+              </div>
             </div>
           </div>
 
-          <div>
+          <div className="flex gap-[15px] justify-end">
             <PrimaryBtn
               label="გაუქმება"
               onClick={() => ""}
@@ -336,7 +345,7 @@ export const NewEstateForm = (): JSX.Element => {
             />
             <PrimaryBtn
               label="დაამატე ლისტინგი"
-              variant={EPrimaryButtonVariants.GHOST}
+              variant={EPrimaryButtonVariants.DEFAULT}
               type={EButtonTypes.SUBMIT}
             />
           </div>

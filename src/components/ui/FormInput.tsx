@@ -20,7 +20,7 @@ export const FormInput: React.FC<IFormInputProps> = (props) => {
   return (
     <div className="flex flex-col gap-1 w-[384px]">
       <label
-        className={`text-rdbryText-300 font-medium text-[14px] leading-[16.8px] ${statusColor}`}
+        className="text-rdbryText-300 font-medium text-[14px] leading-[16.8px]"
         htmlFor={field.name}
       >
         {label}

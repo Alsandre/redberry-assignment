@@ -33,6 +33,7 @@ export default {
       fontFamily: {
         sans: ["MyFont", "sans-serif"],
         helve: ["Helvetica"],
+        nueue: ["Neue"],
       },
       fontWeight: {
         regular: 400,

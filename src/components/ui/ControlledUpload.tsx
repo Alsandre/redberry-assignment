@@ -67,7 +67,7 @@ export const ControlledUpload: React.FC<IControlledComponentProps> = ({
         {required && " *"}
       </span>
       <div
-        className={`flex w-[799px] h-[120px] border border-dashed border-rdbryText-200 rounded-[8px]  justify-center items-center ${selectedImage ? "pointer-events-none" : ""} cursor-pointer`}
+        className={`flex w-full h-[120px] border border-dashed border-rdbryText-200 rounded-[8px]  justify-center items-center ${selectedImage ? "pointer-events-none" : ""} cursor-pointer`}
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
         onClick={handleClick}
