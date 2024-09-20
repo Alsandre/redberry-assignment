@@ -27,6 +27,7 @@ export default {
           200: "rgba(45, 54, 72, 1)",
           225: "rgba(26, 26, 31, 1)",
           250: "rgba(2, 21, 38, 0.7)",
+          275: "rgba(2, 21, 38, 0.5)",
           300: "rgba(2, 21, 38, 1)",
         },
       },
@@ -39,6 +40,9 @@ export default {
         regular: 400,
         medium: 500,
         bold: 700,
+      },
+      boxShadow: {
+        "custom-shadow": "5px 5px 12px 0px rgba(2, 21, 38, 0.08)",
       },
     },
   },
@@ -54,7 +58,7 @@ export default {
         },
         ".tag-chip": {
           width: "90px",
-          color: theme("colors.rdbryText.100"),
+          color: theme("colors.rdbryText.50"),
           "background-color": theme("colors.rdbryShade.100"),
           "border-radius": "15px",
           "line-height": "14.4px",

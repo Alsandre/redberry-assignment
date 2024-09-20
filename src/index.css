@@ -8,10 +8,10 @@
 :root {
   font-family: "FiraGo", sans-serif;
 
-  /* text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box; */
+  box-sizing: border-box;
 }
 .custom-radio-button:checked::before {
   content: "";
@@ -42,7 +42,4 @@
   height: 4rem;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-}
-.noto {
-  font-family: "Noto Sans Georgian Variable";
 }

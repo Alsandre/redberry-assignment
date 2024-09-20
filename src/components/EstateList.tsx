@@ -10,7 +10,7 @@ export const EstateList = ({
 }: IEstateListProps): JSX.Element => {
   const navigate = useNavigate();
   return (
-    <>
+    <div className="flex flex-wrap gap-5 items-center justify-center mt-[77px]">
       {/* TODO - create components for error and loading states */}
       {isError && <button onClick={() => refetch()}>Try again</button>}
       {isLoading && <p>Please Wait. Loading ...</p>}
@@ -23,6 +23,6 @@ export const EstateList = ({
             onClick={() => navigate(`/estate/${estate.id}`)}
           />
         ))}
-    </>
+    </div>
   );
 };

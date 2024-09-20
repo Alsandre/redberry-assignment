@@ -8,7 +8,7 @@ export const Layout = (): JSX.Element => {
   return (
     <>
       <div className="w-screen fixed top-0 border-b border-solid border-rdbryBorder-50 bg-white z-50">
-        <div className="w-full flex h-[100px] mx-[8.5%] items-center gap-20">
+        <div className="w-full flex h-[100px] mx-[8%] items-center gap-20">
           <Link to={"/"}>
             <Logo />
           </Link>
@@ -20,7 +20,7 @@ export const Layout = (): JSX.Element => {
           />
         </div>
       </div>
-      <div className="mx-[8.5%] mt-[177px]">
+      <div className="mx-[8%] mt-[177px]">
         <Outlet />
       </div>
       <Footer />
