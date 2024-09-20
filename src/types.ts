@@ -198,3 +198,7 @@ export type TFormSectionTtle = {
   className?: string;
   label: string;
 };
+
+export enum EStorageKeys {
+  ESTATE_DATA = "unprocessed-estate-data",
+}

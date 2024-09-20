@@ -12,19 +12,32 @@ import { useAgents, useCities, useCreateEstate, useRegions } from "../services";
 import { NewAgentForm } from "./NewAgentForm";
 import { Modal } from "./ui/Modal";
 import Select, { components } from "react-select";
-import { EButtonTypes, INewEstateData } from "../types";
+import { EButtonTypes, EStorageKeys, INewEstateData } from "../types";
 import { validateFileSize } from "../utils/validateFileSize";
 import { ESTATE_FORM_DEFAULT_VALUES } from "../constants";
 import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
 import { PlusInCircleIcon } from "./icons";
 import { FormSectionTitle } from "./FormSectionTitle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getLocalStorage } from "../utils/getLocalStorage";
+import { setLocalStorage } from "../utils/setLocalStorage";
+import { clearLocalStorage } from "../utils/clearLocalStorage";
+
+const unprocessedDataStr = getLocalStorage(EStorageKeys.ESTATE_DATA);
+const unprocessedData = unprocessedDataStr
+  ? JSON.parse(unprocessedDataStr)
+  : null;
+const initialValues = unprocessedData
+  ? unprocessedData
+  : ESTATE_FORM_DEFAULT_VALUES;
 
 export const NewEstateForm = (): JSX.Element => {
-  const { control, watch, setValue, handleSubmit } = useForm<FieldValues>({
-    mode: "onChange",
-    defaultValues: ESTATE_FORM_DEFAULT_VALUES,
-  });
+  const { control, watch, setValue, handleSubmit, reset } =
+    useForm<FieldValues>({
+      mode: "onChange",
+      defaultValues: initialValues,
+    });
   const [regionMenuIsOpen, setRegionMenuIsOpen] = useState(false);
   const [cityMenuIsOpen, setCityMenuIsOpen] = useState(false);
   const [agentMenuIsOpen, setAgentMenuIsOpen] = useState(false);
@@ -33,6 +46,8 @@ export const NewEstateForm = (): JSX.Element => {
   const { data: regions } = useRegions();
   const { data: cities } = useCities();
   const { data: agents } = useAgents();
+
+  const navigate = useNavigate();
 
   const regionOptions = regions?.map((region) => {
     return { value: region.id, label: region.name };
@@ -68,6 +83,19 @@ export const NewEstateForm = (): JSX.Element => {
     mutate(data as INewEstateData);
   };
 
+  const handleCancel = () => {
+    reset();
+    clearLocalStorage(EStorageKeys.ESTATE_DATA);
+    navigate("/");
+  };
+  const currentlyFilleddData = watch();
+
+  useEffect(() => {
+    setLocalStorage(
+      EStorageKeys.ESTATE_DATA,
+      currentlyFilleddData as INewEstateData
+    );
+  }, [currentlyFilleddData]);
   return (
     <>
       <form onSubmit={handleSubmit(handleNewEstate)}>
@@ -340,7 +368,7 @@ export const NewEstateForm = (): JSX.Element => {
           <div className="flex gap-[15px] justify-end">
             <PrimaryBtn
               label="გაუქმება"
-              onClick={() => ""}
+              onClick={() => handleCancel()}
               variant={EPrimaryButtonVariants.GHOST}
             />
             <PrimaryBtn
