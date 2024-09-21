@@ -4,6 +4,7 @@ import { Card } from "./ui";
 import { useState } from "react";
 import { ESTATE_PER_SCREEN } from "../constants";
 import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
+import { generateUID } from "../utils/generateUID";
 
 export const EstateList = ({
   data,
@@ -28,10 +29,9 @@ export const EstateList = ({
       {isError && <button onClick={() => refetch()}>Try again</button>}
       {isLoading && <p>Please Wait. Loading ...</p>}
       {dataToRender &&
-        dataToRender.map((estate, index) => (
-          //TODO - unique id generator
+        dataToRender.map((estate) => (
           <Card
-            key={`${index}_${estate.id}_${estate.zip_code}`}
+            key={generateUID()}
             {...estate}
             onClick={() => navigate(`/estate/${estate.id}`)}
           />

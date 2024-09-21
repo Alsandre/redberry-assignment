@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { IRangeFilterProps } from "../types";
+import { generateUID } from "../utils/generateUID";
 export const RangeFilter = ({
   register,
   setValue,
@@ -60,23 +61,15 @@ export const RangeFilter = ({
       <div className="flex">
         <ol>
           {/* TODO - format this price */}
-          {range.map((value, index) => (
-            // TODO - unique id generator
-            <li
-              key={`${fieldName}min${index}`}
-              onClick={() => handleMinClick("" + value)}
-            >
+          {range.map((value) => (
+            <li key={generateUID()} onClick={() => handleMinClick("" + value)}>
               {value}
             </li>
           ))}
         </ol>
         <ol>
-          {range.map((value, index) => (
-            // TODO - unique id generator
-            <li
-              key={`${fieldName}max${index}`}
-              onClick={() => handleMaxClick("" + value)}
-            >
+          {range.map((value) => (
+            <li key={generateUID()} onClick={() => handleMaxClick("" + value)}>
               {value}
             </li>
           ))}

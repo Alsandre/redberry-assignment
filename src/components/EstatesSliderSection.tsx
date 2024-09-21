@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEstateById, useEstatesList } from "../services";
 import { Card } from "./ui";
+import { generateUID } from "../utils/generateUID";
 
 export const EstateSliderSection = (): JSX.Element => {
   const navigate = useNavigate();
@@ -21,7 +22,11 @@ export const EstateSliderSection = (): JSX.Element => {
         {isLoading && <p>Loading ... Slider</p>}
         {isError && <p>Something went wrong! Slider</p>}
         {estatesByCity?.map((estate) => (
-          <Card {...estate} onClick={() => navigate(`/estate/${estate.id}`)} />
+          <Card
+            key={generateUID()}
+            {...estate}
+            onClick={() => navigate(`/estate/${estate.id}`)}
+          />
         ))}
       </div>
     </>

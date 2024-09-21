@@ -18,6 +18,7 @@ import { getLocalStorage } from "../utils/getLocalStorage";
 import { setLocalStorage } from "../utils/setLocalStorage";
 import { generateFilterChips } from "../utils/generateFilterChips";
 import { clearLocalStorage } from "../utils/clearLocalStorage";
+import { generateUID } from "../utils/generateUID";
 
 const unprocessedDataStr = getLocalStorage(EStorageKeys.FILTERS_DATA);
 const unprocessedData = unprocessedDataStr
@@ -192,10 +193,9 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
             <div className="flex gap-4 items-center max-w-[800px] mt-4 absolute">
               <div className="flex gap-2 items center flex-wrap">
                 {selectedFilters.length > 0 &&
-                  // TODO - unique id generator
-                  selectedFilters.map((filter, ind) => (
+                  selectedFilters.map((filter) => (
                     <FilterChip
-                      key={filter + ind}
+                      key={generateUID()}
                       content={filter}
                       onClick={() => handleRemoveFilter(filter)}
                     />
