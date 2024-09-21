@@ -412,7 +412,7 @@ const generateRandomEstateData = (image: Blob) => {
 
   const regionId = getRandomInRange(1, 12);
   // Append image to FormData
-  formData.append("image", image, "image.png"); // Adjust filename and type if needed
+  formData.append("image", image, "image.png");
 
   // Append other fields to FormData
   formData.append(

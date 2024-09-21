@@ -56,7 +56,7 @@ export const NewEstateForm = (): JSX.Element => {
 
   const citiesInCurrentRegion = cities?.filter((city) => {
     const currentRegionId = watch("region_id");
-    // using loose equality check is intentional
+    // using loose equality check is intentional !
     return city?.region_id == currentRegionId;
   });
   const cityOptions = citiesInCurrentRegion?.map((cityInCurrentRegion) => {

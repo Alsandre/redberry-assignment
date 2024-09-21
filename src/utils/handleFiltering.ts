@@ -13,12 +13,10 @@ export const handleFiltering = (
   const filteredData = data?.filter((estate) => {
     let isMatch = false;
 
-    // Check regions if there are any
     if (regions.length > 0) {
       isMatch = regions.includes(estate.city.region_id.toString());
     }
 
-    // Check area range
     if (!isMatch && (areaMin || areaMax)) {
       if (areaMin && !areaMax) {
         isMatch = estate.area >= Number(areaMin);
@@ -30,7 +28,6 @@ export const handleFiltering = (
       }
     }
 
-    // Check price range (same logic as area)
     if (!isMatch && (priceMin || priceMax)) {
       if (priceMin && !priceMax) {
         isMatch = estate.price >= Number(priceMin);
@@ -42,12 +39,10 @@ export const handleFiltering = (
       }
     }
 
-    // Check bedrooms
     if (!isMatch && bedrooms) {
       isMatch = estate.bedrooms === Number(bedrooms);
     }
 
-    // Check if filters are cleared
     if (
       regions.length === 0 &&
       !areaMax &&

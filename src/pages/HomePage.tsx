@@ -18,13 +18,10 @@ export const HomePage = (): JSX.Element => {
   const navigate = useNavigate();
 
   const handleFilterchange = (filterData: IFilters) => {
-    // თუ ბექის პასუხს ველოდებით, შევინახოთ საცავიდან აღდგენილი ფილტრებები და დაველოდოთ პასუხს
     if (isLoading && !data) {
       setRestoredFilters(filterData);
     }
-    // თუ პასუხი დადებითია და აღარ ველოდებით
     if (data && !isLoading) {
-      // გავფილტროთ პასუხი მიღებული ფილტრებით და ვაჩვენოთ
       const filteredData = handleFiltering(filterData, data);
       setFilteredData(filteredData);
     }
@@ -34,16 +31,11 @@ export const HomePage = (): JSX.Element => {
     setIsAddAgentModalOpen(false);
   };
 
-  // როცა ბექისგან მოდის პასუხი
   useEffect(() => {
-    //თუ პასუხი დადებითია და გაფილტრული ინფორმაცია არ გვაქვს
     if (data && !filteredData) {
-      // ვაჩვენოთ პასუხი
       setFilteredData(data);
     }
-    // თუ პასუხი დადებითია და შენახული ძველი ფილტრები გვაქვს აღდგენილი
     if (restoredFilters && data) {
-      // გავფილტროთ პასუხი ძველი ფილტრებით და ვაჩვენოთ
       const filteredData = handleFiltering(restoredFilters, data);
       setFilteredData(filteredData);
     }

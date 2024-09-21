@@ -1,6 +1,5 @@
-// filterUtils.test.ts
-import { IGetEstatesList, IFilters } from "../types"; // Adjust import as needed
-import { handleFiltering } from "../utils/handleFiltering"; // Adjust import as needed
+import { IGetEstatesList, IFilters } from "../types";
+import { handleFiltering } from "../utils/handleFiltering";
 
 const mockData: IGetEstatesList[] = [
   {
