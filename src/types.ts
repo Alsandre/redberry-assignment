@@ -29,6 +29,7 @@ export interface IGetEstateById extends IEstateDataGeneric {
   city: ICityData;
   agent: IAgentDetails;
   created_at: string;
+  image: string;
   description: string;
 }
 

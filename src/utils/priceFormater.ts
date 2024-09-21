@@ -1,4 +1,4 @@
-export function priceFormatter(price: number): string {
+export function priceFormatter(price: number, delimeter: string = " "): string {
   if (price < 1000) return "" + price + " ₾";
   else {
     let chunkedPrice: string[] = [];
@@ -16,7 +16,7 @@ export function priceFormatter(price: number): string {
     return (
       chunkedPrice
         .reverse()
-        .reduce((acc, priceChunk) => `${acc} ${priceChunk}`, "") + " ₾"
+        .reduce((acc, priceChunk) => `${acc}${delimeter}${priceChunk}`) + " ₾"
     );
   }
 }

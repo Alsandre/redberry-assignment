@@ -51,7 +51,7 @@ export default {
       addUtilities({
         ".filter-chip": {
           border: `1px solid ${theme("colors.rdbryBorder.50")}`,
-          color: theme('colors.rdbryText.250'),
+          color: theme("colors.rdbryText.250"),
           "border-radius": "15px",
           width: "fit-content",
           height: "29px",
@@ -66,6 +66,18 @@ export default {
           padding: "6px 0",
           "text-align": "center",
           "font-size": "12px",
+          "letter-spacing": "0.04em",
+          "font-style": "normal",
+        },
+        ".tag-chip-lg": {
+          width: "142px",
+          color: "white",
+          "background-color": theme("colors.rdbryShade.100"),
+          "border-radius": "20px",
+          "line-height": "24px",
+          padding: "6px 0",
+          "text-align": "center",
+          "font-size": "20px",
           "letter-spacing": "0.04em",
           "font-style": "normal",
         },

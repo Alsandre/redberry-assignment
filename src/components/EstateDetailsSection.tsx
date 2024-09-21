@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { EstateImagePreview } from "./EstateImagePreview";
 import { useDeleteEstate, useEstateById } from "../services";
 import { EstateData } from "./EstateData";
@@ -6,6 +6,7 @@ import { AgentCard } from "./AgentCard";
 import { Button } from "./ui/Button";
 import { useState } from "react";
 import { ConfirmationModal } from "./ConfirmationModal";
+import { ArrowLeftIcon } from "./icons";
 
 export const EstateDetailsSection = (): JSX.Element => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
@@ -14,9 +15,7 @@ export const EstateDetailsSection = (): JSX.Element => {
   const { mutate } = useDeleteEstate();
   const idToNum = Number(id);
   const { isLoading, isError, data } = useEstateById(idToNum);
-  const location = useLocation();
-  const image = location.state?.image;
-
+  console.log(data);
   const handleDeleteEstate = () => {
     setIsConfirmModalOpen(true);
   };
@@ -31,26 +30,32 @@ export const EstateDetailsSection = (): JSX.Element => {
     setIsConfirmModalOpen(false);
   };
   return (
-    <div>
+    <div className="mt-[125px] relative">
+      <span
+        onClick={() => navigate("/")}
+        className="absolute top-[-66px] left-[5px] z-50"
+      >
+        <ArrowLeftIcon />
+      </span>
       {/* TODO - add loading and error component */}
       {isLoading && <p>Loading ... Details</p>}
       {isError && <p>Something went wrong! Details</p>}
       {data && (
-        <div>
+        <div className="flex gap-[68px]">
           <EstateImagePreview
-            image={image}
+            image={data.image}
             alt_description={data.description}
             is_rental={data.is_rental}
             created_at={data.created_at}
           />
-          <div>
-            <div>
+          <div className="flex flex-col gap-5 mt-[30px]">
+            <div className="flex flex-col">
               <EstateData {...data} />
               <AgentCard {...data.agent} />
             </div>
             <Button
               onClick={() => handleDeleteEstate()}
-              className="px-[10px] py-[10px] border border-solid border-1 border-rdbryBorder-100 rounded-lg text-[12px] text-rdbryBorder-100 font-medium leading-[14.4px] hover:bg-rdbryBorder-100 hover:text-rdbrytext-50"
+              className="px-[10px] py-[10px] w-fit border border-solid border-1 border-rdbryBorder-100 rounded-lg text-[12px] text-rdbryBorder-100 font-medium leading-[14.4px] hover:bg-rdbryBorder-100 hover:text-rdbrytext-50"
             >
               ლისტინგის წაშლა
             </Button>
