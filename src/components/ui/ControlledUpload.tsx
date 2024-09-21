@@ -61,7 +61,7 @@ export const ControlledUpload: React.FC<IControlledComponentProps> = ({
   return (
     <div className="flex flex-col gap-[10px]">
       <span
-        className={`text-rdbryText-300 font-medium text-[14px] leading-[16.8px] ${statusColor}`}
+        className={`font-medium text-[14px] leading-[16.8px] ${statusColor}`}
       >
         {label}
         {required && " *"}

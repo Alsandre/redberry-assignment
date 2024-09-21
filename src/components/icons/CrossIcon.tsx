@@ -12,13 +12,13 @@ export const CrossIcon = ({ className }: IIconProps): JSX.Element => {
     >
       <path
         d="M10.5 3.5L3.5 10.5"
-        stroke="#354451"
+        stroke="currentcolor"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M3.5 3.5L10.5 10.5"
-        stroke="#354451"
+        stroke="currentcolor"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

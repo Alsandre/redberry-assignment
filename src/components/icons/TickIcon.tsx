@@ -12,7 +12,7 @@ export const TickIcon = ({ className }: IIconProps): JSX.Element => {
     >
       <path
         d="M11 1.40918L4.125 9.591L1 5.87199"
-        stroke="#021526"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

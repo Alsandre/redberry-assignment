@@ -13,6 +13,7 @@ export const ControlledTextarea: React.FC<IControlledComponentProps> = ({
   const { field, fieldState } = useController({
     name,
     control,
+    rules,
   });
   const message = rules.required as string;
   const isValid = fieldState.isDirty && !fieldState.invalid;
@@ -34,11 +35,11 @@ export const ControlledTextarea: React.FC<IControlledComponentProps> = ({
         {required && " *"}
       </label>
       <textarea
-        className="w-full h-[135px] rounded-[6px] resize-none border border-solid border-rdbryShade-200"
+        className="w-full h-[135px] rounded-[6px] resize-none border border-solid border-rdbryShade-200 p-2"
         {...field}
       />
       <span
-        className={`flex gap-[7px] text-rdbryText-300 font-regular text-[14px] leading-[16.8px] ${statusColor}`}
+        className={`flex gap-[7px] font-regular text-[14px] leading-[16.8px] ${statusColor}`}
       >
         <span>{captionIcon}</span>
         {message}

@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 import { getLocalStorage } from "../utils/getLocalStorage";
 import { setLocalStorage } from "../utils/setLocalStorage";
 import { clearLocalStorage } from "../utils/clearLocalStorage";
+import { countWords } from "../utils/countWords";
 
 const unprocessedDataStr = getLocalStorage(EStorageKeys.ESTATE_DATA);
 const unprocessedData = unprocessedDataStr
@@ -88,8 +89,11 @@ export const NewEstateForm = (): JSX.Element => {
     clearLocalStorage(EStorageKeys.ESTATE_DATA);
     navigate("/");
   };
+  const validateTextArea = (value: string) => {
+    console.log(countWords(value));
+    return countWords(value) > 5;
+  };
   const currentlyFilleddData = watch();
-
   useEffect(() => {
     const dataToBeStored = {
       ...initialValues,
@@ -281,9 +285,7 @@ export const NewEstateForm = (): JSX.Element => {
                 required={true}
                 rules={{
                   required: "მინიმუმ 5 სიტყვა",
-                  pattern: {
-                    value: /^(?:\S+\s+){4,}\S+$/,
-                  },
+                  validate: validateTextArea,
                 }}
               />
               <ControlledUpload

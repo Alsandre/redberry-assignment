@@ -31,7 +31,7 @@ export const FormInput: React.FC<IFormInputProps> = (props) => {
         {...field}
       />
       <span
-        className={`flex gap-[7px] text-rdbryText-300 font-regular text-[14px] leading-[16.8px] ${statusColor}`}
+        className={`flex gap-[7px] font-regular text-[14px] leading-[16.8px] ${statusColor}`}
       >
         <span>{captionIcon}</span>
         {message}
