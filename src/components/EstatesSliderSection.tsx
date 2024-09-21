@@ -13,10 +13,10 @@ export const EstateSliderSection = (): JSX.Element => {
   const idToNum = Number(id);
   const { isLoading, isError, data: estatesList, error } = useEstatesList();
   const { data } = useEstateById(idToNum);
-  const currentCity = data?.city_id;
+  const currentCity = data?.city.region_id;
 
-  const estatesByCity = estatesList?.filter(
-    (estate) => estate.city_id == currentCity && estate.id !== idToNum
+  const estatesByRegion = estatesList?.filter(
+    (estate) => estate.city.region_id == currentCity && estate.id !== idToNum
   );
   return (
     <>
@@ -33,7 +33,7 @@ export const EstateSliderSection = (): JSX.Element => {
           isAnimated={false}
           sliderSpeed={5000}
         >
-          {estatesByCity?.map((estate) => (
+          {estatesByRegion?.map((estate) => (
             <Card
               key={generateUID()}
               {...estate}
