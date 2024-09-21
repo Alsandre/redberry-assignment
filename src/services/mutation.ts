@@ -34,7 +34,7 @@ export const useDeleteEstate = () => {
 
 const createAgent = async (agentData: INewAgentData) => {
   const response = await api.post("/agents", agentData);
-  return response.data;
+  return response;
 };
 
 export const useCreateAgents = () => {

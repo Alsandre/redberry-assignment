@@ -76,16 +76,21 @@ export const NewEstateForm = (): JSX.Element => {
   const agentOptions = [...addAgentOption, ...existingAgentsList];
 
   const agentSelectedOption = watch("agent_id") ?? {};
-  const handleCloseAgentModal = () => {
-    setValue("agent_id", null);
+  const handleCloseAgentModal = (id?: number | undefined) => {
+    if (id) {
+      setValue("agent_id", `${id}`);
+    } else setValue("agent_id", null);
   };
 
   const handleNewEstate: SubmitHandler<FieldValues> = (data) => {
     mutate(data as INewEstateData);
+    reset(ESTATE_FORM_DEFAULT_VALUES);
+    clearLocalStorage(EStorageKeys.ESTATE_DATA);
+    navigate("/");
   };
 
   const handleCancel = () => {
-    reset();
+    reset(ESTATE_FORM_DEFAULT_VALUES);
     clearLocalStorage(EStorageKeys.ESTATE_DATA);
     navigate("/");
   };
@@ -335,9 +340,9 @@ export const NewEstateForm = (): JSX.Element => {
                       }}
                       {...field}
                       options={agentOptions}
-                      onChange={(option) =>
-                        field.onChange(option ? option.value : null)
-                      }
+                      onChange={(option) => {
+                        return field.onChange(option ? option.value : null);
+                      }}
                       value={
                         agentOptions.find(
                           (option) => option.value === field.value
@@ -384,7 +389,7 @@ export const NewEstateForm = (): JSX.Element => {
       </form>
       <Modal
         isOpen={agentSelectedOption === "addNew"}
-        onClose={handleCloseAgentModal}
+        onClose={() => handleCloseAgentModal()}
       >
         <NewAgentForm onClose={handleCloseAgentModal} />
       </Modal>

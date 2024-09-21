@@ -103,7 +103,7 @@ export interface IModalProps {
 }
 
 export interface INewAgentFormProps {
-  onClose: () => void;
+  onClose: (id?: number) => void;
 }
 
 export interface IEstateImagePreviewProps {
@@ -209,6 +209,7 @@ export type TFormSectionTtle = {
 export enum EStorageKeys {
   ESTATE_DATA = "unprocessed-estate-data",
   FILTERS_DATA = "unprocessed-filter-data",
+  AGENT_DATA = "unprocessed-agent-data",
 }
 
 export type TPopoverProps = {

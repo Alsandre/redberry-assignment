@@ -1,26 +1,59 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormInput, ControlledUpload } from "./ui";
-import { EButtonTypes, INewAgentData, INewAgentFormProps } from "../types";
+import {
+  EButtonTypes,
+  EStorageKeys,
+  INewAgentData,
+  INewAgentFormProps,
+} from "../types";
 import { useCreateAgents } from "../services";
 import { AGENT_FORM_DEFAULT_VALUES } from "../constants";
 import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
+import { getLocalStorage } from "../utils/getLocalStorage";
+import { clearLocalStorage } from "../utils/clearLocalStorage";
+import { useEffect } from "react";
+import { setLocalStorage } from "../utils/setLocalStorage";
+
+const unprocessedDataStr = getLocalStorage(EStorageKeys.AGENT_DATA);
+const unprocessedData = unprocessedDataStr
+  ? JSON.parse(unprocessedDataStr)
+  : null;
+const initialValues = unprocessedData
+  ? unprocessedData
+  : AGENT_FORM_DEFAULT_VALUES;
 
 export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
-  const { control, reset, handleSubmit } = useForm<FieldValues>({
+  const { control, reset, handleSubmit, watch } = useForm<FieldValues>({
     mode: "onChange",
-    defaultValues: AGENT_FORM_DEFAULT_VALUES,
+    defaultValues: initialValues,
   });
   const { mutate } = useCreateAgents();
 
-  const handleReset = () => {
-    reset();
+  const handleCancel = () => {
+    reset(AGENT_FORM_DEFAULT_VALUES);
+    clearLocalStorage(EStorageKeys.AGENT_DATA);
     onClose();
   };
 
   const handleNewAgent: SubmitHandler<FieldValues> = (data) => {
-    mutate(data as INewAgentData);
-    onClose();
+    mutate(data as INewAgentData, {
+      onSuccess: (response) => {
+        const newAgentData = JSON.parse(response.request.response);
+        clearLocalStorage(EStorageKeys.AGENT_DATA);
+        onClose(newAgentData.id);
+      },
+    });
   };
+
+  const currentlyFilleddData = watch();
+  useEffect(() => {
+    const dataToBeStored = {
+      ...initialValues,
+      ...currentlyFilleddData,
+      avatar: null,
+    };
+    setLocalStorage(EStorageKeys.AGENT_DATA, dataToBeStored as INewAgentData);
+  }, [currentlyFilleddData]);
 
   return (
     <>
@@ -99,7 +132,7 @@ export const NewAgentForm = ({ onClose }: INewAgentFormProps): JSX.Element => {
             <div className="flex gap-[15px] justify-end">
               <PrimaryBtn
                 label="გაუქმება"
-                onClick={() => handleReset()}
+                onClick={() => handleCancel()}
                 variant={EPrimaryButtonVariants.GHOST}
               />
               <PrimaryBtn
