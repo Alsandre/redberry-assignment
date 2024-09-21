@@ -128,16 +128,16 @@ _as of today I could say that I am lagging. Its due to my messed up schedule I h
 
 **19/09**
 
-- [ ] **Ensure data persistence** after refresh across all pages (3 hours)
-- [ ] **Review entire implementation** (4-5 hours)
+- [x] **Ensure data persistence** after refresh across all pages (3 hours)
+- [x] **Review entire implementation** (4-5 hours)
 
 **20/09**
 
-- [ ] **Apply styling based on UI design** (7 hours)
+- [x] **Apply styling based on UI design** (7 hours)
 
 **21/09**
 
-- [ ] **Fine-tune Final review, bug fixes, and polish** (7 hours)
+- [x] **Fine-tune Final review, bug fixes, and polish** (7 hours)
 
 **22/09**
 
@@ -148,11 +148,11 @@ _as of today I could say that I am lagging. Its due to my messed up schedule I h
 _**SELF-NOTE**_=========================
   _I need to filter out whats left and what needs to be done_
   - [x] icons imported in project
-  - [ ] error/success states for components
-  - [ ] component states on interactions
-  - [ ] double check data flow in all directions (update/clear/apply filters, CRUD operations) 
-  - [ ] format texts to match design requirements 
-  - [ ] implement data persistence 
-  - [ ] overall layout meets design requirements
+  - [x] error/success states for components
+  - [x] component states on interactions
+  - [x] double check data flow in all directions (update/clear/apply filters, CRUD operations) 
+  - [x] format texts to match design requirements 
+  - [x] implement data persistence 
+  - [x] overall layout meets design requirements
 ^=========================
 ...

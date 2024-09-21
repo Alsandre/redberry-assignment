@@ -28,3 +28,16 @@ export const AGENT_FORM_DEFAULT_VALUES = {
 };
 
 export const ESTATE_PER_SCREEN = 12;
+
+export const EMOTIONS = [
+  "What a wild ride, right?",
+  "That was quite the adventure!",
+  "That was an epic trip!",
+  "What a rollercoaster, huh?",
+  "That was a memorable trek!",
+  "What a fascinating journey!",
+  "That was a whirlwind experience!",
+  "What an incredible expedition!",
+  "That was an unforgettable path!",
+  "What a thrilling voyage!",
+];

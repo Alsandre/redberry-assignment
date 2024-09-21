@@ -29,17 +29,19 @@ export const EstateList = ({
     window.scrollTo(0, previousScrollPosition);
   }, 0);
   return (
-    <div className="flex flex-wrap gap-5 items-center justify-center mt-[77px]">
+    <div className="flex flex-col items-center justify-center gap-5 mt-[77px]">
       {isError && <button onClick={() => refetch()}>Try again</button>}
       {isLoading && <Loading />}
-      {dataToRender &&
-        dataToRender.map((estate) => (
-          <Card
-            key={generateUID()}
-            {...estate}
-            onClick={() => navigate(`/estate/${estate.id}`)}
-          />
-        ))}
+      <div className="flex flex-wrap gap-5 items-center justify-center">
+        {dataToRender &&
+          dataToRender.map((estate) => (
+            <Card
+              key={generateUID()}
+              {...estate}
+              onClick={() => navigate(`/estate/${estate.id}`)}
+            />
+          ))}
+      </div>
       {hasMoreToRender && (
         <PrimaryBtn
           label="მეტის ნახვა"
