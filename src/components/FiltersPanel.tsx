@@ -58,7 +58,6 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   const isBedroomsFilterOpen = activeFilter === EFilters.BEDROOMS;
 
   const handleFilterSelection = (filters: IFilters) => {
-    console.log("handleFilterSelection");
     const newFilters = generateFilterChips(filters);
     const updatedFilterList = newFilters.filter((newFilter) => !!newFilter);
     setSelectedFilters(updatedFilterList);
@@ -68,7 +67,6 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   };
 
   const handleRemoveFilter = (filter: string) => {
-    console.log("handleRemoveFilter");
     const updatedFilterList = selectedFilters.filter(
       (filterToRemove) => filter !== filterToRemove
     );
@@ -83,7 +81,6 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
   };
 
   useEffect(() => {
-    console.log("second-eff", initialValues);
     onFilterChange(initialValues);
     const restoredFilters = generateFilterChips(initialValues);
     setSelectedFilters(restoredFilters);

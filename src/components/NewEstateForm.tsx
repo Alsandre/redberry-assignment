@@ -90,7 +90,6 @@ export const NewEstateForm = (): JSX.Element => {
     navigate("/");
   };
   const validateTextArea = (value: string) => {
-    console.log(countWords(value));
     return countWords(value) > 5;
   };
   const currentlyFilleddData = watch();

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ESTATE_PER_SCREEN } from "../constants";
 import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
 import { generateUID } from "../utils/generateUID";
+import { Loading } from "./Loading";
 
 export const EstateList = ({
   data,
@@ -25,9 +26,8 @@ export const EstateList = ({
   };
   return (
     <div className="flex flex-wrap gap-5 items-center justify-center mt-[77px]">
-      {/* TODO - create components for error and loading states */}
       {isError && <button onClick={() => refetch()}>Try again</button>}
-      {isLoading && <p>Please Wait. Loading ...</p>}
+      {isLoading && <Loading />}
       {dataToRender &&
         dataToRender.map((estate) => (
           <Card

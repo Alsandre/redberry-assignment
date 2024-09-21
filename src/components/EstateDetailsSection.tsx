@@ -7,6 +7,8 @@ import { Button } from "./ui/Button";
 import { useState } from "react";
 import { ConfirmationModal } from "./ConfirmationModal";
 import { ArrowLeftIcon } from "./icons";
+import { Loading } from "./Loading";
+import { ErrorMessage } from "./ErrorMessage";
 
 export const EstateDetailsSection = (): JSX.Element => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
@@ -14,8 +16,7 @@ export const EstateDetailsSection = (): JSX.Element => {
   const navigate = useNavigate();
   const { mutate } = useDeleteEstate();
   const idToNum = Number(id);
-  const { isLoading, isError, data } = useEstateById(idToNum);
-  console.log(data);
+  const { isLoading, isError, data, error } = useEstateById(idToNum);
   const handleDeleteEstate = () => {
     setIsConfirmModalOpen(true);
   };
@@ -37,9 +38,8 @@ export const EstateDetailsSection = (): JSX.Element => {
       >
         <ArrowLeftIcon />
       </span>
-      {/* TODO - add loading and error component */}
-      {isLoading && <p>Loading ... Details</p>}
-      {isError && <p>Something went wrong! Details</p>}
+      {isLoading && <Loading />}
+      {isError && <ErrorMessage message={error as string} />}
       {data && (
         <div className="flex gap-[68px]">
           <EstateImagePreview

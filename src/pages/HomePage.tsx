@@ -18,7 +18,6 @@ export const HomePage = (): JSX.Element => {
   const navigate = useNavigate();
 
   const handleFilterchange = (filterData: IFilters) => {
-    console.log("handleFilterchange");
     // თუ ბექის პასუხს ველოდებით, შევინახოთ საცავიდან აღდგენილი ფილტრებები და დაველოდოთ პასუხს
     if (isLoading && !data) {
       setRestoredFilters(filterData);
@@ -37,7 +36,6 @@ export const HomePage = (): JSX.Element => {
 
   // როცა ბექისგან მოდის პასუხი
   useEffect(() => {
-    console.log("parent effect");
     //თუ პასუხი დადებითია და გაფილტრული ინფორმაცია არ გვაქვს
     if (data && !filteredData) {
       // ვაჩვენოთ პასუხი

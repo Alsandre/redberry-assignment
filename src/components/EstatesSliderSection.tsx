@@ -4,12 +4,14 @@ import { Card } from "./ui";
 import { generateUID } from "../utils/generateUID";
 import { ArrowLeftIcon } from "./icons";
 import { Carousel } from "@alsandre/responsive-image-carousel";
+import { Loading } from "./Loading";
+import { ErrorMessage } from "./ErrorMessage";
 
 export const EstateSliderSection = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams();
   const idToNum = Number(id);
-  const { isLoading, isError, data: estatesList } = useEstatesList();
+  const { isLoading, isError, data: estatesList, error } = useEstatesList();
   const { data } = useEstateById(idToNum);
   const currentCity = data?.city_id;
 
@@ -19,9 +21,8 @@ export const EstateSliderSection = (): JSX.Element => {
   return (
     <>
       <div>
-        {/* TODO - error and loading components */}
-        {isLoading && <p>Loading ... Slider</p>}
-        {isError && <p>Something went wrong! Slider</p>}
+        {isLoading && <Loading />}
+        {isError && <ErrorMessage message={error as string} />}
         <Carousel
           slidesPerScreen={4}
           className="h-[455px] justify-start w-full gap-5"
