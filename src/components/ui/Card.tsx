@@ -29,11 +29,14 @@ export const Card = ({
       />
       <div className="flex flex-col gap-5 px-[25px] py-[22px]">
         <div className="flex flex-col gap-[6px]">
-          <span className="font-bold text-[28px]" aria-label={`${price}`}>
+          <span
+            className="font-bold text-[28px] leading-[33.6px]"
+            aria-label={`${price}`}
+          >
             {priceFormatter(price)}
           </span>
           <span className="card-details-text text-rdbryText-250">
-            <span className="card-details-text text-rdbryText-250 flex gap-[5px] items-center">
+            <span className="card-details-text text-rdbryText-250 flex gap-[5px] items-center truncate">
               <span>
                 <LocationIcon />
               </span>

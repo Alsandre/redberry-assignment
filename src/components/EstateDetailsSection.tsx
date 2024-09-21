@@ -33,7 +33,7 @@ export const EstateDetailsSection = (): JSX.Element => {
     <div className="mt-[125px] relative">
       <span
         onClick={() => navigate("/")}
-        className="absolute top-[-66px] left-[5px] z-50"
+        className="absolute top-[-66px] left-[5px] z-50 cursor-pointer"
       >
         <ArrowLeftIcon />
       </span>

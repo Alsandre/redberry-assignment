@@ -5,7 +5,7 @@ export const EstateDetailsPage = (): JSX.Element => {
   return (
     <>
       <EstateDetailsSection />
-      <div className="mt-[97px]">
+      <div className="mt-[97px] flex flex-col gap-[52px]">
         <h3 className="text-[32px] leading-[38.4px] font-medium text-rdbryText-300">
           ბინები მსგავს ლოკაციაზე
         </h3>

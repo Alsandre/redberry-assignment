@@ -7,8 +7,8 @@ import { Footer } from "./Footer";
 export const Layout = (): JSX.Element => {
   return (
     <>
-      <div className="w-screen top-0 border-b border-solid border-rdbryBorder-50 bg-white z-50">
-        <div className="w-full flex h-[100px] mx-[8%] items-center gap-20">
+      <div className="top-0 border-b border-solid border-rdbryBorder-50 bg-white z-50">
+        <div className="w-full flex h-[100px] px-[8%] items-center gap-20">
           <Link to={"/"}>
             <Logo />
           </Link>

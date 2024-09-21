@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEstateById, useEstatesList } from "../services";
 import { Card } from "./ui";
 import { generateUID } from "../utils/generateUID";
+import { ArrowLeftIcon } from "./icons";
+import { Carousel } from "@alsandre/responsive-image-carousel";
 
 export const EstateSliderSection = (): JSX.Element => {
   const navigate = useNavigate();
@@ -11,9 +13,8 @@ export const EstateSliderSection = (): JSX.Element => {
   const { data } = useEstateById(idToNum);
   const currentCity = data?.city_id;
 
-  // TODO - filter out current estate
   const estatesByCity = estatesList?.filter(
-    (estate) => estate.city_id == currentCity
+    (estate) => estate.city_id == currentCity && estate.id !== idToNum
   );
   return (
     <>
@@ -21,13 +22,24 @@ export const EstateSliderSection = (): JSX.Element => {
         {/* TODO - error and loading components */}
         {isLoading && <p>Loading ... Slider</p>}
         {isError && <p>Something went wrong! Slider</p>}
-        {estatesByCity?.map((estate) => (
-          <Card
-            key={generateUID()}
-            {...estate}
-            onClick={() => navigate(`/estate/${estate.id}`)}
-          />
-        ))}
+        <Carousel
+          slidesPerScreen={4}
+          className="h-[455px] justify-start w-full gap-5"
+          buttonIcon={<ArrowLeftIcon />}
+          btnLeftClass="left-[-67px]"
+          btnRightClass="rotate-180 right-[-67px]"
+          controls
+          isAnimated={false}
+          sliderSpeed={5000}
+        >
+          {estatesByCity?.map((estate) => (
+            <Card
+              key={generateUID()}
+              {...estate}
+              onClick={() => navigate(`/estate/${estate.id}`)}
+            />
+          ))}
+        </Carousel>
       </div>
     </>
   );
