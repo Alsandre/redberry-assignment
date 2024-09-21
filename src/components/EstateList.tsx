@@ -13,6 +13,7 @@ export const EstateList = ({
   isLoading,
   refetch,
 }: IEstateListProps): JSX.Element => {
+  const previousScrollPosition = window.pageYOffset;
   const navigate = useNavigate();
   const [currentlyRenderingCount, setCurrentlyRenderingCount] =
     useState(ESTATE_PER_SCREEN);
@@ -24,6 +25,9 @@ export const EstateList = ({
       ? setCurrentlyRenderingCount((prev) => prev + ESTATE_PER_SCREEN)
       : setCurrentlyRenderingCount(totalEstateCount);
   };
+  setTimeout(() => {
+    window.scrollTo(0, previousScrollPosition);
+  }, 0);
   return (
     <div className="flex flex-wrap gap-5 items-center justify-center mt-[77px]">
       {isError && <button onClick={() => refetch()}>Try again</button>}

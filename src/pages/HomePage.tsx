@@ -43,7 +43,7 @@ export const HomePage = (): JSX.Element => {
 
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-[77px]">
         <FiltersPanel onFilterChange={handleFilterchange} />
         <div className="flex gap-4">
           <PrimaryBtn
