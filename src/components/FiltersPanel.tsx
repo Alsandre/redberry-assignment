@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { EFilters, EStorageKeys, IFilters, IFiltersPanelProps } from "../types";
+import {
+  EFilters,
+  ERangeFilterLabel,
+  EStorageKeys,
+  IFilters,
+  IFiltersPanelProps,
+} from "../types";
 import { FormProvider, useForm } from "react-hook-form";
 import { CheckboxFilter } from "./CheckBoxFilter";
 import { RangeFilter } from "./RangeFilter";
@@ -134,6 +140,7 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                       setValue={setValue}
                       fieldName="price"
                       range={PRICE_RANGES}
+                      label={ERangeFilterLabel.PRICE}
                     />
                   </Popover>
                 )}
@@ -160,6 +167,7 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                       setValue={setValue}
                       fieldName="area"
                       range={AREA_RANGES}
+                      label={ERangeFilterLabel.AREA}
                     />
                   </Popover>
                 )}

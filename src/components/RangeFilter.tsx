@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IRangeFilterProps } from "../types";
+import { ERangeFilterLabel, IRangeFilterProps } from "../types";
 import { generateUID } from "../utils/generateUID";
 export const RangeFilter = ({
   register,
@@ -7,6 +7,7 @@ export const RangeFilter = ({
   fieldName,
   range,
   watch,
+  label,
 }: IRangeFilterProps) => {
   const [isValid, setIsValid] = useState(true);
   const min = watch(`${fieldName}.min`);
@@ -28,12 +29,13 @@ export const RangeFilter = ({
     }
   }, [min, max]);
   return (
-    <div>
-      <div>
-        <label>
-          Min Value:
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-[15px]">
+        <label className="text-[14px] font-medium leading-[16.8px] flex flex-col gap-6 relative">
           <input
+            className={`py-3 px-[10px] border border-solid ${isValid ? "border-rdbryBorder-50" : "border-rdbryError"} rounded-[6px] w-[155px] focus:outline-none`}
             type="text"
+            placeholder="დან"
             {...register(`${fieldName}.min`, {
               onChange: (e) =>
                 setValue(
@@ -42,11 +44,16 @@ export const RangeFilter = ({
                 ),
             })}
           />
+          მინ. {label === ERangeFilterLabel.PRICE ? "ფასი" : label}
+          <span className="absolute right-[10px] top-[14px] text-[12px] font-regular leading-[14px]">
+            {label}
+          </span>
         </label>
-        <label>
-          Max Value:
+        <label className="text-[14px] font-medium leading-[16.8px] flex flex-col gap-6 relative">
           <input
+            className={`py-3 px-[10px] border border-solid ${isValid ? "border-rdbryBorder-50" : "border-rdbryError"} rounded-[6px] w-[155px] focus:outline-none`}
             type="text"
+            placeholder="მდე"
             {...register(`${fieldName}.max`, {
               onChange: (e) =>
                 setValue(
@@ -55,22 +62,34 @@ export const RangeFilter = ({
                 ),
             })}
           />
+          მაქს. {label === ERangeFilterLabel.PRICE ? "ფასი" : label}
+          <span className="absolute right-[10px] top-[14px] text-[12px] font-regular leading-[14px]">
+            {label}
+          </span>
         </label>
-        {!isValid && <span>ჩაწერეთ ვალიდური მონაცემები</span>}
       </div>
+
       <div className="flex">
-        <ol>
+        <ol className="flex-1 flex flex-col gap-2 items-start cursor-default">
           {/* TODO - format this price */}
           {range.map((value) => (
-            <li key={generateUID()} onClick={() => handleMinClick("" + value)}>
-              {value}
+            <li
+              key={generateUID()}
+              onClick={() => handleMinClick("" + value)}
+              className="text-[14px] font-regular text-rdbryText-200 leading-[16.8px] cursor-pointer hover:shadow-custom-shadow hover:scale-[1.005]"
+            >
+              {`${value} ${label}`}
             </li>
           ))}
         </ol>
-        <ol>
+        <ol className="flex-1 flex flex-col gap-2 items-start cursor-default pl-4">
           {range.map((value) => (
-            <li key={generateUID()} onClick={() => handleMaxClick("" + value)}>
-              {value}
+            <li
+              key={generateUID()}
+              onClick={() => handleMaxClick("" + value)}
+              className="text-[14px] font-regular text-rdbryText-200 leading-[16.8px] cursor-pointer hover:shadow-custom-shadow hover:scale-[1.005]"
+            >
+              {`${value} ${label}`}
             </li>
           ))}
         </ol>

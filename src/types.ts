@@ -183,6 +183,12 @@ export interface IRangeFilterProps extends Omit<IFilterProps, "fieldName"> {
   range: number[];
   fieldName: "area" | "price";
   watch: UseFormWatch<IFilters>;
+  label: ERangeFilterLabel;
+}
+
+export enum ERangeFilterLabel {
+  PRICE = "₾",
+  AREA = "მ\u00B2",
 }
 
 export enum ECheckBoxVariants {
