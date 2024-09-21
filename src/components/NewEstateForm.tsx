@@ -91,10 +91,12 @@ export const NewEstateForm = (): JSX.Element => {
   const currentlyFilleddData = watch();
 
   useEffect(() => {
-    setLocalStorage(
-      EStorageKeys.ESTATE_DATA,
-      currentlyFilleddData as INewEstateData
-    );
+    const dataToBeStored = {
+      ...initialValues,
+      ...currentlyFilleddData,
+      image: null,
+    };
+    setLocalStorage(EStorageKeys.ESTATE_DATA, dataToBeStored as INewEstateData);
   }, [currentlyFilleddData]);
   return (
     <>

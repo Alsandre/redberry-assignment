@@ -26,3 +26,5 @@ export const AGENT_FORM_DEFAULT_VALUES = {
   phone: "",
   avatar: "",
 };
+
+export const ESTATE_PER_SCREEN = 12;
