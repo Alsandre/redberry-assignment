@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 import {
   Control,
   FieldValues,
@@ -211,6 +211,7 @@ export enum EStorageKeys {
 }
 
 export type TPopoverProps = {
+  onClose: () => void;
   title: string;
   children: ReactNode;
   className?: string;

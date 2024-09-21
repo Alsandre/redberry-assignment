@@ -110,7 +110,10 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                 }
               >
                 {isRegionsFilterOpen && (
-                  <Popover title="რეგიონის მიხედვით">
+                  <Popover
+                    onClose={() => setActiveFilter(null)}
+                    title="რეგიონის მიხედვით"
+                  >
                     <CheckboxFilter
                       fieldName={EFilters.REGIONS}
                       options={regionsList}
@@ -133,7 +136,10 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                 }
               >
                 {isPriceFilterOpen && (
-                  <Popover title="ფასის მიხედვით">
+                  <Popover
+                    onClose={() => setActiveFilter(null)}
+                    title="ფასის მიხედვით"
+                  >
                     <RangeFilter
                       watch={watch}
                       register={register}
@@ -160,7 +166,10 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                 }
               >
                 {isAreaFilterOpen && (
-                  <Popover title="ფართობის მიხედვით">
+                  <Popover
+                    onClose={() => setActiveFilter(null)}
+                    title="ფართობის მიხედვით"
+                  >
                     <RangeFilter
                       watch={watch}
                       register={register}
@@ -189,7 +198,10 @@ export const FiltersPanel: React.FC<IFiltersPanelProps> = ({
                 }
               >
                 {isBedroomsFilterOpen && (
-                  <Popover title="საძინებლების რაოდენობა">
+                  <Popover
+                    onClose={() => setActiveFilter(null)}
+                    title="საძინებლების რაოდენობა"
+                  >
                     <InputFilter
                       register={register}
                       fieldName={EFilters.BEDROOMS}
