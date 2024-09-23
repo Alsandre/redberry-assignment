@@ -6,6 +6,7 @@ import { ArrowLeftIcon } from "./icons";
 import { Carousel } from "@alsandre/responsive-image-carousel";
 import { Loading } from "./Loading";
 import { ErrorMessage } from "./ErrorMessage";
+import { EstateItem } from "./EstateItem";
 
 export const EstateSliderSection = (): JSX.Element => {
   const navigate = useNavigate();
@@ -36,9 +37,10 @@ export const EstateSliderSection = (): JSX.Element => {
           {estatesByRegion?.map((estate) => (
             <Card
               key={generateUID()}
-              {...estate}
               onClick={() => navigate(`/estate/${estate.id}`)}
-            />
+            >
+              <EstateItem {...estate} />
+            </Card>
           ))}
         </Carousel>
       </div>
