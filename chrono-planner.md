@@ -141,9 +141,29 @@ _as of today I could say that I am lagging. Its due to my messed up schedule I h
 
 **22/09**
 
-- [ ] **Conclusion and reflections** (Day 10, 2 hours)
+- [x] **Conclusion and reflections** (Day 10, 2 hours)
 
 # "Epilogue"
+
+---
+
+The task has been submitted, that was trully remarkable journey. I have learnt a lot about technologies, about importance of planning, about resource management valuability, and most importantly about myself. To be honest at the last moment of the deadline, before I have checked other participants submissions, I had a feeling that I have done some GOOD job in terms of technical aspect of the project, I had feeling as if my knowledge, use of tools and technologies would be more then sufficient for given task. But the bite that looked so sweat for a glimpce turned out to be bitter, I have checked what other participants submitted and I feel like I am average? I wish I was about or little above average. Maybe this sounds strange but this gives me some kind of motivation and at the same time makes me feel a bit uncomfortable. And all of this, I am almost sure is due to my incompetence. I always felt there was vast sea outside of my buble but not to mention fear of popping my baloon I was not ready to take a proper look. Now my self esteem is trying to find its place, I took a glimpse of what could be waiting for me outside of this little baloon and I am more then excited to take it all on myself, let it blow my incompetence away!
+
+
+---
+
+#### Technical side of review:
+I was sure of two things as the technical assignment review was about to finish: First I would use @alsandre/responsive-image-carousel and second I would use React Hook Form. First is obvious I guess, it is my first ever package and it fits task requirements. second was more challenging myself, I now there exist Low Code methodology among developers and open source community is huge support for this approach, as it provide so much ready to use code and lets developers focus on aspects of projects that are more crucial, important. I have never been against this approach, eventually I've came to conclusion that it all boils down to Low Code whenever it is possible. But it is not so easy as it sounds, since someone has already writtent something that conceptually looks alike what you are looking for does not necessarily mean that you take that code and put inside your project and "VUALA!" everything works, actually it is nothing like that for several reasons but I'll take just few. First to implement foreign code into your codebase you have to know your codebase very well, and you have to understand how provided code works. Of course implementations of modules and packages are being honed day by day and they are easier and easier to implement, but all of it is possible due to tremendous amount of work and contribution on package side and providing user friendly documantation, API and support. Anyways understanding abstracted away mechanisms of desired ready to use code is at least at some point mandatory. To make it shorter I had never ever used RHF before and I knew it would be challenging to implement it into my codebase since provided library is not one of small packages with few options, but it provides quite an ecosystem with handfull of features and tools. different approaches for different situations and so on... In the end challenge accepted! and as conclusion I could say once again that I've learnt a lot.<br>
+
+_Note: during call, Elene had highlighted RHF while explaining that we could use any technology. To be honest I mistook that highlight as a hint to challenge myself. Later, after finishing task, when I replayed video of the call I noticed that Elene mentions RHF as one of tools that makes completion of the task easier, and I was like: out of words... Anyways I've learnt a lot._
+
+
+---
+
+My decision to plan out the task and chunk down the problem was correct choice. Planning help me to maintain phase and keep myself on right track. When tackling new challenges I always try to plan it out but, rarely in written form and never so detailed, that also was my first experience and I've learnt how important pre phase of technical task is. Even though I had to make some adjastments and available time was less then I hoped for, due to personal reasons, and quality of reviewing and technically following my plan was not so good, I have gained some insights and I am thankful for that.
+
+---
+Overall, that was interesting opportunity, and I wish to be part of the team that creates such a beautifull possibilities for enthusiastic people.
 
 _**SELF-NOTE**_=========================
   _I need to filter out whats left and what needs to be done_
