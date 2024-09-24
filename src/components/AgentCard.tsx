@@ -1,6 +1,7 @@
 import { IAgentDetails } from "../types";
 import { phoneFormater } from "../utils/phoneFormater";
 import { EnvelopeIcon, PhoneIcon } from "./icons";
+import { Card } from "./ui";
 
 export const AgentCard = ({
   avatar,
@@ -12,7 +13,7 @@ export const AgentCard = ({
   const formattedPhone = phoneFormater(phone);
 
   return (
-    <div className="w-[503px] h-[174px] rounded-[8px] border border-solid border-1 border-rdbryBorder-50 py-6 pl-5 flex flex-col gap-[15px]">
+    <Card className="w-[503px] h-[174px] rounded-[8px] py-6 pl-5 flex flex-col gap-[15px]">
       <div className="flex gap-[14px] items-center">
         <div className="w-[72px] h-[72px]">
           <img
@@ -42,6 +43,6 @@ export const AgentCard = ({
           <span>{formattedPhone}</span>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };

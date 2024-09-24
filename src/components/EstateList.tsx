@@ -37,6 +37,7 @@ export const EstateList = ({
         {dataToRender &&
           dataToRender.map((estate) => (
             <Card
+              className="w-[384px] h-[455px] hover:shadow-custom-shadow transform transition-transform duration-200 rounded-[14px] cursor-pointer"
               onClick={() => navigate(`/estate/${estate.id}`)}
               key={generateUID()}
             >
