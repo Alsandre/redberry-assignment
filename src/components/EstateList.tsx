@@ -6,6 +6,7 @@ import { ESTATE_PER_SCREEN } from "../constants";
 import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
 import { generateUID } from "../utils/generateUID";
 import { Loading } from "./Loading";
+import { EstateItem } from "./EstateItem";
 
 export const EstateList = ({
   data,
@@ -36,10 +37,12 @@ export const EstateList = ({
         {dataToRender &&
           dataToRender.map((estate) => (
             <Card
-              key={generateUID()}
-              {...estate}
+              className="w-[384px] h-[455px] hover:shadow-custom-shadow transform transition-transform duration-200 rounded-[14px] cursor-pointer"
               onClick={() => navigate(`/estate/${estate.id}`)}
-            />
+              key={generateUID()}
+            >
+              <EstateItem {...estate} />
+            </Card>
           ))}
       </div>
       {hasMoreToRender && (

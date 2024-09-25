@@ -75,8 +75,10 @@ export interface ICityData {
 }
 
 // Props
-export interface IEstateCardProps extends IGetEstatesList {
-  onClick: () => void;
+export interface ICardProps {
+  onClick?: () => void;
+  children: ReactNode;
+  className?: string;
 }
 
 export interface IFormInputProps extends UseControllerProps {
