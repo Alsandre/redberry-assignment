@@ -8,7 +8,7 @@ import {
   IRegionData,
 } from "../types";
 
-const fetchEstatesList = async (): Promise<IGetEstatesList[]> => {
+export const fetchEstatesList = async (): Promise<IGetEstatesList[]> => {
   const response = await api.get<IGetEstatesList[]>("/real-estates");
   return response.data;
 };

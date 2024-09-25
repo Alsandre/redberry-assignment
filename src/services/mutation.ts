@@ -17,7 +17,7 @@ export const useCreateEstate = () => {
   });
 };
 
-const deleteEstate = async (id: number) => {
+export const deleteEstate = async (id: number) => {
   const response = await api.delete(`/real-estates/${id}`);
   return response.data;
 };

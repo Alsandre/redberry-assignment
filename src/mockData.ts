@@ -1,4 +1,5 @@
-import { createEstate } from "./services/mutation";
+import { fetchEstatesList } from "./services/fetching";
+import { createEstate, deleteEstate } from "./services/mutation";
 
 const STREETS = [
   "ა. წერეთელი გამზირი",
@@ -450,4 +451,8 @@ export const dataCleaner = async () => {
   // step1 - grab all estate data
   // step2 - generate list of estate IDs
   // step3 - for each ID in a list send estate delete request
+  const estateList = await fetchEstatesList();
+  const idList = estateList.map((estate) => estate.id);
+  idList.forEach((estateId) => deleteEstate(estateId));
 };
+// dataCleaner()
