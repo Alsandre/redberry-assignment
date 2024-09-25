@@ -444,3 +444,10 @@ export const seeder = async (amount: number) => {
     const postResponse = await createEstate(newEstateData);
   }
 };
+
+export const dataCleaner = async () => {
+  // Algo:
+  // step1 - grab all estate data
+  // step2 - generate list of estate IDs
+  // step3 - for each ID in a list send estate delete request
+};
