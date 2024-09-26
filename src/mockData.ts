@@ -408,12 +408,33 @@ const getRandomCityId = (regionId: number) => {
   return citiesInCurRegion[getRandomInRange(0, citiesCount)].id;
 };
 
-const generateRandomEstateData = (image: Blob) => {
+type TGenEstateDataP = {
+  image: Blob;
+  region: number | null;
+  city: number | null;
+  bedrooms: number | null;
+};
+const generateRandomEstateData = ({
+  image,
+  region,
+  city,
+  bedrooms,
+}: TGenEstateDataP) => {
   const formData = new FormData();
-
-  const regionId = getRandomInRange(1, 12);
   // Append image to FormData
   formData.append("image", image, "image.png");
+
+  let regionId: string, cityId: string, bedroomsCount: string;
+
+  if (region && typeof region === "number") regionId = region.toString();
+  else regionId = getRandomInRange(1, 12).toString();
+
+  if (city && typeof city === "number") cityId = city.toString();
+  else cityId = getRandomCityId(+regionId).toString();
+
+  if (bedrooms !== null && typeof bedrooms === "number")
+    bedroomsCount = bedrooms.toString();
+  else bedroomsCount = getRandomInRange(1, 9).toString();
 
   // Append other fields to FormData
   formData.append(
@@ -423,24 +444,32 @@ const generateRandomEstateData = (image: Blob) => {
   formData.append("zip_code", `${getRandomInRange(100, 1000)}`);
   formData.append("price", getRandomInRange(50000, 300000).toString());
   formData.append("area", getRandomInRange(50, 500).toString());
-  formData.append("bedrooms", getRandomInRange(1, 9).toString());
+  formData.append("bedrooms", bedroomsCount);
   formData.append("is_rental", getRandomInRange(0, 1).toString());
-  formData.append("city_id", getRandomCityId(regionId).toString());
+  formData.append("city_id", cityId);
   //@ts-ignore
   formData.append("agent_id", AGENT_IDS[getRandomInRange(0, 1)]);
-  formData.append("region_id", regionId.toString());
+  formData.append("region_id", regionId);
   formData.append("description", DESCRIPTIONS[getRandomInRange(0, 30)]);
   formData.append("created_at", new Date().toISOString());
   return formData;
 };
 
-export const seeder = async (amount: number) => {
+type TSeederP = {
+  amount: number;
+  region: number | null;
+  city: number | null;
+  bedrooms: number | null;
+};
+
+export const seeder = async ({ amount, region, city, bedrooms }: TSeederP) => {
   for (let i = 0; i < amount; i++) {
     const randomFlatImageURL = IMAGES[getRandomInRange(0, 7)];
     const response = await fetch(randomFlatImageURL);
     const imageBlob = await response.blob();
 
-    const newEstateData = generateRandomEstateData(imageBlob);
+    const generatorOptions = { image: imageBlob, region, city, bedrooms };
+    const newEstateData = generateRandomEstateData(generatorOptions);
     // @ts-ignore
     const postResponse = await createEstate(newEstateData);
   }
