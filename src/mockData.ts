@@ -457,9 +457,9 @@ const generateRandomEstateData = ({
 
 type TSeederP = {
   amount: number;
-  region: number | null;
-  city: number | null;
-  bedrooms: number | null;
+  region?: number | null;
+  city?: number | null;
+  bedrooms?: number | null;
 };
 
 export const seeder = async ({ amount, region, city, bedrooms }: TSeederP) => {
@@ -468,6 +468,9 @@ export const seeder = async ({ amount, region, city, bedrooms }: TSeederP) => {
     const response = await fetch(randomFlatImageURL);
     const imageBlob = await response.blob();
 
+    region = region ?? null;
+    city = city ?? null;
+    bedrooms = bedrooms ?? null;
     const generatorOptions = { image: imageBlob, region, city, bedrooms };
     const newEstateData = generateRandomEstateData(generatorOptions);
     // @ts-ignore
