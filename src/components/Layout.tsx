@@ -4,6 +4,7 @@ import { EPrimaryButtonVariants, PrimaryBtn } from "./PrimaryBtn";
 import { seeder } from "../mockData";
 import { Footer } from "./Footer";
 import { QuoteSlider } from "./QuoteSlider";
+import { SeederOptions } from "./SeederOptions";
 
 export const Layout = (): JSX.Element => {
   return (
@@ -15,12 +16,14 @@ export const Layout = (): JSX.Element => {
               <Logo />
             </Link>
           </div>
+          <SeederOptions />
           <PrimaryBtn
             className="text-[12px] py-1 leading-3"
             onClick={() => seeder({ amount: 15 })}
             label="seed back with random data"
             variant={EPrimaryButtonVariants.GHOST}
           />
+
           <div className="w-96">
             <QuoteSlider />
           </div>

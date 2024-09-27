@@ -1,0 +1,45 @@
+.double-handle-slider {
+  position: relative;
+  width: 300px;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+}
+
+.slider-min,
+.slider-max {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  appearance: none;
+  pointer-events: none;
+}
+
+.slider-min::-webkit-slider-thumb,
+.slider-max::-webkit-slider-thumb {
+  position: relative;
+  z-index: 50;
+  transform: translateY(-3px);
+  pointer-events: auto;
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #3498db;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.slider-min::-webkit-slider-runnable-track,
+.slider-max::-webkit-slider-runnable-track {
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+}
+
+.range-values {
+  margin-top: 10px;
+}
